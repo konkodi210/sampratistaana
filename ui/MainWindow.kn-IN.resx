@@ -117,21 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lifeTimeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 26</value>
+  </data>
   <data name="lifeTimeToolStripMenuItem.Text" xml:space="preserve">
     <value>ಅಜೀವ  ಸದಸ್ಯತ್ವ</value>
+  </data>
+  <data name="yearlyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 26</value>
   </data>
   <data name="yearlyToolStripMenuItem.Text" xml:space="preserve">
     <value>ವಾರ್ಷಿಕ </value>
   </data>
+  <data name="donationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 26</value>
+  </data>
   <data name="donationToolStripMenuItem.Text" xml:space="preserve">
     <value>ದಾನ</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="membershipToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 24</value>
+    <value>83, 34</value>
   </data>
   <data name="membershipToolStripMenuItem.Text" xml:space="preserve">
     <value>ಸದಸ್ಯತ್ವ</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1000, 38</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>ಬ್ರಮ್ಮಶ್ರೀ  ಮಿತ್ತೂರು  ಪುರೋಹಿತ ತಿಮ್ಮಯ್ಯ ಭಟ್ಟ  ಸಂಪ್ರತಿಷ್ಠಾನ (ರಿ.)</value>
