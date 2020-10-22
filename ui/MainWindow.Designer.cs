@@ -31,8 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.membershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lifeTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yearlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.memberStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,25 +48,21 @@
             // 
             resources.ApplyResources(this.membershipToolStripMenuItem, "membershipToolStripMenuItem");
             this.membershipToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lifeTimeToolStripMenuItem,
-            this.yearlyToolStripMenuItem,
+            this.memberStripMenuItem,
             this.donationToolStripMenuItem});
             this.membershipToolStripMenuItem.Name = "membershipToolStripMenuItem";
             // 
-            // lifeTimeToolStripMenuItem
+            // memberStripMenuItem
             // 
-            resources.ApplyResources(this.lifeTimeToolStripMenuItem, "lifeTimeToolStripMenuItem");
-            this.lifeTimeToolStripMenuItem.Name = "lifeTimeToolStripMenuItem";
-            // 
-            // yearlyToolStripMenuItem
-            // 
-            resources.ApplyResources(this.yearlyToolStripMenuItem, "yearlyToolStripMenuItem");
-            this.yearlyToolStripMenuItem.Name = "yearlyToolStripMenuItem";
+            resources.ApplyResources(this.memberStripMenuItem, "memberStripMenuItem");
+            this.memberStripMenuItem.Name = "memberStripMenuItem";
+            this.memberStripMenuItem.Click += new System.EventHandler(this.memberStripMenuItem_Click);
             // 
             // donationToolStripMenuItem
             // 
             resources.ApplyResources(this.donationToolStripMenuItem, "donationToolStripMenuItem");
             this.donationToolStripMenuItem.Name = "donationToolStripMenuItem";
+            this.donationToolStripMenuItem.Click += new System.EventHandler(this.donationToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -89,8 +84,7 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem membershipToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem lifeTimeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yearlyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem memberStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donationToolStripMenuItem;
     }
 }

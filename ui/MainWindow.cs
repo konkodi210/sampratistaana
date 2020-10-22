@@ -21,5 +21,25 @@ namespace ui
         {
 
         }
+
+        private void showForm(Form form)
+        {
+            if (this.ActiveMdiChild != null) 
+            {
+                this.ActiveMdiChild.Dispose();
+            }            
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void memberStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showForm(new MembershipForm());            
+        }
+
+        private void donationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showForm(new DonationForm());
+        }
     }
 }
