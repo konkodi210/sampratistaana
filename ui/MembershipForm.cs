@@ -15,6 +15,7 @@ namespace ui
         public MembershipForm()
         {
             InitializeComponent();
+            this.dobPicker.CustomFormat = "dd-MMM-yyyy";
         }
 
         protected override void OnResize(EventArgs e)

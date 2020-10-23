@@ -75,6 +75,9 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MembershipForm.kn.resx">
+      <DependentUpon>MembershipForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MembershipForm.resx">
       <DependentUpon>MembershipForm.cs</DependentUpon>
     </EmbeddedResource>
