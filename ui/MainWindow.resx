@@ -163,9 +163,6 @@
   <data name="yearlyToolStripMenuItem.Text" xml:space="preserve">
     <value>Yearly</value>
   </data>
-  <data name="lifeTimeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Life Time</value>
-  </data>
   <data name="&gt;&gt;yearlyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -206,6 +203,9 @@
   </data>
   <data name="&gt;&gt;membershipToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lifeTimeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Life Time</value>
   </data>
   <data name="donationToolStripMenuItem.Text" xml:space="preserve">
     <value>Donation</value>

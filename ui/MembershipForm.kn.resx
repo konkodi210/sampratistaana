@@ -118,7 +118,163 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 40</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>ಸದಸ್ಯತನ -  ರಶೀದಿ</value>
+  </data>
+  <data name="serialNoLb.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="serialNoLb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 36</value>
+  </data>
+  <data name="serialNoLb.Text" xml:space="preserve">
+    <value>ಕ್ರಮಾಂಕ</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>585, 135</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 29</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>ದಿನಾಂಕ</value>
+  </data>
+  <data name="nameLbl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="nameLbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 192</value>
+  </data>
+  <data name="nameLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 29</value>
+  </data>
+  <data name="nameLbl.Text" xml:space="preserve">
+    <value>ಶ್ರೀಮತಿ/ಶ್ರೀ</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 36</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>ಫೋನ್</value>
+  </data>
+  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 36</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>ಮೊಬೈಲ್</value>
+  </data>
+  <data name="dobLbl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="dobLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 36</value>
+  </data>
+  <data name="dobLbl.Text" xml:space="preserve">
+    <value>ಜನನ ದಿನಾಂಕ</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>238, 424</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>558, 61</value>
+  </data>
+  <data name="regular.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="regular.Location" type="System.Drawing.Point, System.Drawing">
+    <value>305, 19</value>
+  </data>
+  <data name="regular.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 33</value>
+  </data>
+  <data name="regular.Text" xml:space="preserve">
+    <value>ಸಾಮನ್ಯ ಸದಸ್ಯತನ</value>
+  </data>
+  <data name="lifetimeBtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="lifetimeBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 18</value>
+  </data>
+  <data name="lifetimeBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 33</value>
+  </data>
+  <data name="lifetimeBtn.Text" xml:space="preserve">
+    <value>ಅಜೀವ  ಸದಸ್ಯತನ</value>
+  </data>
+  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 25</value>
+    <value>123, 36</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>ಸದಸ್ಯತನ</value>
+  </data>
+  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 36</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>ಜಮಾ ವಿವರ</value>
+  </data>
+  <data name="commentTxt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>238, 628</value>
+  </data>
+  <data name="commentTxt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>558, 96</value>
+  </data>
+  <data name="cancelBtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="cancelBtn.Text" xml:space="preserve">
+    <value>ರದ್ದು ಮಾಡಿ</value>
+  </data>
+  <data name="saveBtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="saveBtn.Text" xml:space="preserve">
+    <value>ಉಳಿಸಿ</value>
+  </data>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>ಚೆಕ್ ಅಥವಾ DD ವಿವರ   </value>
+  </data>
+  <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 51</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 36</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>ಬ್ಯಾಂಕ್ ಹೆಸರು</value>
+  </data>
+  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 50</value>
+  </data>
+  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 30</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ಸದಸ್ಯತನ - ರಶೀದಿ </value>
   </data>
 </root>
