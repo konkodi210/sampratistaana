@@ -118,14 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="yearlyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>
-  <data name="&gt;&gt;membershipToolStripMenuItem.Name" xml:space="preserve">
-    <value>membershipToolStripMenuItem</value>
+  <data name="&gt;&gt;ಖರಚToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="yearlyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="ಪಸತಕಮರಟToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 32</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -139,8 +142,17 @@
   <data name="donationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 26</value>
   </data>
+  <data name="&gt;&gt;ವರದToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ವರಷಕವರದToolStripMenuItem.Name" xml:space="preserve">
+    <value>ವರಷಕವರದToolStripMenuItem</value>
+  </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;ವರದToolStripMenuItem.Name" xml:space="preserve">
+    <value>ವರದToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -148,14 +160,32 @@
   <data name="membershipToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 24</value>
   </data>
+  <data name="&gt;&gt;ತಗಳವರದToolStripMenuItem.Name" xml:space="preserve">
+    <value>ತಗಳವರದToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;membershipToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;donationToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 450</value>
   </data>
+  <data name="ಖರಚToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 25</value>
+  </data>
+  <data name="&gt;&gt;lifeTimeToolStripMenuItem.Name" xml:space="preserve">
+    <value>lifeTimeToolStripMenuItem</value>
+  </data>
   <data name="lifeTimeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 26</value>
+  </data>
+  <data name="ವರಷಕವರದToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 26</value>
+  </data>
+  <data name="&gt;&gt;ಪಸತಕಮರಟToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="memberStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
@@ -169,6 +199,9 @@
   <data name="&gt;&gt;memberStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;ಪಸತಕಮರಟToolStripMenuItem.Name" xml:space="preserve">
+    <value>ಪಸತಕಮರಟToolStripMenuItem</value>
+  </data>
   <data name="menuStrip1.Text" xml:space="preserve">
     <value>menuStrip1</value>
   </data>
@@ -178,31 +211,46 @@
   <data name="&gt;&gt;memberStripMenuItem.Name" xml:space="preserve">
     <value>memberStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;lifeTimeToolStripMenuItem.Name" xml:space="preserve">
-    <value>lifeTimeToolStripMenuItem</value>
+  <data name="ತಗಳToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 26</value>
   </data>
   <data name="&gt;&gt;yearlyToolStripMenuItem.Name" xml:space="preserve">
     <value>yearlyToolStripMenuItem</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;membershipToolStripMenuItem.Name" xml:space="preserve">
+    <value>membershipToolStripMenuItem</value>
   </data>
   <data name="membershipToolStripMenuItem.Text" xml:space="preserve">
     <value>Membership</value>
   </data>
+  <data name="&gt;&gt;ತಗಳವರದToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>800, 28</value>
+  </data>
+  <data name="&gt;&gt;ತಗಳToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
+  <data name="&gt;&gt;ವರಷಕವರದToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ವರದToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 25</value>
+  </data>
   <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
     <value>menuStrip1</value>
   </data>
-  <data name="&gt;&gt;membershipToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ಖರಚToolStripMenuItem.Name" xml:space="preserve">
+    <value>ಖರಚToolStripMenuItem</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lifeTimeToolStripMenuItem.Text" xml:space="preserve">
     <value>Life Time</value>
@@ -216,8 +264,14 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Form1</value>
   </data>
+  <data name="ತಗಳವರದToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 26</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>
+  </data>
+  <data name="&gt;&gt;ತಗಳToolStripMenuItem.Name" xml:space="preserve">
+    <value>ತಗಳToolStripMenuItem</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

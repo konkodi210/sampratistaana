@@ -160,8 +160,11 @@
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 13.8pt</value>
   </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 308</value>
+  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 36</value>
+    <value>74, 29</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>ಫೋನ್</value>
@@ -217,8 +220,11 @@
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 13.8pt</value>
   </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 442</value>
+  </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 36</value>
+    <value>98, 29</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>ಸದಸ್ಯತನ</value>
@@ -226,14 +232,17 @@
   <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 13.8pt</value>
   </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 694</value>
+  </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 36</value>
+    <value>118, 29</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>ಜಮಾ ವಿವರ</value>
   </data>
   <data name="commentTxt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 628</value>
+    <value>238, 694</value>
   </data>
   <data name="commentTxt.Size" type="System.Drawing.Size, System.Drawing">
     <value>558, 96</value>
@@ -241,20 +250,35 @@
   <data name="cancelBtn.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 13.8pt</value>
   </data>
+  <data name="cancelBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>674, 849</value>
+  </data>
   <data name="cancelBtn.Text" xml:space="preserve">
     <value>ರದ್ದು ಮಾಡಿ</value>
   </data>
   <data name="saveBtn.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 13.8pt</value>
   </data>
+  <data name="saveBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>518, 849</value>
+  </data>
   <data name="saveBtn.Text" xml:space="preserve">
     <value>ಉಳಿಸಿ</value>
   </data>
-  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 13.8pt</value>
+  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 50</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>ಚೆಕ್ ಅಥವಾ DD ವಿವರ   </value>
+  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 30</value>
+  </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10.2pt</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 25</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Check No</value>
   </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 13.8pt</value>
@@ -268,13 +292,72 @@
   <data name="label7.Text" xml:space="preserve">
     <value>ಬ್ಯಾಂಕ್ ಹೆಸರು</value>
   </data>
-  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 50</value>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
   </data>
-  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 30</value>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 558</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>ಸದಸ್ಯತನ - ರಶೀದಿ </value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>ಚೆಕ್ ಅಥವಾ DD ವಿವರ   </value>
+  </data>
+  <data name="textBox3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="textBox3.MaxLength" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="textBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 30</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 29</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>ಮೊಬಲಗು</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 36</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>ರೂಪಾಯಿ ಮಾತ್ರ</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label12.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 13.8pt</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 29</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>₹</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>918, 962</value>
   </data>
 </root>

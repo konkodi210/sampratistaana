@@ -33,6 +33,11 @@
             this.membershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.memberStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ಪಸತಕಮರಟToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ಖರಚToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ವರದToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ತಗಳವರದToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ವರಷಕವರದToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +46,9 @@
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.membershipToolStripMenuItem});
+            this.membershipToolStripMenuItem,
+            this.ಖರಚToolStripMenuItem,
+            this.ವರದToolStripMenuItem});
             this.menuStrip1.Name = "menuStrip1";
             // 
             // membershipToolStripMenuItem
@@ -49,7 +56,8 @@
             resources.ApplyResources(this.membershipToolStripMenuItem, "membershipToolStripMenuItem");
             this.membershipToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.memberStripMenuItem,
-            this.donationToolStripMenuItem});
+            this.donationToolStripMenuItem,
+            this.ಪಸತಕಮರಟToolStripMenuItem});
             this.membershipToolStripMenuItem.Name = "membershipToolStripMenuItem";
             // 
             // memberStripMenuItem
@@ -63,6 +71,34 @@
             resources.ApplyResources(this.donationToolStripMenuItem, "donationToolStripMenuItem");
             this.donationToolStripMenuItem.Name = "donationToolStripMenuItem";
             this.donationToolStripMenuItem.Click += new System.EventHandler(this.donationToolStripMenuItem_Click);
+            // 
+            // ಪಸತಕಮರಟToolStripMenuItem
+            // 
+            resources.ApplyResources(this.ಪಸತಕಮರಟToolStripMenuItem, "ಪಸತಕಮರಟToolStripMenuItem");
+            this.ಪಸತಕಮರಟToolStripMenuItem.Name = "ಪಸತಕಮರಟToolStripMenuItem";
+            // 
+            // ಖರಚToolStripMenuItem
+            // 
+            resources.ApplyResources(this.ಖರಚToolStripMenuItem, "ಖರಚToolStripMenuItem");
+            this.ಖರಚToolStripMenuItem.Name = "ಖರಚToolStripMenuItem";
+            // 
+            // ವರದToolStripMenuItem
+            // 
+            resources.ApplyResources(this.ವರದToolStripMenuItem, "ವರದToolStripMenuItem");
+            this.ವರದToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ತಗಳವರದToolStripMenuItem,
+            this.ವರಷಕವರದToolStripMenuItem});
+            this.ವರದToolStripMenuItem.Name = "ವರದToolStripMenuItem";
+            // 
+            // ತಗಳವರದToolStripMenuItem
+            // 
+            resources.ApplyResources(this.ತಗಳವರದToolStripMenuItem, "ತಗಳವರದToolStripMenuItem");
+            this.ತಗಳವರದToolStripMenuItem.Name = "ತಗಳವರದToolStripMenuItem";
+            // 
+            // ವರಷಕವರದToolStripMenuItem
+            // 
+            resources.ApplyResources(this.ವರಷಕವರದToolStripMenuItem, "ವರಷಕವರದToolStripMenuItem");
+            this.ವರಷಕವರದToolStripMenuItem.Name = "ವರಷಕವರದToolStripMenuItem";
             // 
             // MainWindow
             // 
@@ -86,6 +122,11 @@
         private System.Windows.Forms.ToolStripMenuItem membershipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem memberStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ಪಸತಕಮರಟToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ಖರಚToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ವರದToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ತಗಳವರದToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ವರಷಕವರದToolStripMenuItem;
     }
 }
 
