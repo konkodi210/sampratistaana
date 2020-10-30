@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-	<Label text="New Member Form" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
-    <Label text="User Name" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-    <TextField id="userName" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    <Label text="Password" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-    <TextField id="password" GridPane.rowIndex="2" GridPane.columnIndex="1"/>    
- </GridPane>
+<VBox alignment="TOP_CENTER" 
+ xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="TOP_CENTER" text="%member.new.title">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </Label>
+      <GridPane hgap="10.0" vgap="10.0">
+         <children>
+         	<Label text="%member.new.serial-no" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" textFill="#e43131">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label text="12343" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" />
+            <Label text="%member.new.date" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" />
+            <Label text="30-Oct-2020" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS"/>
+            
+            <Label     GridPane.columnIndex="0" GridPane.rowIndex="1" text="%member.new.name"  GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" />
+            <Label     GridPane.columnIndex="2" GridPane.rowIndex="1" text="Label" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
+            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
+</VBox>
