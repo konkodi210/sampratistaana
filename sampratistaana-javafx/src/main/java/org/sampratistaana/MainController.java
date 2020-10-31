@@ -8,9 +8,18 @@ import java.io.IOException;
 public class MainController {
 	
 	@FXML
-	private void openNewMembership() throws IOException {
-		loadForm("NewMemberForm");
-		
+	private void openNewMembershipForm() throws IOException {
+		loadForm("NewMemberForm");		
+	}
+	
+	@FXML
+	private void openDonationForm() throws IOException{
+		loadForm("DonationForm");
+	}
+	
+	@FXML
+	private void openBookSaleForm() throws IOException{
+		loadForm("BookSale");
 	}
 
 }

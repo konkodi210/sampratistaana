@@ -12,9 +12,9 @@
    <children>
 	<MenuBar>
 	   <Menu text="%menu.credit">
-	   	 <MenuItem text="%menu.membership" onAction="#openNewMembership"/>
-	   	 <MenuItem text="%menu.donation"/>
-	   	 <MenuItem text="%menu.book.sale"/>
+	   	 <MenuItem text="%menu.membership" onAction="#openNewMembershipForm"/>
+	   	 <MenuItem text="%menu.donation" onAction="#openDonationForm"/>
+	   	 <MenuItem text="%menu.book.sale" onAction="#openBookSaleForm"/>
 	   </Menu>
 	   <Menu text="%menu.expense"/>
 	   <Menu text="%menu.report">

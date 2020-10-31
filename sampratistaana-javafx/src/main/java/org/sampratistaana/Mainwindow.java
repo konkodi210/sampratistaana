@@ -23,7 +23,7 @@ public class Mainwindow extends Application {
 	@Override
     public void start(Stage stage) throws IOException {
 		res=ResourceBundle.getBundle(getClass().getPackageName()+".Message",new Locale("KN"));
-        scene = new Scene(loadFXML("MainWindow"),1000,1000);
+        scene = new Scene(loadFXML("MainWindow"),1000,500);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle(res.getString("window.title"));
         stage.centerOnScreen();

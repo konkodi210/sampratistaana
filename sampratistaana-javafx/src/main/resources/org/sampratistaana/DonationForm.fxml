@@ -45,14 +45,6 @@
             
             <Label text="%member.new.address" GridPane.rowIndex="2" />
             <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="%member.new.type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <children>
-                  <RadioButton mnemonicParsing="false" text="%member.new.lifetime" />
-                  <RadioButton mnemonicParsing="false" text="%member.new.yearly" />
-               </children>
-            </FlowPane>
-            
             
             <Label text="%member.new.mobile" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -63,6 +55,7 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="%member.new.dob" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            
             
             <Label text="%member.new.payment-type" GridPane.rowIndex="5" />
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
