@@ -36,8 +36,18 @@
             
             <Label     GridPane.columnIndex="0" GridPane.rowIndex="1" text="%member.new.name"  GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" />
-            <Label     GridPane.columnIndex="2" GridPane.rowIndex="1" text="Label" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
+            <Label     GridPane.columnIndex="2" GridPane.rowIndex="1" text="%member.new.nickname" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
             <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" />
+            
+            <Label     GridPane.columnIndex="0" GridPane.rowIndex="2" text="%member.new.mobile"  GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" />
+            <Label     GridPane.columnIndex="2" GridPane.rowIndex="2" text="%member.new.phone" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
+            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" />
+            
+            <Label     GridPane.columnIndex="0" GridPane.rowIndex="2" text="%member.new.email"  GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" />
+            <Label     GridPane.columnIndex="2" GridPane.rowIndex="2" text="%member.new.dob" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"/>
+            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" />            
          </children>
          <VBox.margin>
             <Insets />
