@@ -20,11 +20,8 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
          <padding>
-            <Insets top="20.0" />
+            <Insets top="20.0" bottom="20.0" />
          </padding>
       </Label>
       <GridPane hgap="10.0" vgap="20.0">
