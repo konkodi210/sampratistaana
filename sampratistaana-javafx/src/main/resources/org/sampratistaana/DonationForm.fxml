@@ -42,8 +42,8 @@
             
             <Label text="%member.new.address" GridPane.rowIndex="2" />
             <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="%donation.pan" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label text="%donation.pan" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
             
             
             <Label text="%member.new.mobile" GridPane.columnIndex="0" GridPane.rowIndex="3" />

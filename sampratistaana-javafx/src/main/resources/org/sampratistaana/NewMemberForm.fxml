@@ -24,7 +24,7 @@
             <Insets />
          </opaqueInsets>
          <padding>
-            <Insets top="20.0" />
+            <Insets top="20.0" bottom="20.0" />
          </padding>
       </Label>
       <GridPane hgap="10.0" vgap="20.0">
@@ -96,16 +96,6 @@
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="100.0" />
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
          </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" />
-         </rowConstraints>
       </GridPane>
    </children>
    <padding>
