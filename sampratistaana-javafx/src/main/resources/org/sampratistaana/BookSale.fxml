@@ -2,11 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -21,7 +19,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
          <padding>
-            <Insets top="20.0" bottom="20.0" />
+            <Insets bottom="20.0" top="20.0" />
          </padding>
       </Label>
       <GridPane hgap="10.0" vgap="20.0">
@@ -34,8 +32,17 @@
             <Label text="12343" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <Label text="30-Oct-2020" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <TableView GridPane.columnSpan="4" GridPane.rowIndex="1">
+              <columns>
+                  <TableColumn text="%booksale.serial-no" />
+                  <TableColumn text="%booksale.name" />
+                  <TableColumn text="%booksale.unit-price" />
+                  <TableColumn text="%booksale.quantity" />
+                  <TableColumn text="%booksale.total-prize" />
+              </columns>
+            </TableView>
             
-            <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" text="%common.cancel" />
                   <Button mnemonicParsing="false" text="%common.save" />
@@ -43,11 +50,16 @@
             </FlowPane>            
          </children>
          <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"/>
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
          </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints />
+         </rowConstraints>
       </GridPane>
    </children>
    <padding>
