@@ -1,4 +1,4 @@
-## Design Decision
+## Design Decisions
 1. To save the cost and simplify the design, we will using the Desktop application
 1. [Java FX](https://openjfx.io) will be used as UI framework
 1. For backend we will be using the [SQLLite](https://www.sqlite.org/index.html)
