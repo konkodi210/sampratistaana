@@ -6,13 +6,14 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnectionFactory {
+public class ConnectionFactory {	
 	private static final String DB_TEMPLATE_FILE="database.sqlite";
-	private String dbUrl=null;
-	public synchronized Connection getConnection() {
+	private static String dbUrl=null;
+	
+	public static synchronized Connection getConnection() {
 		try {
 			if(dbUrl == null) {
-				String dbFilePath = System.getProperty("user.home")+"db_sampratistana.sqlite";
+				String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana.sqlite";
 				Path filePath=new File(dbFilePath).toPath();
 				if(!Files.exists(filePath)) {
 					Files.copy(ConnectionFactory.class.getResourceAsStream(DB_TEMPLATE_FILE), filePath);
