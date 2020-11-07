@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.hibernate.Session;
 import org.junit.Test;
 
 public class ConnectionFactoryTest {
@@ -54,5 +55,11 @@ public class ConnectionFactoryTest {
 			assertThat("Must have one record", rs.next(),equalTo(true));
 			assertThat("First column must be 1", rs.getString(1),equalTo("1"));
 		}
+	}
+	
+	@Test
+	public void testDbSession() throws Exception {
+		Session fact=ConnectionFactory.dbSession();
+		assertThat("DB session must not be null", fact,notNullValue());
 	}
 }
