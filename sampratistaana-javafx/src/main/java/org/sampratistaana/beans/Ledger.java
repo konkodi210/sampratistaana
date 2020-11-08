@@ -5,25 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "LEDGER")
-@Inheritance(strategy = InheritanceType.JOINED)
-@SuppressWarnings("unchecked")
-public class Ledger<T extends Ledger<T>> {
+public class Ledger {
+	public static enum EntryType{CREDIT,DEBIT}
+	public static enum EntryCategory{MEMBER, DONATION, BOOK_SALE}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ENTRY_NO", nullable = false, insertable = false, updatable = false)
 	private long entryNo;
 	
 	@Column(name = "ENTRY_TYPE", nullable = false)
-	private String entryType;
+	private EntryType entryType;
 	
 	@Column(name="ENTRY_CATEGORY", nullable = false)
-	private String entryCategory;
+	private EntryCategory entryCategory;
 	
 	@Column(name = "ENTRY_VALUE", nullable = false)
 	private double entryValue;
@@ -44,58 +42,65 @@ public class Ledger<T extends Ledger<T>> {
 		return entryNo;
 	}
 	
-	public T setEntryNo(long entryNo) {
+	public Ledger setEntryNo(long entryNo) {
 		this.entryNo = entryNo;
-		return (T)this;
+		return this;
 	}
-	public String getEntryType() {
+	public EntryType getEntryType() {
 		return entryType;
 	}
-	public T setEntryType(String entryType) {
+	public Ledger setEntryType(EntryType entryType) {
 		this.entryType = entryType;
-		return (T)this;
+		return this;
 	}
-	public String getEntryCategory() {
+	public EntryCategory getEntryCategory() {
 		return entryCategory;
 	}
-	public T setEntryCategory(String entryCategory) {
+	public Ledger setEntryCategory(EntryCategory entryCategory) {
 		this.entryCategory = entryCategory;
-		return (T)this;
+		return this;
 	}
 	public double getEntryValue() {
 		return entryValue;
 	}
-	public T setEntryValue(double entryValue) {
+	public Ledger setEntryValue(double entryValue) {
 		this.entryValue = entryValue;
-		return (T)this;
+		return this;
 	}
 	public long getEntryDate() {
 		return entryDate;
 	}
-	public T setEntryDate(long entryDate) {
+	public Ledger setEntryDate(long entryDate) {
 		this.entryDate = entryDate;
-		return (T)this;
+		return this;
 	}
 	public String getModeOfTranscation() {
 		return modeOfTranscation;
 	}
-	public T setModeOfTranscation(String modeOfTranscation) {
+	public Ledger setModeOfTranscation(String modeOfTranscation) {
 		this.modeOfTranscation = modeOfTranscation;
-		return (T)this;
+		return this;
 	}	
 	public String getExternalTranNo() {
 		return externalTranNo;
 	}
-	public T setExternalTranNo(String externalTranNo) {
+	public Ledger setExternalTranNo(String externalTranNo) {
 		this.externalTranNo = externalTranNo;
-		return (T)this;
+		return this;
 	}
 	public String getPanNo() {
 		return panNo;
 	}
-	public T setPanNo(String panNo) {
+	public Ledger setPanNo(String panNo) {
 		this.panNo = panNo;
-		return (T)this;
+		return this;
+	}
+
+	@Override
+	public String toString() {
+		return "Ledger [entryNo=" + entryNo + ", entryType=" + entryType + ", entryCategory=" + entryCategory
+				+ ", entryValue=" + entryValue + ", entryDate=" + entryDate + ", modeOfTranscation=" + modeOfTranscation
+				+ ", externalTranNo=" + externalTranNo + ", panNo=" + panNo + "]";
 	}
 	
 }

@@ -12,13 +12,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MEMBER")
-//@PrimaryKeyJoinColumn(name = "LEDGER_ENTRY_NO")
-public class Member{
-
+@Table(name = "DONATION")
+public class Donation {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MEMBER_NO", nullable = false)
-	private long memberNo;
+	@Column(name = "DONATION_ID", nullable = false)
+	private long donationId;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "LEDGER_ENTRY_NO")
@@ -33,9 +31,6 @@ public class Member{
 	@Column(name="ADDRESS")
 	private String address;
 
-	@Column(name="MEMBERSHIP_TYPE")
-	private String membershipType;
-
 	@Column(name = "MOBILE_NO")
 	private String mobileNo;
 
@@ -47,22 +42,22 @@ public class Member{
 
 	@Column(name = "DATE_OF_BIRTH")
 	private long dateOfBirth;
-	
+
+	public long getDonationId() {
+		return donationId;
+	}
+
+	public Donation setDonationId(long donationId) {
+		this.donationId = donationId;
+		return this;
+	}
+
 	public Ledger getLedger() {
 		return ledger;
 	}
 
-	public Member setLedger(Ledger ledger) {
+	public Donation setLedger(Ledger ledger) {
 		this.ledger = ledger;
-		return this;
-	}
-
-	public long getMemberNo() {
-		return memberNo;
-	}
-
-	public Member setMemberNo(long memberNo) {
-		this.memberNo = memberNo;
 		return this;
 	}
 
@@ -70,7 +65,7 @@ public class Member{
 		return name;
 	}
 
-	public Member setName(String name) {
+	public Donation setName(String name) {
 		this.name = name;
 		return this;
 	}
@@ -79,7 +74,7 @@ public class Member{
 		return nickName;
 	}
 
-	public Member setNickName(String nickName) {
+	public Donation setNickName(String nickName) {
 		this.nickName = nickName;
 		return this;
 	}
@@ -88,17 +83,8 @@ public class Member{
 		return address;
 	}
 
-	public Member setAddress(String address) {
+	public Donation setAddress(String address) {
 		this.address = address;
-		return this;
-	}
-
-	public String getMembershipType() {
-		return membershipType;
-	}
-
-	public Member setMembershipType(String membershipType) {
-		this.membershipType = membershipType;
 		return this;
 	}
 
@@ -106,7 +92,7 @@ public class Member{
 		return mobileNo;
 	}
 
-	public Member setMobileNo(String mobileNo) {
+	public Donation setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 		return this;
 	}
@@ -115,7 +101,7 @@ public class Member{
 		return phoneNo;
 	}
 
-	public Member setPhoneNo(String phoneNo) {
+	public Donation setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 		return this;
 	}
@@ -124,7 +110,7 @@ public class Member{
 		return email;
 	}
 
-	public Member setEmail(String email) {
+	public Donation setEmail(String email) {
 		this.email = email;
 		return this;
 	}
@@ -133,15 +119,18 @@ public class Member{
 		return dateOfBirth;
 	}
 
-	public Member setDateOfBirth(long dateOfBirth) {
+	public Donation setDateOfBirth(long dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [memberNo=" + memberNo + ", ledger=" + ledger + ", name=" + name + ", nickName=" + nickName
-				+ ", address=" + address + ", membershipType=" + membershipType + ", mobileNo=" + mobileNo
-				+ ", phoneNo=" + phoneNo + ", email=" + email + ", dateOfBirth=" + dateOfBirth + "]";
+		return "Donation [donationId=" + donationId + ", ledger=" + ledger + ", name=" + name + ", nickName=" + nickName
+				+ ", address=" + address + ", mobileNo=" + mobileNo + ", phoneNo=" + phoneNo + ", email=" + email
+				+ ", dateOfBirth=" + dateOfBirth + "]";
 	}
+	
+	
+	
 }

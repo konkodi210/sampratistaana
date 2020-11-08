@@ -13,6 +13,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Member;
 
@@ -42,10 +43,13 @@ public class ConnectionFactory {
 						.applySetting(Environment.DIALECT, "org.hibernate.dialect.H2Dialect")
 						.applySetting(Environment.SHOW_SQL, true)
 						.applySetting(Environment.FORMAT_SQL, true)
+						.applySetting("hibernate.enable_lazy_load_no_trans", true)
 						.build();
 				sessionFactory= new MetadataSources(registry)
+						.addPackage("org.sampratistaana.beans")
 						.addAnnotatedClass(Ledger.class)
 						.addAnnotatedClass(Member.class)
+						.addAnnotatedClass(Donation.class)
 						.getMetadataBuilder()
 						.build()
 						.getSessionFactoryBuilder()
