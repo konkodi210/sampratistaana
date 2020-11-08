@@ -2,20 +2,20 @@ package org.sampratistaana.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 @Entity
 @Table(name = "MEMBER")
-public class Member extends Ledger {
+@PrimaryKeyJoinColumn(name = "LEDGER_ENTRY_NO")
+public class Member extends Ledger<Member> {
 
-	@Id @GeneratedValue
-	@Column(name = "MEMBER_NO")
+	@Generated(GenerationTime.INSERT)
+	@Column(name = "MEMBER_NO", insertable = false, updatable = false, nullable = false)
 	private long memberNo;
-
-	@Column(name = "LEDGER_ENTRY_NO", nullable = false)
-	private long ledgerEntryNo;
 
 	@Column(name = "NAME", nullable = false)
 	private String name;
@@ -39,7 +39,7 @@ public class Member extends Ledger {
 	private String email;
 
 	@Column(name = "DATE_OF_BIRTH")
-	private int dateOfBirth;
+	private long dateOfBirth;
 
 	public long getMemberNo() {
 		return memberNo;
@@ -47,15 +47,6 @@ public class Member extends Ledger {
 
 	public Member setMemberNo(long memberNo) {
 		this.memberNo = memberNo;
-		return this;
-	}
-
-	public long getLedgerEntryNo() {
-		return ledgerEntryNo;
-	}
-
-	public Member setLedgerEntryNo(long ledgerEntryNo) {
-		this.ledgerEntryNo = ledgerEntryNo;
 		return this;
 	}
 
@@ -122,11 +113,11 @@ public class Member extends Ledger {
 		return this;
 	}
 
-	public int getDateOfBirth() {
+	public long getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public Member setDateOfBirth(int dateOfBirth) {
+	public Member setDateOfBirth(long dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 		return this;
 	}

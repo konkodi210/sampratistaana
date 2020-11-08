@@ -6,10 +6,22 @@ import static org.sampratistaana.ConnectionFactory.dbSession;
 import org.hibernate.Session;
 
 public class CreditOperationManager {
-	public Member saveMember(Member member) {
+	
+	/**
+	 * Saves the member into the database
+	 * @param member 
+	 * @return Member number 
+	 */
+	public Long saveMember(Member member) {
 		try(Session session=dbSession()){
-			member=(Member)session.save(member);
+			session.save(member);
+			return member.getMemberNo();
 		}
-		return member;
+	}
+	
+	public Member getMember(int memberId) {
+		try(Session session=dbSession()){
+			return null;
+		}
 	}
 }

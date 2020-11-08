@@ -3,15 +3,20 @@ package org.sampratistaana.beans;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "LEDGER")
-public class Ledger {
+@Inheritance(strategy = InheritanceType.JOINED)
+@SuppressWarnings("unchecked")
+public class Ledger<T extends Ledger<T>> {
 	
-	@Id @GeneratedValue
-	@Column(name = "ENTRY_NO", nullable = false)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ENTRY_NO", nullable = false, insertable = false, updatable = false)
 	private long entryNo;
 	
 	@Column(name = "ENTRY_TYPE", nullable = false)
@@ -38,58 +43,59 @@ public class Ledger {
 	public long getEntryNo() {
 		return entryNo;
 	}
-	public Ledger setEntryNo(long entryNo) {
+	
+	public T setEntryNo(long entryNo) {
 		this.entryNo = entryNo;
-		return this;
+		return (T)this;
 	}
 	public String getEntryType() {
 		return entryType;
 	}
-	public Ledger setEntryType(String entryType) {
+	public T setEntryType(String entryType) {
 		this.entryType = entryType;
-		return this;
+		return (T)this;
 	}
 	public String getEntryCategory() {
 		return entryCategory;
 	}
-	public Ledger setEntryCategory(String entryCategory) {
+	public T setEntryCategory(String entryCategory) {
 		this.entryCategory = entryCategory;
-		return this;
+		return (T)this;
 	}
 	public double getEntryValue() {
 		return entryValue;
 	}
-	public Ledger setEntryValue(double entryValue) {
+	public T setEntryValue(double entryValue) {
 		this.entryValue = entryValue;
-		return this;
+		return (T)this;
 	}
 	public long getEntryDate() {
 		return entryDate;
 	}
-	public Ledger setEntryDate(long entryDate) {
+	public T setEntryDate(long entryDate) {
 		this.entryDate = entryDate;
-		return this;
+		return (T)this;
 	}
 	public String getModeOfTranscation() {
 		return modeOfTranscation;
 	}
-	public Ledger setModeOfTranscation(String modeOfTranscation) {
+	public T setModeOfTranscation(String modeOfTranscation) {
 		this.modeOfTranscation = modeOfTranscation;
-		return this;
+		return (T)this;
 	}	
 	public String getExternalTranNo() {
 		return externalTranNo;
 	}
-	public Ledger setExternalTranNo(String externalTranNo) {
+	public T setExternalTranNo(String externalTranNo) {
 		this.externalTranNo = externalTranNo;
-		return this;
+		return (T)this;
 	}
 	public String getPanNo() {
 		return panNo;
 	}
-	public Ledger setPanNo(String panNo) {
+	public T setPanNo(String panNo) {
 		this.panNo = panNo;
-		return this;
+		return (T)this;
 	}
 	
 }
