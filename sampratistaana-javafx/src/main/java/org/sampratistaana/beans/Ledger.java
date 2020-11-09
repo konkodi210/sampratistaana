@@ -10,8 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "LEDGER")
 public class Ledger {
-	public static enum EntryType{CREDIT,DEBIT}
-	public static enum EntryCategory{MEMBER, DONATION, BOOK_SALE}
+	public enum EntryType{CREDIT,DEBIT}
+	public enum EntryCategory{MEMBER, DONATION, BOOK_SALE,BOOK_PURCHASE}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ENTRY_NO", nullable = false, insertable = false, updatable = false)

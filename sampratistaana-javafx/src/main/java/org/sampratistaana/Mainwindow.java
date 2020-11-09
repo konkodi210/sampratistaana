@@ -1,8 +1,9 @@
 package org.sampratistaana;
 
+import static org.sampratistaana.Messages.getMessage;
+import static org.sampratistaana.Messages.getResource;
+
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Mainwindow extends Application {
-	private static Scene scene;
-	private static ResourceBundle res;
+	private static Scene scene;	
 	
 	public static Scene getScene() {
 		return scene;
@@ -21,10 +21,10 @@ public class Mainwindow extends Application {
 
 	@Override
     public void start(Stage stage) throws IOException {
-		res=ResourceBundle.getBundle(getClass().getPackageName()+".Message",new Locale("KN"));
+		new CreditManager().loadBookInventory();
         scene = new Scene(loadFXML("MainWindow"),1000,500);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        stage.setTitle(res.getString("window.title"));
+        stage.setTitle(getMessage("window.title"));
         stage.centerOnScreen();
 //        stage.sizeToScene();
         stage.setScene(scene);
@@ -33,7 +33,7 @@ public class Mainwindow extends Application {
 
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Mainwindow.class.getResource(fxml + ".fxml"),res);
+        FXMLLoader fxmlLoader = new FXMLLoader(Mainwindow.class.getResource(fxml + ".fxml"),getResource());
         return fxmlLoader.load();
     }
 
