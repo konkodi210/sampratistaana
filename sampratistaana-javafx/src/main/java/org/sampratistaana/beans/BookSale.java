@@ -26,4 +26,58 @@ public class BookSale {
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "INVENTORY_ID")
 	private Inventory inventory;
+	
+	@Column(name = "UNIT_COUNT", nullable = false)
+	private int unitCount;
+	
+	@Column(name = "CUSTOMER_NAME", nullable = false)
+	private String customerName;
+
+	public long getBookSaleId() {
+		return bookSaleId;
+	}
+
+	public void setBookSaleId(long bookSaleId) {
+		this.bookSaleId = bookSaleId;
+	}
+
+	public Ledger getLedger() {
+		return ledger;
+	}
+
+	public void setLedger(Ledger ledger) {
+		this.ledger = ledger;
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	
+
+	public int getUnitCount() {
+		return unitCount;
+	}
+
+	public void setUnitCount(int unitCount) {
+		this.unitCount = unitCount;
+	}
+
+	@Override
+	public String toString() {
+		return "BookSale [bookSaleId=" + bookSaleId + ", ledger=" + ledger + ", inventory=" + inventory + ", unitCount="
+				+ unitCount + ", customerName=" + customerName + "]";
+	}
+	
 }

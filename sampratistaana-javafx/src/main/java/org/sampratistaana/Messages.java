@@ -15,8 +15,12 @@ public class Messages {
 		return resource;
 	}
 	
-	public static synchronized String getMessage(String key) {
+	public static synchronized String getMessage(String key,Object...args) {
 		ResourceBundle res=getResource();
-		return res.containsKey(key)?res.getString(key):key;
+		String val = res.containsKey(key)?res.getString(key):key;
+		if(args!=null && args.length >0) {
+			return String.format(val, args);
+		}
+		return val;
 	}
 }

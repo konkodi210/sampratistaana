@@ -1,11 +1,16 @@
 package org.sampratistaana;
 
 import static org.sampratistaana.ConnectionFactory.dbSession;
+import org.sampratistaana.beans.Ledger.EntryCategory;
+import org.sampratistaana.beans.Ledger.EntryType;
 
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 
+
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Ledger;
@@ -110,6 +115,29 @@ public class CreditManager {
 					}
 				}
 			}
+		}
+	}
+	
+	public void makeBookSale(BookSale bookSale) {
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			
+			//Update the inventory
+			Inventory inv=bookSale.getInventory();
+			int currentInventory = inv.getInventoryCount();
+			if(currentInventory < bookSale.getUnitCount()) {
+				throw new SampratistaanaException("book.nostock",currentInventory,bookSale.getUnitCount());
+			}
+			inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
+			
+			//Update the Ledger entry 
+			bookSale.setLedger(new Ledger()
+					.setEntryCategory(EntryCategory.BOOK_SALE)
+					.setEntryType(EntryType.CREDIT)
+					.setEntryValue(bookSale.getUnitCount() * inv.getUnitPrice())
+			);
+			
+			
 		}
 	}
 }
