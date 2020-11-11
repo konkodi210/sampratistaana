@@ -1,5 +1,7 @@
 package org.sampratistaana.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "LEDGER")
-public class Ledger {
+public class Ledger implements Serializable{
 	public enum EntryType{CREDIT,DEBIT}
 	public enum EntryCategory{MEMBER, DONATION, BOOK_SALE,BOOK_PURCHASE}
 	public enum TransactionMode {CASH, CHECK, ONLINE}

@@ -16,7 +16,7 @@
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="TOP_CENTER" text="%member.new.title">
+      <Label alignment="TOP_CENTER" text="%member.title">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -38,45 +38,45 @@
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <Label text="30-Oct-2020" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             
-            <Label text="%member.new.name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label text="%member.name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="%member.new.nickname" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label text="%member.nickname" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
-            <Label text="%member.new.address" GridPane.rowIndex="2" />
+            <Label text="%member.address" GridPane.rowIndex="2" />
             <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="%member.new.type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="%member.type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <RadioButton mnemonicParsing="false" text="%member.new.lifetime" />
-                  <RadioButton mnemonicParsing="false" text="%member.new.yearly" />
+                  <RadioButton mnemonicParsing="false" text="%member.lifetime" />
+                  <RadioButton mnemonicParsing="false" text="%member.yearly" />
                </children>
             </FlowPane>
             
             
-            <Label text="%member.new.mobile" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label text="%member.mobile" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="%member.new.phone" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label text="%member.phone" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
             
-            <Label text="%member.new.email" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Label text="%member.email" GridPane.columnIndex="0" GridPane.rowIndex="4" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="%member.new.dob" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label text="%member.dob" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="4" />
             
-            <Label text="%member.new.payment-type" GridPane.rowIndex="5" />
+            <Label text="%member.payment-type" GridPane.rowIndex="5" />
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-               	  <RadioButton mnemonicParsing="false" text="%member.new.cash" />
-                  <RadioButton mnemonicParsing="false" text="%member.new.check" />
-                  <RadioButton mnemonicParsing="false" text="%member.new.online" />
-                  <RadioButton mnemonicParsing="false" text="%member.new.dd" />
+               	  <RadioButton mnemonicParsing="false" text="%member.cash" />
+                  <RadioButton mnemonicParsing="false" text="%member.check" />
+                  <RadioButton mnemonicParsing="false" text="%member.online" />
+                  <RadioButton mnemonicParsing="false" text="%member.dd" />
                </children>
             </FlowPane>
-            <Label text="%member.new.check-no" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label text="%member.check-no" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
             
-            <Label text="%member.new.description" GridPane.rowIndex="6" />
+            <Label text="%member.description" GridPane.rowIndex="6" />
             <TextArea GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
             
             <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">

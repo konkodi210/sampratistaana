@@ -10,7 +10,7 @@ public class MainController {
 	
 	@FXML
 	private void openNewMembershipForm() throws IOException {
-		loadForm("NewMemberForm");		
+		loadForm("MemberList");		
 	}
 	
 	@FXML

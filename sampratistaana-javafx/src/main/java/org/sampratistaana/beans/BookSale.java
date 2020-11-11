@@ -1,5 +1,7 @@
 package org.sampratistaana.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "BOOK_SALE")
-public class BookSale {
+public class BookSale implements Serializable{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BOOK_SALE_ID", nullable = false)
 	private long bookSaleId;

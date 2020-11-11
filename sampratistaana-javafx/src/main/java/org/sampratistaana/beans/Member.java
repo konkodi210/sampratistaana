@@ -1,5 +1,7 @@
 package org.sampratistaana.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MEMBER")
 //@PrimaryKeyJoinColumn(name = "LEDGER_ENTRY_NO")
-public class Member{
+public class Member implements Serializable{
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MEMBER_NO", nullable = false)

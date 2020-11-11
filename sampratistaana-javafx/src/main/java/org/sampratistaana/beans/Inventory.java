@@ -1,5 +1,7 @@
 package org.sampratistaana.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +17,7 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "INVENTORY")
-public class Inventory {
+public class Inventory implements Serializable{
 	public enum InventoryType{ BOOK }
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

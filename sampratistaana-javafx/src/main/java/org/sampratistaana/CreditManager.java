@@ -3,7 +3,10 @@ package org.sampratistaana;
 import static org.sampratistaana.ConnectionFactory.dbSession;
 
 import java.util.Enumeration;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -39,6 +42,15 @@ public class CreditManager {
 	public Member getMember(long memberId) {
 		try(Session session=dbSession()){
 			return session.get(Member.class, memberId);
+		}
+	}
+	
+	public List<Member> getAllMembers(){
+		try(Session session=dbSession()){			
+			CriteriaQuery<Member> cq=session
+					.getCriteriaBuilder()
+					.createQuery(Member.class); 
+			return session.createQuery(cq.select(cq.from(Member.class))).getResultList();
 		}
 	}
 

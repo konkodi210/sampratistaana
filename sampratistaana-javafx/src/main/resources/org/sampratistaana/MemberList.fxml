@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="TOP_CENTER" text="%member.list.title">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding>
+      </Label>
+      <FlowPane>
+         <children>
+            <Button mnemonicParsing="false" text="%member.action.new" />
+         </children>
+      </FlowPane>
+      <TableView fx:id="memberList" editable="true" tableMenuButtonVisible="true">
+        <columns>
+          <TableColumn id="action" text="%common.action" />
+          <TableColumn id="name" text="%member.name" />
+          <TableColumn id="nickname" text="%member.nickname" />
+          <TableColumn id="type" text="%member.type" />
+          <TableColumn id="date" text="%member.date" />
+          <TableColumn id="email" text="%member.email" />
+          <TableColumn id="mobile" text="%member.mobile" />
+          <TableColumn id="phone" text="%member.phone" />
+          <TableColumn id="paymentType" text="%member.payment-type" />
+          <TableColumn id="address" text="%member.address" visible="false" />	  
+		  <TableColumn id="dob" text="%member.dob" visible="false" />
+		  <TableColumn id="description" text="%member.description" visible="false" />
+        </columns>
+      </TableView>
+
+   </children>
+   <padding>
+      <Insets left="5.0" right="25.0" />
+   </padding>
+</VBox>
