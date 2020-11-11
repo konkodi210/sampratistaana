@@ -1,22 +1,20 @@
 package org.sampratistaana;
 
 import static org.sampratistaana.ConnectionFactory.dbSession;
-import org.sampratistaana.beans.Ledger.EntryCategory;
-import org.sampratistaana.beans.Ledger.EntryType;
 
 import java.util.Enumeration;
 import java.util.ResourceBundle;
-
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
-import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Inventory.InventoryType;
+import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
+import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
 
 public class CreditManager {
@@ -110,7 +108,7 @@ public class CreditManager {
 										.setEntryCategory(EntryCategory.BOOK_PURCHASE)
 										.setEntryValue(250*101)
 										.setEntryDate(System.currentTimeMillis())
-										.setModeOfTranscation("CASH"))
+										.setModeOfTranscation(TransactionMode.CASH))
 								);
 					}
 				}
@@ -119,8 +117,9 @@ public class CreditManager {
 	}
 	
 	public void makeBookSale(BookSale bookSale) {
+		Transaction tran=null;
 		try(Session session=dbSession()){
-			Transaction tran=session.beginTransaction();
+			tran=session.beginTransaction();			
 			
 			//Update the inventory
 			Inventory inv=bookSale.getInventory();
@@ -131,13 +130,19 @@ public class CreditManager {
 			inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
 			
 			//Update the Ledger entry 
-			bookSale.setLedger(new Ledger()
+			bookSale.getLedger()
 					.setEntryCategory(EntryCategory.BOOK_SALE)
 					.setEntryType(EntryType.CREDIT)
 					.setEntryValue(bookSale.getUnitCount() * inv.getUnitPrice())
-			);
+					.setEntryDate(System.currentTimeMillis());
 			
-			
+			session.saveOrUpdate(bookSale);
+			tran.commit();
+		}catch(Exception e) {
+//			if(tran!=null) {
+//				tran.rollback();
+//			}
+			throw new SampratistaanaException(e);
 		}
 	}
 }

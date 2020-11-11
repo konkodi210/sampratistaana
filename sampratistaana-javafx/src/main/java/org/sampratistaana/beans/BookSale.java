@@ -37,32 +37,36 @@ public class BookSale {
 		return bookSaleId;
 	}
 
-	public void setBookSaleId(long bookSaleId) {
+	public BookSale setBookSaleId(long bookSaleId) {
 		this.bookSaleId = bookSaleId;
+		return this;
 	}
 
 	public Ledger getLedger() {
 		return ledger;
 	}
 
-	public void setLedger(Ledger ledger) {
+	public BookSale setLedger(Ledger ledger) {
 		this.ledger = ledger;
+		return this;
 	}
 
 	public Inventory getInventory() {
 		return inventory;
 	}
 
-	public void setInventory(Inventory inventory) {
+	public BookSale setInventory(Inventory inventory) {
 		this.inventory = inventory;
+		return this;
 	}
 
 	public String getCustomerName() {
 		return customerName;
 	}
 
-	public void setCustomerName(String customerName) {
+	public BookSale setCustomerName(String customerName) {
 		this.customerName = customerName;
+		return this;
 	}
 	
 
@@ -70,8 +74,9 @@ public class BookSale {
 		return unitCount;
 	}
 
-	public void setUnitCount(int unitCount) {
+	public BookSale setUnitCount(int unitCount) {
 		this.unitCount = unitCount;
+		return this;
 	}
 
 	@Override

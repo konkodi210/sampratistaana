@@ -13,6 +13,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Ledger;
@@ -52,6 +53,7 @@ public class ConnectionFactory {
 						.addAnnotatedClass(Member.class)
 						.addAnnotatedClass(Donation.class)
 						.addAnnotatedClass(Inventory.class)
+						.addAnnotatedClass(BookSale.class)
 						.getMetadataBuilder()
 						.build()
 						.getSessionFactoryBuilder()

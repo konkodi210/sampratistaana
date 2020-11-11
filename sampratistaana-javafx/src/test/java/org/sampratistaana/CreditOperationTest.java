@@ -1,17 +1,21 @@
 package org.sampratistaana;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.notNullValue;
 
 import java.util.UUID;
 
 import org.junit.Test;
+import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Inventory.InventoryType;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
+import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
 
 public class CreditOperationTest {
@@ -32,7 +36,7 @@ public class CreditOperationTest {
 						.setEntryCategory(EntryCategory.MEMBER)
 						.setEntryValue(101)
 						.setEntryDate(System.currentTimeMillis())
-						.setModeOfTranscation("CASH")
+						.setModeOfTranscation(TransactionMode.CASH)
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
 				);	
@@ -74,7 +78,7 @@ public class CreditOperationTest {
 						.setEntryCategory(EntryCategory.DONATION)
 						.setEntryValue(101)
 						.setEntryDate(System.currentTimeMillis())
-						.setModeOfTranscation("CASH")
+						.setModeOfTranscation(TransactionMode.CASH)
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
 				);	
@@ -113,7 +117,7 @@ public class CreditOperationTest {
 						.setEntryCategory(EntryCategory.DONATION)
 						.setEntryValue(101)
 						.setEntryDate(System.currentTimeMillis())
-						.setModeOfTranscation("CASH")
+						.setModeOfTranscation(TransactionMode.CASH)
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
 				);	
@@ -137,5 +141,24 @@ public class CreditOperationTest {
 		assertThat("Inventory record must be found", inventoryFromDb,notNullValue());
 		assertThat("A ledger record must be assosiated with that", inventoryFromDb.getLedger(),notNullValue());
 		assertThat("Both Objects should match", inventory.toString(),equalTo(inventoryFromDb.toString()));
+	}
+	
+	@Test
+	public void testMakeSale() throws Exception {
+		Inventory inventory=createInventory();
+		int currentInventory=inventory.getInventoryCount();
+		BookSale bookSale=new BookSale()
+				.setInventory(inventory)
+				.setCustomerName("Good Hearted Man")
+				.setUnitCount(5)
+				.setLedger(new Ledger()
+						.setModeOfTranscation(TransactionMode.CASH)
+						);
+		new CreditManager().makeBookSale(bookSale);
+		assertThat("Booksale id must be generated", (int)bookSale.getBookSaleId(),greaterThan(0));
+		assertThat("Inventory count should reduced", 
+				inventory.getInventoryCount(),equalTo(currentInventory-bookSale.getUnitCount()));
+		assertThat("Total Prize should multiplication of unit count and unit price",
+				bookSale.getLedger().getEntryValue(), equalTo(bookSale.getUnitCount()*inventory.getUnitPrice()));
 	}
 }

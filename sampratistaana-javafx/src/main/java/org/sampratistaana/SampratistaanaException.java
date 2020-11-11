@@ -1,5 +1,6 @@
 package org.sampratistaana;
 
+@SuppressWarnings("serial")
 public class SampratistaanaException extends RuntimeException {
 
 	public SampratistaanaException(String message, Throwable cause) {

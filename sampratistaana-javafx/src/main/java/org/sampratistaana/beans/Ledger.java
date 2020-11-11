@@ -12,6 +12,7 @@ import javax.persistence.Table;
 public class Ledger {
 	public enum EntryType{CREDIT,DEBIT}
 	public enum EntryCategory{MEMBER, DONATION, BOOK_SALE,BOOK_PURCHASE}
+	public enum TransactionMode {CASH, CHECK, ONLINE}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ENTRY_NO", nullable = false, insertable = false, updatable = false)
@@ -30,7 +31,7 @@ public class Ledger {
 	private long entryDate;
 	
 	@Column(name = "MODE_OF_TRAN", nullable = false)
-	private String modeOfTranscation;
+	private TransactionMode modeOfTranscation;
 	
 	@Column(name = "EXTERNAL_TRAN_ID")
 	private String externalTranNo;
@@ -74,10 +75,10 @@ public class Ledger {
 		this.entryDate = entryDate;
 		return this;
 	}
-	public String getModeOfTranscation() {
+	public TransactionMode getModeOfTranscation() {
 		return modeOfTranscation;
 	}
-	public Ledger setModeOfTranscation(String modeOfTranscation) {
+	public Ledger setModeOfTranscation(TransactionMode modeOfTranscation) {
 		this.modeOfTranscation = modeOfTranscation;
 		return this;
 	}	
