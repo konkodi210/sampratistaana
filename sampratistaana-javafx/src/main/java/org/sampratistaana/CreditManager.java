@@ -45,7 +45,15 @@ public class CreditManager {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Member> getAllMembers(){
+		/*
+		 * TODO: Problem with this approach is when we fetch Ledger object, hibernate try to load them. 
+		 * This might be problem when we load large volume of records.
+		 */		
 		try(Session session=dbSession()){			
 			CriteriaQuery<Member> cq=session
 					.getCriteriaBuilder()

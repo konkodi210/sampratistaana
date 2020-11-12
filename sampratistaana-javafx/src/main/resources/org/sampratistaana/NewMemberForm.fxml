@@ -14,7 +14,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="org.sampratistaana.MemberController">
    <children>
       <Label alignment="TOP_CENTER" text="%member.title">
          <font>
@@ -81,7 +82,7 @@
             
             <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="%common.cancel" />
+                  <Button mnemonicParsing="false" text="%common.cancel" onAction="#loadMembers" />
                   <Button mnemonicParsing="false" text="%common.save" />
                </children>
             </FlowPane>

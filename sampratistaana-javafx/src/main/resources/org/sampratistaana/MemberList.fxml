@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="org.sampratistaana.MemberController">
    <children>
       <Label alignment="TOP_CENTER" text="%member.list.title">
          <font>
@@ -24,7 +25,7 @@
       </Label>
       <FlowPane>
          <children>
-            <Button mnemonicParsing="false" text="%member.action.new" />
+            <Button mnemonicParsing="false" text="%member.action.new" onAction="#loadNewMemberForm"/>
          </children>
       </FlowPane>
       <TableView fx:id="memberList" editable="true" tableMenuButtonVisible="true">

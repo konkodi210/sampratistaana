@@ -22,7 +22,7 @@ public class Mainwindow extends Application {
 	@Override
     public void start(Stage stage) throws IOException {
 		new CreditManager().loadBookInventory();
-        scene = new Scene(loadFXML("MainWindow"),1000,500);
+        scene = new Scene(loadFXML("MainWindow"),1000,600);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle(getMessage("window.title"));
         stage.centerOnScreen();
@@ -41,9 +41,10 @@ public class Mainwindow extends Application {
         launch();
     }
     
-    public static synchronized void loadForm(String formName) throws IOException {
+    public static synchronized VBox loadForm(String formName) throws IOException {
     	VBox box=(VBox)scene.lookup("#body");
     	box.getChildren().clear();
     	box.getChildren().add(loadFXML(formName));
+    	return box;
     }
 }

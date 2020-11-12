@@ -4,13 +4,19 @@ import static org.sampratistaana.Mainwindow.loadForm;
 
 import java.io.IOException;
 
-import javafx.fxml.FXML;
+import org.sampratistaana.beans.MemberListUI;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+
+@SuppressWarnings("unchecked")
 public class MainController {
-	
+		
 	@FXML
 	private void openNewMembershipForm() throws IOException {
-		loadForm("MemberList");		
+		VBox box=loadForm("MemberList");
+		new MemberController().loadMembers((TableView<MemberListUI>)box.lookup("#memberList"));
 	}
 	
 	@FXML

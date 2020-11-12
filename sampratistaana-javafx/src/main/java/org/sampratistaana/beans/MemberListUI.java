@@ -1,5 +1,6 @@
 package org.sampratistaana.beans;
 
+import static org.sampratistaana.Messages.formatDate;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -17,6 +18,20 @@ public class MemberListUI {
 	private StringProperty description;
 	private StringProperty dob;
 
+	public static MemberListUI of(Member member) {
+		MemberListUI ui=new MemberListUI();
+		ui.setName(member.getName());
+		ui.setNickname(ui.getName());
+		ui.setType(member.getMembershipType());
+		ui.setDate(formatDate(member.getLedger().getEntryDate()));
+		ui.setPhone(member.getPhoneNo());
+		ui.setMobile(member.getMobileNo());
+		ui.setAddress(member.getAddress());
+		ui.setEmail(member.getEmail());
+		ui.setDob(formatDate(member.getDateOfBirth()));
+		return ui;
+	}
+	
 	public void setAction(String value) {
 		actionProperty().set(value); 
 	}

@@ -1,5 +1,7 @@
 package org.sampratistaana;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -22,5 +24,13 @@ public class Messages {
 			return String.format(val, args);
 		}
 		return val;
+	}
+	
+	public static String formatDate(long date) {
+		if(date>0) {
+		return new SimpleDateFormat(resource.getString("common.date-format")).format(new Date(date));
+		}else {
+			return null;
+		}
 	}
 }
