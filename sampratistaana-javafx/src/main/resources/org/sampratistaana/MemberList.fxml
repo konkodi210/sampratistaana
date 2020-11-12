@@ -32,12 +32,12 @@
         <columns>
           <TableColumn id="action" text="%common.action" />
           <TableColumn id="name" text="%member.name" />
-          <TableColumn id="nickname" text="%member.nickname" />
-          <TableColumn id="type" text="%member.type" />
+          <TableColumn id="nickName" text="%member.nickname" />
+          <TableColumn id="membershipType" text="%member.type" />
           <TableColumn id="date" text="%member.date" />
           <TableColumn id="email" text="%member.email" />
-          <TableColumn id="mobile" text="%member.mobile" />
-          <TableColumn id="phone" text="%member.phone" />
+          <TableColumn id="mobileNo" text="%member.mobile" />
+          <TableColumn id="phoneNo" text="%member.phone" />
           <TableColumn id="paymentType" text="%member.payment-type" />
           <TableColumn id="address" text="%member.address" visible="false" />	  
 		  <TableColumn id="dob" text="%member.dob" visible="false" />

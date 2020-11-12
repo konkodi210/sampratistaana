@@ -18,6 +18,8 @@ import org.hibernate.annotations.NaturalId;
 @Entity
 @Table(name = "INVENTORY")
 public class Inventory implements Serializable{
+	private static final long serialVersionUID = 7056284966345612238L;
+
 	public enum InventoryType{ BOOK }
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

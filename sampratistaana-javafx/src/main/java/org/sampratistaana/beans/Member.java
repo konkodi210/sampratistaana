@@ -13,10 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.sampratistaana.beans.Ledger.TransactionMode;
+import static org.sampratistaana.Messages.formatDate;
+
 @Entity
 @Table(name = "MEMBER")
 //@PrimaryKeyJoinColumn(name = "LEDGER_ENTRY_NO")
 public class Member implements Serializable{
+	private static final long serialVersionUID = 2435744732575061197L;
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MEMBER_NO", nullable = false)
@@ -138,6 +142,21 @@ public class Member implements Serializable{
 	public Member setDateOfBirth(long dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 		return this;
+	}
+	
+	public String getPaymentType() {
+		if(getLedger()!=null) {
+			TransactionMode mode=getLedger().getModeOfTranscation();
+			return mode!=null?mode.toString():null;
+		}
+		return null;
+	}
+	
+	public String getDate() {
+		if(getLedger()!=null) {
+			return formatDate(getLedger().getEntryDate());
+		}
+		return null;
 	}
 
 	@Override

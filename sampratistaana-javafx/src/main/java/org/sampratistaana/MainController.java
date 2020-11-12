@@ -4,7 +4,7 @@ import static org.sampratistaana.Mainwindow.loadForm;
 
 import java.io.IOException;
 
-import org.sampratistaana.beans.MemberListUI;
+import org.sampratistaana.beans.Member;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
@@ -16,7 +16,7 @@ public class MainController {
 	@FXML
 	private void openNewMembershipForm() throws IOException {
 		VBox box=loadForm("MemberList");
-		new MemberController().loadMembers((TableView<MemberListUI>)box.lookup("#memberList"));
+		new MemberController().loadMembers((TableView<Member>)box.lookup("#memberList"));
 	}
 	
 	@FXML

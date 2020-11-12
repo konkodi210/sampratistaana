@@ -12,6 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "LEDGER")
 public class Ledger implements Serializable{
+	private static final long serialVersionUID = -1797795357655017900L;
+
 	public enum EntryType{CREDIT,DEBIT}
 	public enum EntryCategory{MEMBER, DONATION, BOOK_SALE,BOOK_PURCHASE}
 	public enum TransactionMode {CASH, CHECK, ONLINE}
