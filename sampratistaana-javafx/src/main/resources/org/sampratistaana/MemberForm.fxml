@@ -15,7 +15,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.MemberController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1"
+ xmlns:fx="http://javafx.com/fxml/1" 
+ fx:controller="org.sampratistaana.MemberController"
+  id="MemberForm">
    <children>
       <Label alignment="TOP_CENTER" text="%member.title">
          <font>
@@ -35,9 +38,12 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="memberNo" text="12343" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <FlowPane GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="LM"  />
+             <Label id="memberNo"  />
+            </FlowPane>            
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label id="entryDate" text="30-Oct-2020" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             
             <Label text="%member.name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <TextField id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
