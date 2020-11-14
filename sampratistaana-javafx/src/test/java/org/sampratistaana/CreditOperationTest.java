@@ -16,6 +16,7 @@ import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
+import org.sampratistaana.beans.Member.MembershipType;
 import org.sampratistaana.beans.Member;
 
 public class CreditOperationTest {
@@ -25,7 +26,7 @@ public class CreditOperationTest {
 				.setName(UUID.randomUUID().toString())
 				.setNickName("GodKnows")
 				.setAddress("blah house\r\n blah post")
-				.setMembershipType("LIFE")
+				.setMembershipType(MembershipType.LIFE)
 				.setMobileNo("12345454")
 				.setPhoneNo("23434234234")
 				.setEmail("abc@gmail.com")

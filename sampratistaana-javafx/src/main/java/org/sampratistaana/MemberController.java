@@ -4,19 +4,24 @@ import static org.sampratistaana.Mainwindow.loadForm;
 import static org.sampratistaana.Messages.formatDate;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import org.sampratistaana.beans.Ledger;
+import org.sampratistaana.beans.Ledger.EntryCategory;
+import org.sampratistaana.beans.Ledger.EntryType;
+import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
+import org.sampratistaana.beans.Member.MembershipType;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
@@ -52,28 +57,45 @@ public class MemberController {
 		}else {
 			member=new Member();
 		}
+		//TODO:Membership fee is not covered
 		member.setName(getString(box, "name"))
-			.setNickName(getString(box, "nickName"));
+		.setNickName(getString(box, "nickName"))
+		.setAddress(getString(box, "address"))
+		.setMembershipType(MembershipType.valueOf(getString(box, "membershipType")))
+		.setMobileNo(getString(box, "mobileNo"))
+		.setPhoneNo(getString(box, "phoneNo"))
+		.setEmail(getString(box, "email"))		
+		.setLedger(new Ledger()
+				.setEntryType(EntryType.CREDIT)
+				.setEntryCategory(EntryCategory.MEMBER)
+				.setEntryDate(System.currentTimeMillis())
+				.setModeOfTranscation(TransactionMode.valueOf(getString(box, "paymentType")))
+				);
+		
 		loadMembers();
 	}
 
 	public VBox loadMember(Member member) throws IOException{
 		VBox box=loadForm(MEMBER_FORM);
 		box.setUserData(member);
+
 		((Label)box.lookup("#memberNo")).setText(String.valueOf(member.getMemberNo()));
 		((Label)box.lookup("#entryDate")).setText(formatDate(member.getLedger().getEntryDate()));
 		((TextField)box.lookup("#name")).setText(member.getName());
 		((TextField)box.lookup("#nickName")).setText(member.getNickName());
-		((TextField)box.lookup("#address")).setText(member.getAddress());
-		((TextField)box.lookup("#membershipType")).setText(member.getMembershipType());
+		((TextArea)box.lookup("#address")).setText(member.getAddress());
+		//((ToggleGroup)box.lookup("#membershipType")).selectedToggleProperty()
 		((TextField)box.lookup("#mobileNo")).setText(member.getMobileNo());
 		((TextField)box.lookup("#phoneNo")).setText(member.getMobileNo());
 		((TextField)box.lookup("#email")).setText(member.getEmail());
-		((TextField)box.lookup("#dateOfBirth")).setText(formatDate(member.getDateOfBirth()));
-		((TextField)box.lookup("#externalTranNo")).setText(member.getLedger().getExternalTranNo());
+		if(member.getDateOfBirth() >0) {
+			LocalDate dob = Instant.ofEpochMilli(member.getDateOfBirth()).atZone(ZoneId.systemDefault()).toLocalDate();
+			((DatePicker)box.lookup("#dateOfBirth")).setValue(dob);
+		}		
+		//((TextField)box.lookup("#externalTranNo")).setText(member.getLedger().getExternalTranNo());
 		return box;
 	}
-	
+
 	private String getString(VBox box,String id) {
 		Node node=box.lookup("#"+id);
 		if(node instanceof Label) {

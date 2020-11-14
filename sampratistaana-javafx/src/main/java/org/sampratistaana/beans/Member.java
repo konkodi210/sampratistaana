@@ -21,6 +21,7 @@ import static org.sampratistaana.Messages.formatDate;
 //@PrimaryKeyJoinColumn(name = "LEDGER_ENTRY_NO")
 public class Member implements Serializable{
 	private static final long serialVersionUID = 2435744732575061197L;
+	public enum MembershipType {LIFE, YEARLY}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MEMBER_NO", nullable = false)
@@ -40,7 +41,7 @@ public class Member implements Serializable{
 	private String address;
 
 	@Column(name="MEMBERSHIP_TYPE")
-	private String membershipType;
+	private MembershipType membershipType=MembershipType.LIFE;
 
 	@Column(name = "MOBILE_NO")
 	private String mobileNo;
@@ -99,11 +100,11 @@ public class Member implements Serializable{
 		return this;
 	}
 
-	public String getMembershipType() {
+	public MembershipType getMembershipType() {
 		return membershipType;
 	}
 
-	public Member setMembershipType(String membershipType) {
+	public Member setMembershipType(MembershipType membershipType) {
 		this.membershipType = membershipType;
 		return this;
 	}

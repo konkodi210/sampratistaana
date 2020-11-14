@@ -39,8 +39,8 @@
                </font>
             </Label>
             <FlowPane GridPane.columnIndex="1" GridPane.rowIndex="0">
-            <Label text="LM"  />
-             <Label id="memberNo"  />
+            <Label text="LM"/>
+            <Label id="memberNo"/>
             </FlowPane>            
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <Label id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
