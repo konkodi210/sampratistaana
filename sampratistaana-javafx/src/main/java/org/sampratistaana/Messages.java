@@ -12,7 +12,7 @@ public class Messages {
 		if(resource == null) {
 			//TODO: Hardcoding locale for now.
 			Locale.setDefault(new Locale("KN"));
-			resource=ResourceBundle.getBundle(Messages.class.getPackageName()+".Message",Locale.getDefault());
+			resource=ResourceBundle.getBundle(Messages.class.getPackage().getName()+".Message",Locale.getDefault());
 		}
 		return resource;
 	}
