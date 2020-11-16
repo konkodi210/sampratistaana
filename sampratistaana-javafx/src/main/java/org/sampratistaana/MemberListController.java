@@ -1,6 +1,8 @@
 package org.sampratistaana;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.TransactionMode;
@@ -8,28 +10,36 @@ import org.sampratistaana.beans.Member;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
-@SuppressWarnings("unchecked")
-public class MemberListController extends BaseController{
+public class MemberListController extends BaseController implements Initializable{
 	private static final String MEMBER_FORM="MemberForm";
-
-	public void loadMembers() throws IOException {
-		VBox box=(VBox)loadForm("MemberList");
-		loadMembers((TableView<Member>)box.lookup("#memberList"));
-	}
-
-	public void loadMembers(TableView<Member> memberListTable) {
-		for(TableColumn<Member, ?> col:memberListTable.getColumns()) {
+	
+	@FXML private TableView<Member> memberList;
+	@FXML private Button editBtn;
+	@FXML private Button deleteBtn;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		for(TableColumn<Member, ?> col:memberList.getColumns()) {
 			if(!col.getId().equals("action")) {
 				col.setCellValueFactory(new PropertyValueFactory<>(col.getId()));
 			}
 		}
-		memberListTable.setItems(FXCollections.observableArrayList(new CreditManager().getAllMembers()));
+		memberList.setItems(FXCollections.observableArrayList(new CreditManager().getAllMembers()));
+		memberList
+			.getSelectionModel()
+			.selectedItemProperty()
+			.addListener((obs,oldVal,newVal) -> handleRowSelection());
+	}
+
+	public void loadMembers() throws IOException {
+		loadForm("MemberList");	
 	}
 
 	public VBox loadNewMemberForm() throws IOException {
@@ -42,5 +52,20 @@ public class MemberListController extends BaseController{
 		addToCache(MemberEditController.CACHE_KEY, member);
 		VBox box= (VBox)loadForm(MEMBER_FORM);
 		return box;
+	}
+	
+	private void handleRowSelection() {
+		editBtn.setDisable(false);
+		deleteBtn.setDisable(false);
+	}	
+	
+	public void deleteMember() throws IOException{
+		new CreditManager().deleteMember(memberList.getSelectionModel().getSelectedItem());
+		loadMembers();
+	}
+	
+	public void editMember() throws IOException{
+		addToCache(MemberEditController.CACHE_KEY, memberList.getSelectionModel().getSelectedItem());
+		loadForm(MEMBER_FORM);
 	}
 }

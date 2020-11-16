@@ -6,8 +6,6 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.sampratistaana.beans.BookSale;
@@ -28,8 +26,10 @@ public class CreditManager {
 	 * @return Member number 
 	 */
 	public Long saveMember(Member member) {
-		try(Session session=dbSession()){			
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
 			session.saveOrUpdate(member);
+			tran.commit();
 			return member.getMemberNo();
 		}
 	}
@@ -50,15 +50,18 @@ public class CreditManager {
 	 * @return
 	 */
 	public List<Member> getAllMembers(){
-		/*
-		 * TODO: Problem with this approach is when we fetch Ledger object, hibernate try to load them. 
-		 * This might be problem when we load large volume of records.
-		 */		
 		try(Session session=dbSession()){			
-			CriteriaQuery<Member> cq=session
-					.getCriteriaBuilder()
-					.createQuery(Member.class); 
-			return session.createQuery(cq.select(cq.from(Member.class))).getResultList();
+			return session
+					.createQuery("SELECT m FROM Member as m INNER JOIN FETCH m.ledger", Member.class)
+					.getResultList();
+		}
+	}
+	
+	public void deleteMember(Member member) {
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			session.delete(member);
+			tran.commit();
 		}
 	}
 

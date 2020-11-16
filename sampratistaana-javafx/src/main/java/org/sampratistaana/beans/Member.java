@@ -1,5 +1,7 @@
 package org.sampratistaana.beans;
 
+import static org.sampratistaana.Messages.formatDate;
+
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -14,11 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.sampratistaana.beans.Ledger.TransactionMode;
-import static org.sampratistaana.Messages.formatDate;
 
 @Entity
 @Table(name = "MEMBER")
-//@PrimaryKeyJoinColumn(name = "LEDGER_ENTRY_NO")
 public class Member implements Serializable{
 	private static final long serialVersionUID = 2435744732575061197L;
 	public enum MembershipType {LIFE, YEARLY}
@@ -28,7 +28,7 @@ public class Member implements Serializable{
 	private long memberNo;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name = "LEDGER_ENTRY_NO")
+	@JoinColumn(name = "LEDGER_ENTRY_NO")	
 	private Ledger ledger;
 
 	@Column(name = "NAME", nullable = false)
