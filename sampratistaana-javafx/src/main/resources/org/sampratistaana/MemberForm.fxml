@@ -15,10 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1"
- xmlns:fx="http://javafx.com/fxml/1" 
- fx:controller="org.sampratistaana.MemberEditController"
-  fx:id="memberForm">
+<VBox fx:id="memberForm" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.MemberEditController">
    <children>
       <Label alignment="TOP_CENTER" text="%member.title">
          <font>
@@ -39,8 +36,8 @@
                </font>
             </Label>
             <FlowPane GridPane.columnIndex="1" GridPane.rowIndex="0">
-            <Label text="LM"/>
-            <Label fx:id="memberNo"/>
+            <Label text="LM" />
+            <Label fx:id="memberNo" />
             </FlowPane>            
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
@@ -53,16 +50,16 @@
             <Label text="%member.address" GridPane.rowIndex="2" />
             <TextArea fx:id="address" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="%member.type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <RadioButton text="%member.lifetime" selected="true">
+                  <RadioButton selected="true" text="%member.lifetime">
 					 <toggleGroup>
                         <ToggleGroup fx:id="membership" />
                      </toggleGroup>
-                     <properties value="LIFE"/>                                       
+                     <properties value="LIFE" />                                       
                   </RadioButton>
                   <RadioButton text="%member.yearly" toggleGroup="$membership">
-                    <properties value="YEARLY"/>
+                    <properties value="YEARLY" />
                   </RadioButton>
                </children>
             </FlowPane>
@@ -79,22 +76,22 @@
             <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             
             <Label text="%member.payment-type" GridPane.rowIndex="5" />
-            <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                	  <RadioButton mnemonicParsing="false" selected="true" text="%member.cash">
                      <toggleGroup>
                         <ToggleGroup fx:id="paymentType" />
                      </toggleGroup>
-                     <properties value="CASH"/>
+                     <properties value="CASH" />
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType" >
-                    <properties value="CHECK"/>
+                  <RadioButton mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType">
+                    <properties value="CHECK" />
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType" >
-                    <properties value="ONLINE"/>
+                  <RadioButton mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType">
+                    <properties value="ONLINE" />
                   </RadioButton>
                   <RadioButton mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
-                  	<properties value="DD"/>
+                  	<properties value="DD" />
                   </RadioButton>
                </children>
             </FlowPane>
@@ -104,7 +101,7 @@
             <Label text="%member.description" GridPane.rowIndex="6" />
             <TextArea fx:id="description" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
             
-            <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <children>                  
                   <Button mnemonicParsing="false" onAction="#saveMember" text="%common.save" />
                   <Button mnemonicParsing="false" onAction="#loadMembers" text="%common.cancel" />

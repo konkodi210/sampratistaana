@@ -17,9 +17,6 @@ import javafx.scene.layout.VBox;
 @SuppressWarnings("unchecked")
 public class MemberListController extends BaseController{
 	private static final String MEMBER_FORM="MemberForm";
-	
-	@FXML
-	private ToggleGroup membershipToggle;
 
 	public void loadMembers() throws IOException {
 		VBox box=(VBox)loadForm("MemberList");
