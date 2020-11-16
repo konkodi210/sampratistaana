@@ -37,8 +37,9 @@ public class MemberEditController extends BaseController implements Initializabl
 	@FXML private TextField email;
 	@FXML private DatePicker dateOfBirth;
 	@FXML private ToggleGroup paymentType;
+	@FXML private TextField amount;
 	@FXML private TextField externalTranNo;
-	@FXML private TextArea description;
+	@FXML private TextField description;
 
 
 	@Override
@@ -69,7 +70,8 @@ public class MemberEditController extends BaseController implements Initializabl
 				break;
 			}
 		}
-		externalTranNo.setText(member.getLedger().getExternalTranNo());		
+		externalTranNo.setText(member.getLedger().getExternalTranNo());
+		amount.setText(String.valueOf(member.getLedger().getEntryValue()));
 		//TODO:Description need to be added
 		//description.setText(member.getLedger().get);
 
@@ -93,7 +95,8 @@ public class MemberEditController extends BaseController implements Initializabl
 			.setEntryType(EntryType.CREDIT)
 			.setEntryValue(100)
 			.setExternalTranNo(externalTranNo.getText())
-			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")));
+			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
+			.setEntryValue(Double.parseDouble(amount.getText()));
 		if(dateOfBirth.getValue()!=null) {
 			member.setDateOfBirth(dateOfBirth.getValue().toEpochDay());
 		}
