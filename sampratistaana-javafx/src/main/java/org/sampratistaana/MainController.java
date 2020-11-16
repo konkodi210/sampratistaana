@@ -16,7 +16,7 @@ public class MainController {
 	@FXML
 	private void openNewMembershipForm() throws IOException {
 		VBox box=loadForm("MemberList");
-		new MemberController().loadMembers((TableView<Member>)box.lookup("#memberList"));
+		new MemberListController().loadMembers((TableView<Member>)box.lookup("#memberList"));
 	}
 	
 	@FXML

@@ -40,7 +40,7 @@ public class Member implements Serializable{
 	@Column(name="ADDRESS")
 	private String address;
 
-	@Column(name="MEMBERSHIP_TYPE")
+	@Column(name="MEMBERSHIP_TYPE", nullable = false)
 	private MembershipType membershipType=MembershipType.LIFE;
 
 	@Column(name = "MOBILE_NO")

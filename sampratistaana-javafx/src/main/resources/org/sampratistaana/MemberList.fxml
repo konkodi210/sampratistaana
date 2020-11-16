@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="org.sampratistaana.MemberController">
+	fx:controller="org.sampratistaana.MemberListController">
    <children>
       <Label alignment="TOP_CENTER" text="%member.list.title">
          <font>

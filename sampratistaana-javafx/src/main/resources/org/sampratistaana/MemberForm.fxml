@@ -17,8 +17,8 @@
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1"
  xmlns:fx="http://javafx.com/fxml/1" 
- fx:controller="org.sampratistaana.MemberController"
-  id="MemberForm">
+ fx:controller="org.sampratistaana.MemberEditController"
+  fx:id="memberForm">
    <children>
       <Label alignment="TOP_CENTER" text="%member.title">
          <font>
@@ -40,36 +40,43 @@
             </Label>
             <FlowPane GridPane.columnIndex="1" GridPane.rowIndex="0">
             <Label text="LM"/>
-            <Label id="memberNo"/>
+            <Label fx:id="memberNo"/>
             </FlowPane>            
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             
             <Label text="%member.name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="%member.nickname" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField id="nickName" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="nickName" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
             <Label text="%member.address" GridPane.rowIndex="2" />
-            <TextArea id="address" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextArea fx:id="address" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="%member.type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <FlowPane id="membershipType" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <RadioButton mnemonicParsing="false" text="%member.lifetime" />
-                  <RadioButton mnemonicParsing="false" text="%member.yearly" />
+                  <RadioButton text="%member.lifetime" selected="true">
+					 <toggleGroup>
+                        <ToggleGroup fx:id="membership" />
+                     </toggleGroup>
+                     <properties value="LIFE"/>                                       
+                  </RadioButton>
+                  <RadioButton text="%member.yearly" toggleGroup="$membership">
+                    <properties value="YEARLY"/>
+                  </RadioButton>
                </children>
             </FlowPane>
             
             
             <Label text="%member.mobile" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <TextField id="mobileNo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="mobileNo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="%member.phone" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField id="phoneNo" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="phoneNo" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             
             <Label text="%member.email" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <TextField id="email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="%member.dob" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <DatePicker id="dateOfBirth" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             
             <Label text="%member.payment-type" GridPane.rowIndex="5" />
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -77,17 +84,25 @@
                	  <RadioButton mnemonicParsing="false" selected="true" text="%member.cash">
                      <toggleGroup>
                         <ToggleGroup fx:id="paymentType" />
-                     </toggleGroup></RadioButton>
-                  <RadioButton mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType" />
-                  <RadioButton mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType" />
-                  <RadioButton id="modeOfTranscation" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType" />
+                     </toggleGroup>
+                     <properties value="CASH"/>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType" >
+                    <properties value="CHECK"/>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType" >
+                    <properties value="ONLINE"/>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
+                  	<properties value="DD"/>
+                  </RadioButton>
                </children>
             </FlowPane>
-            <Label id="externalTranNo" text="%member.check-no" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label text="%member.check-no" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="externalTranNo" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             
             <Label text="%member.description" GridPane.rowIndex="6" />
-            <TextArea GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+            <TextArea fx:id="description" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
             
             <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <children>                  
