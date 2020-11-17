@@ -153,6 +153,10 @@ public class Member implements Serializable{
 		return null;
 	}
 	
+	public double getMembershipFee() {
+		return getLedger().getEntryValue();
+	}
+	
 	public String getDate() {
 		if(getLedger()!=null) {
 			return formatDate(getLedger().getEntryDate());

@@ -1,8 +1,11 @@
-package org.sampratistaana;
+package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.sampratistaana.Mainwindow;
+import org.sampratistaana.Messages;
 
 import javafx.scene.Parent;
 

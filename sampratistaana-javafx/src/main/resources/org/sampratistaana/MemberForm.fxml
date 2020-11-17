@@ -15,7 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="memberForm" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.MemberEditController">
+<VBox fx:id="memberForm" 
+	alignment="TOP_CENTER" 
+	xmlns="http://javafx.com/javafx/11.0.1" 
+	xmlns:fx="http://javafx.com/fxml/1" 
+	fx:controller="org.sampratistaana.controllers.MemberEditController">
    <children>
       <Label alignment="TOP_CENTER" text="%member.title">
          <font>

@@ -1,4 +1,4 @@
-package org.sampratistaana;
+package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
 
+import org.sampratistaana.CreditManager;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;

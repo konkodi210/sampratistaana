@@ -46,13 +46,14 @@ public class CreditManager {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * get all members from the database.
+	 * @return List of all members sorted by Creation date in descending order.
 	 */
 	public List<Member> getAllMembers(){
+		// Even though we have mentioned in lazy loading for Ledger in member bean, we are fetching to avoid multiple child queries
 		try(Session session=dbSession()){			
 			return session
-					.createQuery("SELECT m FROM Member as m INNER JOIN FETCH m.ledger", Member.class)
+					.createQuery("SELECT m FROM Member as m INNER JOIN FETCH m.ledger ORDER BY m.ledger.entryDate DESC", Member.class)
 					.getResultList();
 		}
 	}
@@ -85,6 +86,19 @@ public class CreditManager {
 	public Donation getDonation(long donationId) {
 		try(Session session=dbSession()){
 			return session.get(Donation.class, donationId);
+		}
+	}
+
+	/**
+	 * get all Donation from the database.
+	 * @return List of all members sorted by Creation date in descending order.
+	 */
+	public List<Donation> getAllDonations(){
+		// Even though we have mentioned in lazy loading for Ledger in member bean, we are fetching to avoid multiple child queries
+		try(Session session=dbSession()){			
+			return session
+					.createQuery("SELECT m FROM Donation as m INNER JOIN FETCH m.ledger ORDER BY m.ledger.entryDate DESC", Donation.class)
+					.getResultList();
 		}
 	}
 

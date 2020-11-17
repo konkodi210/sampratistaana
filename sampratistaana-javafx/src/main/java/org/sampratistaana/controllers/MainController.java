@@ -1,4 +1,4 @@
-package org.sampratistaana;
+package org.sampratistaana.controllers;
 
 import static org.sampratistaana.Mainwindow.loadForm;
 
@@ -16,7 +16,7 @@ public class MainController {
 	
 	@FXML
 	private void openDonationForm() throws IOException{
-		loadForm("DonationForm");
+		loadForm("DonationList");
 	}
 	
 	@FXML

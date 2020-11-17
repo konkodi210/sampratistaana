@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -12,9 +13,9 @@
 <VBox alignment="TOP_CENTER" 
 	xmlns="http://javafx.com/javafx/11.0.1" 
 	xmlns:fx="http://javafx.com/fxml/1" 
-	fx:controller="org.sampratistaana.controllers.MemberListController">
+	fx:controller="org.sampratistaana.controllers.DonationListController">
    <children>
-      <Label alignment="TOP_CENTER" text="%member.list.title">
+      <Label alignment="TOP_CENTER" text="%donation.list.title">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -24,22 +25,22 @@
       </Label>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button text="%member.action.new" onAction="#loadNewMemberForm"/>
-          	<Button fx:id="editBtn" text="%common.edit" onAction="#editMember" disable="true"/>
-            <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteMember" disable="true"/>
+            <Button text="%donation.action.new" onAction="#loadNewDonation"/>
+          	<Button fx:id="editBtn" text="%common.edit" onAction="#editDonation" disable="true"/>
+            <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteDonation" disable="true"/>
         </buttons>
       </ButtonBar>
-      <TableView fx:id="memberList" editable="true" tableMenuButtonVisible="true" >
+      <TableView fx:id="donationList" editable="true" tableMenuButtonVisible="true" >
         <columns>
           <TableColumn id="name" text="%member.name" />
-          <TableColumn id="nickName" text="%member.nickname" />
-          <TableColumn id="membershipType" text="%member.type" />
-          <TableColumn id="membershipFee" text="%member.amount" />
+          <TableColumn id="nickName" text="%member.nickname" />          
+          <TableColumn id="donationValue" text="%member.amount" />
           <TableColumn id="date" text="%member.date" />
           <TableColumn id="email" text="%member.email" />
           <TableColumn id="mobileNo" text="%member.mobile" />
           <TableColumn id="phoneNo" text="%member.phone" />
           <TableColumn id="paymentType" text="%member.payment-type" />
+          <TableColumn id="panNo" text="%donation.pan" visible="false" />
           <TableColumn id="address" text="%member.address" visible="false" />	  
 		  <TableColumn id="dob" text="%member.dob" visible="false" />
 		  <TableColumn id="description" text="%member.description" visible="false" />

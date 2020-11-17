@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -61,7 +62,14 @@ public class CreditOperationTest {
 		assertThat("Member record must be found", memberFromDb,notNullValue());
 		assertThat("A ledger record must be assosiated with that", memberFromDb.getLedger(),notNullValue());
 		assertThat("Both Objects should match", member.toString(),equalTo(memberFromDb.toString()));
-
+	}
+	
+	@Test
+	public void testGetAllMember() {		
+		new CreditManager().saveMember(createMember());
+		List<Member> memberList=new CreditManager().getAllMembers();
+		assertThat("List should not be null", memberList, notNullValue());
+		assertThat("Must have more than one member", memberList.size(),greaterThan(0));
 	}
 	
 	private Donation createDonation() {
@@ -104,6 +112,14 @@ public class CreditOperationTest {
 		assertThat("A ledger record must be assosiated with that", donationFromDb.getLedger(),notNullValue());
 		assertThat("Both Objects should match", donation.toString(),equalTo(donationFromDb.toString()));
 
+	}
+	
+	@Test
+	public void testGetAllDonation() {				
+		new CreditManager().saveDonation(createDonation());
+		List<Donation> donationList=new CreditManager().getAllDonations();
+		assertThat("List should not be null", donationList, notNullValue());
+		assertThat("Must have more than one member", donationList.size(),greaterThan(0));
 	}
 
 	private Inventory createInventory() {

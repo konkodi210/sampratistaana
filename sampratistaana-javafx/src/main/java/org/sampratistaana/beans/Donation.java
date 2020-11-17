@@ -1,5 +1,7 @@
 package org.sampratistaana.beans;
 
+import static org.sampratistaana.Messages.formatDate;
+
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.sampratistaana.beans.Ledger.TransactionMode;
 
 @Entity
 @Table(name = "DONATION")
@@ -126,6 +130,25 @@ public class Donation implements Serializable{
 	public Donation setDateOfBirth(long dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 		return this;
+	}
+	
+	public String getPaymentType() {
+		if(getLedger()!=null) {
+			TransactionMode mode=getLedger().getModeOfTranscation();
+			return mode!=null?mode.toString():null;
+		}
+		return null;
+	}
+	
+	public double getDonationValue() {
+		return getLedger().getEntryValue();
+	}
+	
+	public String getDate() {
+		if(getLedger()!=null) {
+			return formatDate(getLedger().getEntryDate());
+		}
+		return null;
 	}
 
 	@Override
