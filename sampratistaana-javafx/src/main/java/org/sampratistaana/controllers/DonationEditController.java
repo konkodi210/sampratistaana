@@ -18,9 +18,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class DonationEditController extends BaseController{
 	public static final String CACHE_KEY="DonationEdit";
@@ -51,7 +54,9 @@ public class DonationEditController extends BaseController{
 		nickName.setText(donation.getNickName());
 		address.setText(donation.getAddress());
 		pan.setText(donation.getLedger().getPanNo());
+		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		mobileNo.setText(donation.getMobileNo());
+		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		phoneNo.setText(donation.getPhoneNo());
 		email.setText(donation.getEmail());
 		if(donation.getDateOfBirth() >0) {
@@ -65,6 +70,7 @@ public class DonationEditController extends BaseController{
 			}
 		}
 		externalTranNo.setText(donation.getLedger().getExternalTranNo());
+		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(donation.getLedger().getEntryValue()));
 	}
 

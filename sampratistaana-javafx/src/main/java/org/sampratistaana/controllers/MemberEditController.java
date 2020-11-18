@@ -20,9 +20,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class MemberEditController extends BaseController implements Initializable{
 	public static final String CACHE_KEY="MemberEdit";
@@ -58,8 +61,10 @@ public class MemberEditController extends BaseController implements Initializabl
 				break;
 			}
 		}
+		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		mobileNo.setText(member.getMobileNo());
-		phoneNo.setText(member.getPhoneNo());
+		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
+		phoneNo.setText(member.getPhoneNo());		
 		email.setText(member.getEmail());
 		if(member.getDateOfBirth() >0) {
 			LocalDate dob = Instant.ofEpochMilli(member.getDateOfBirth()).atZone(ZoneId.systemDefault()).toLocalDate();
@@ -72,6 +77,7 @@ public class MemberEditController extends BaseController implements Initializabl
 			}
 		}
 		externalTranNo.setText(member.getLedger().getExternalTranNo());
+		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(member.getLedger().getEntryValue()));
 		//TODO:Description need to be added
 		//description.setText(member.getLedger().get);
