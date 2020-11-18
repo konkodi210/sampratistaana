@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -17,6 +18,7 @@
 <VBox alignment="TOP_CENTER" 
 	xmlns="http://javafx.com/javafx/11.0.1" 
 	xmlns:fx="http://javafx.com/fxml/1"
+	fx:id="donationForm"
 	fx:controller="org.sampratistaana.controllers.DonationEditController">
    <children>
       <Label alignment="TOP_CENTER" text="%donation.title">
@@ -34,51 +36,64 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label text="12343" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label fx:id="donationId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label text="30-Oct-2020" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label fx:id="entryDate" text="30-Oct-2020" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             
             <Label text="%member.name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="%member.nickname" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="nickName" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
             <Label text="%member.address" GridPane.rowIndex="2" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextArea fx:id="address" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="%donation.pan" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="pan" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             
             
             <Label text="%member.mobile" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="mobileNo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="%member.phone" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="phoneNo" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             
             <Label text="%member.email" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="%member.dob" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             
             
-            <Label text="%member.payment-type" GridPane.rowIndex="5" />
-            <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label text="%member.amount" GridPane.rowIndex="5" />
+            <TextField fx:id="amount" GridPane.columnIndex="1" GridPane.rowIndex="5" />            
+            <Label text="%member.payment-type" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <children>
-               	  <RadioButton mnemonicParsing="false" text="%member.cash" />
-                  <RadioButton mnemonicParsing="false" text="%member.check" />
-                  <RadioButton mnemonicParsing="false" text="%member.online" />
-                  <RadioButton mnemonicParsing="false" text="%member.dd" />
+               	  <RadioButton selected="true" text="%member.cash">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="paymentType" />
+                     </toggleGroup>
+                     <properties value="CASH" />
+                  </RadioButton>
+                  <RadioButton text="%member.check" toggleGroup="$paymentType">
+                    <properties value="CHECK" />
+                  </RadioButton>
+                  <RadioButton text="%member.online" toggleGroup="$paymentType">
+                    <properties value="ONLINE" />
+                  </RadioButton>
+                  <RadioButton text="%member.dd" toggleGroup="$paymentType">
+                  	<properties value="DD" />
+                  </RadioButton>
                </children>
             </FlowPane>
-            <Label text="%member.check-no" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
             
-            <Label text="%member.description" GridPane.rowIndex="6" />
-            <TextArea GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+            <Label text="%member.check-no"  GridPane.rowIndex="6" />
+            <TextField fx:id="externalTranNo" GridPane.columnIndex="1" GridPane.rowIndex="6" />            
+            <Label text="%member.description" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <TextField fx:id="description" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             
             <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="%common.cancel" />
-                  <Button mnemonicParsing="false" text="%common.save" />
+                  <Button mnemonicParsing="false" text="%common.cancel" onAction="#loadDonations"/>
+                  <Button mnemonicParsing="false" text="%common.save" onAction="#saveDonation"/>
                </children>
             </FlowPane>
             

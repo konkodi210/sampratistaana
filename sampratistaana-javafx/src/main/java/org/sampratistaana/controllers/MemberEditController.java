@@ -94,7 +94,7 @@ public class MemberEditController extends BaseController implements Initializabl
 		.getLedger()
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)
-			.setEntryValue(100)
+			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
 			.setEntryValue(Double.parseDouble(amount.getText()));

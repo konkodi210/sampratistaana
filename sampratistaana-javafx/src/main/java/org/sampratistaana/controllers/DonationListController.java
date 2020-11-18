@@ -7,19 +7,16 @@ import java.util.ResourceBundle;
 import org.sampratistaana.CreditManager;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Ledger;
-import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 
-public class DonationListController extends BaseController implements Initializable{
+public class DonationListController extends BaseController{
 	@FXML private TableView<Donation> donationList;
 	@FXML private Button editBtn;
 	@FXML private Button deleteBtn;
@@ -56,7 +53,7 @@ public class DonationListController extends BaseController implements Initializa
 	}
 	
 	public void deleteDonation() throws IOException {
-		//new CreditManager().delete(donationList.getSelectionModel().getSelectedItem());
+		new CreditManager().deleteDonation(donationList.getSelectionModel().getSelectedItem());
 		loadForm("DonationList");
 	}
 }

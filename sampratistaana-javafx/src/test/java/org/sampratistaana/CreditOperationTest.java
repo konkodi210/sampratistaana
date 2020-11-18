@@ -71,6 +71,7 @@ public class CreditOperationTest {
 		assertThat("List should not be null", memberList, notNullValue());
 		assertThat("Must have more than one member", memberList.size(),greaterThan(0));
 	}
+
 	
 	private Donation createDonation() {
 		return new Donation()

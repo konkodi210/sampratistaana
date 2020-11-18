@@ -44,7 +44,7 @@ public class CreditManager {
 			return session.get(Member.class, memberId);
 		}
 	}
-	
+
 	/**
 	 * get all members from the database.
 	 * @return List of all members sorted by Creation date in descending order.
@@ -57,14 +57,6 @@ public class CreditManager {
 					.getResultList();
 		}
 	}
-	
-	public void deleteMember(Member member) {
-		try(Session session=dbSession()){
-			Transaction tran=session.beginTransaction();
-			session.delete(member);
-			tran.commit();
-		}
-	}
 
 	/**
 	 * Saves the Donation into the database
@@ -72,9 +64,19 @@ public class CreditManager {
 	 * @return Member number 
 	 */
 	public Long saveDonation(Donation donation) {
-		try(Session session=dbSession()){			
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
 			session.saveOrUpdate(donation);
-			return donation.getDonationId();
+			tran.commit();
+			return donation.getDonationId();			
+		}
+	}
+
+	public void deleteMember(Member member) {
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			session.delete(member);
+			tran.commit();
 		}
 	}
 
@@ -101,6 +103,15 @@ public class CreditManager {
 					.getResultList();
 		}
 	}
+
+	public void deleteDonation(Donation donation) {
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			session.delete(donation);
+			tran.commit();
+		}
+	}
+
 
 	/**
 	 * Saves the Inventory into the database
@@ -152,12 +163,12 @@ public class CreditManager {
 			}
 		}
 	}
-	
+
 	public void makeBookSale(BookSale bookSale) {
 		Transaction tran=null;
 		try(Session session=dbSession()){
 			tran=session.beginTransaction();			
-			
+
 			//Update the inventory
 			Inventory inv=bookSale.getInventory();
 			int currentInventory = inv.getInventoryCount();
@@ -165,20 +176,20 @@ public class CreditManager {
 				throw new SampratistaanaException("book.nostock",currentInventory,bookSale.getUnitCount());
 			}
 			inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
-			
+
 			//Update the Ledger entry 
 			bookSale.getLedger()
-					.setEntryCategory(EntryCategory.BOOK_SALE)
-					.setEntryType(EntryType.CREDIT)
-					.setEntryValue(bookSale.getUnitCount() * inv.getUnitPrice())
-					.setEntryDate(System.currentTimeMillis());
-			
+			.setEntryCategory(EntryCategory.BOOK_SALE)
+			.setEntryType(EntryType.CREDIT)
+			.setEntryValue(bookSale.getUnitCount() * inv.getUnitPrice())
+			.setEntryDate(System.currentTimeMillis());
+
 			session.saveOrUpdate(bookSale);
 			tran.commit();
 		}catch(Exception e) {
-//			if(tran!=null) {
-//				tran.rollback();
-//			}
+			//			if(tran!=null) {
+			//				tran.rollback();
+			//			}
 			throw new SampratistaanaException(e);
 		}
 	}
