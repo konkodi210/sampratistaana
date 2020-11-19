@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -35,10 +36,17 @@ public class MemberUITest extends ApplicationTest{
 	    release(new MouseButton[]{});
 	}
 	
+	private <T extends Node> T find(String id) {
+		return lookup(id).query();
+	}
+	
+	private String getLabelText(String id) {
+		return ((Label)find(id)).getText();
+	}
+	
 	@Test
 	public void testNewMember() {
-		clickOn("#newMember");
-		Label lab=lookup("#memberNo").query();
-		assertThat("member No is zero",lab.getText(), equalTo("0"));
+		clickOn("#newMember");		
+		assertThat("member No is zero",getLabelText("#memberNo"), equalTo("0"));
 	}
 }
