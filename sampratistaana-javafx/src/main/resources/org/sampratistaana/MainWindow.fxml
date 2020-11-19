@@ -12,8 +12,8 @@
 	fx:controller="org.sampratistaana.controllers.MainController">
    <children>
 	<MenuBar>
-	   <Menu text="%menu.credit">
-	   	 <MenuItem onAction="#openNewMembershipForm" text="%menu.membership" />
+	   <Menu id="credit" text="%menu.credit">
+	   	 <MenuItem id="member" onAction="#openNewMembershipForm" text="%menu.membership" />
 	   	 <MenuItem onAction="#openDonationForm" text="%menu.donation" />
 	   	 <MenuItem onAction="#openBookSaleForm" text="%menu.book.sale" />
 	   </Menu>

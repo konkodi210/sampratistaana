@@ -24,7 +24,7 @@
       </Label>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button text="%member.action.new" onAction="#loadNewMemberForm"/>
+            <Button id="newMember" text="%member.action.new" onAction="#loadNewMemberForm"/>
           	<Button fx:id="editBtn" text="%common.edit" onAction="#editMember" disable="true"/>
             <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteMember" disable="true"/>
         </buttons>
