@@ -4,46 +4,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.sampratistaana.TestUtils.createDonation;
+import static org.sampratistaana.TestUtils.createInventory;
+import static org.sampratistaana.TestUtils.createMember;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.Test;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
-import org.sampratistaana.beans.Inventory.InventoryType;
 import org.sampratistaana.beans.Ledger;
-import org.sampratistaana.beans.Ledger.EntryCategory;
-import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
-import org.sampratistaana.beans.Member.MembershipType;
 
 public class CreditOperationTest {
-
-	private Member createMember() {
-		return new Member()
-				.setName(UUID.randomUUID().toString())
-				.setNickName("GodKnows")
-				.setAddress("blah house\r\n blah post")
-				.setMembershipType(MembershipType.LIFE)
-				.setMobileNo("12345454")
-				.setPhoneNo("23434234234")
-				.setEmail("abc@gmail.com")
-				.setDateOfBirth(LocalDate.now())
-				.setLedger(
-						new Ledger()
-						.setEntryType(EntryType.CREDIT)
-						.setEntryCategory(EntryCategory.MEMBER)
-						.setEntryValue(101)
-						.setEntryDate(System.currentTimeMillis())
-						.setModeOfTranscation(TransactionMode.CASH)
-						.setExternalTranNo("SomeBank123")
-						.setPanNo("ABC64246")
-				);	
-	}
 	
 	@Test
 	public void testSaveMember() throws Exception {
@@ -74,26 +49,7 @@ public class CreditOperationTest {
 	}
 
 	
-	private Donation createDonation() {
-		return new Donation()
-				.setName(UUID.randomUUID().toString())
-				.setNickName("GodKnows")
-				.setAddress("blah house\r\n blah post")
-				.setMobileNo("12345454")
-				.setPhoneNo("23434234234")
-				.setEmail("abc@gmail.com")
-				.setDateOfBirth(System.currentTimeMillis())
-				.setLedger(
-						new Ledger()
-						.setEntryType(EntryType.CREDIT)
-						.setEntryCategory(EntryCategory.DONATION)
-						.setEntryValue(101)
-						.setEntryDate(System.currentTimeMillis())
-						.setModeOfTranscation(TransactionMode.CASH)
-						.setExternalTranNo("SomeBank123")
-						.setPanNo("ABC64246")
-				);	
-	}
+	
 	
 	@Test
 	public void testSaveDonation() throws Exception {
@@ -124,23 +80,7 @@ public class CreditOperationTest {
 		assertThat("Must have more than one member", donationList.size(),greaterThan(0));
 	}
 
-	private Inventory createInventory() {
-		return new Inventory()
-				.setInventoryType(InventoryType.BOOK)
-				.setUnitName(UUID.randomUUID().toString())
-				.setUnitPrice(100)
-				.setInventoryCount(100)
-				.setLedger(
-						new Ledger()
-						.setEntryType(EntryType.CREDIT)
-						.setEntryCategory(EntryCategory.DONATION)
-						.setEntryValue(101)
-						.setEntryDate(System.currentTimeMillis())
-						.setModeOfTranscation(TransactionMode.CASH)
-						.setExternalTranNo("SomeBank123")
-						.setPanNo("ABC64246")
-				);	
-	}
+	
 	
 	@Test
 	public void testSaveInventory() throws Exception {

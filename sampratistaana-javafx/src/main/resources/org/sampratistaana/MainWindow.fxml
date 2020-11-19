@@ -12,9 +12,9 @@
 	fx:controller="org.sampratistaana.controllers.MainController">
    <children>
 	<MenuBar>
-	   <Menu id="credit" text="%menu.credit">
-	   	 <MenuItem id="member" onAction="#openNewMembershipForm" text="%menu.membership" />
-	   	 <MenuItem onAction="#openDonationForm" text="%menu.donation" />
+	   <Menu id="creditMenu" text="%menu.credit">
+	   	 <MenuItem id="memberMenu" onAction="#openNewMembershipForm" text="%menu.membership" />
+	   	 <MenuItem id="donationMenu" onAction="#openDonationForm" text="%menu.donation" />
 	   	 <MenuItem onAction="#openBookSaleForm" text="%menu.book.sale" />
 	   </Menu>
 	   <Menu text="%menu.expense" />

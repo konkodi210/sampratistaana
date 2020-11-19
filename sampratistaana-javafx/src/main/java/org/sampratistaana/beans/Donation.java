@@ -3,6 +3,7 @@ package org.sampratistaana.beans;
 import static org.sampratistaana.Messages.formatDate;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,7 +50,7 @@ public class Donation implements Serializable{
 	private String email;
 
 	@Column(name = "DATE_OF_BIRTH")
-	private long dateOfBirth;
+	private LocalDate dateOfBirth;
 
 	public long getDonationId() {
 		return donationId;
@@ -123,11 +124,11 @@ public class Donation implements Serializable{
 		return this;
 	}
 
-	public long getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public Donation setDateOfBirth(long dateOfBirth) {
+	public Donation setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 		return this;
 	}

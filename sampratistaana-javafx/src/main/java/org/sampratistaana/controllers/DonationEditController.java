@@ -54,14 +54,13 @@ public class DonationEditController extends BaseController{
 		nickName.setText(donation.getNickName());
 		address.setText(donation.getAddress());
 		pan.setText(donation.getLedger().getPanNo());
-		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
+//		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		mobileNo.setText(donation.getMobileNo());
-		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
+//		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		phoneNo.setText(donation.getPhoneNo());
 		email.setText(donation.getEmail());
-		if(donation.getDateOfBirth() >0) {
-			LocalDate dob = Instant.ofEpochMilli(donation.getDateOfBirth()).atZone(ZoneId.systemDefault()).toLocalDate();
-			dateOfBirth.setValue(dob);
+		if(donation.getDateOfBirth() !=null) {
+			dateOfBirth.setValue(donation.getDateOfBirth() );
 		}
 		for(Toggle toggle:paymentType.getToggles()) {			
 			if(donation.getPaymentType().toString().equals(toggle.getProperties().get("value"))) {
@@ -71,7 +70,7 @@ public class DonationEditController extends BaseController{
 		}
 		externalTranNo.setText(donation.getLedger().getExternalTranNo());
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
-		amount.setText(String.valueOf(donation.getLedger().getEntryValue()));
+		amount.setText(String.valueOf(donation.getLedger().getEntryValue()));		
 	}
 
 	public void saveDonation() throws IOException{
@@ -88,9 +87,10 @@ public class DonationEditController extends BaseController{
 			.setEntryValue(100)
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
-			.setEntryValue(Double.parseDouble(amount.getText()));
+			.setEntryValue(Double.parseDouble(amount.getText()))
+			.setPanNo(pan.getText());
 		if(dateOfBirth.getValue()!=null) {
-			donation.setDateOfBirth(dateOfBirth.getValue().toEpochDay());
+			donation.setDateOfBirth(dateOfBirth.getValue());
 		}
 		new CreditManager().saveDonation(donation);		
 		loadForm("DonationList");

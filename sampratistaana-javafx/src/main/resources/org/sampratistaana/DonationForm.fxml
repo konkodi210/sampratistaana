@@ -67,19 +67,19 @@
             <Label text="%member.payment-type" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <children>
-               	  <RadioButton selected="true" text="%member.cash">
+               	  <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
                      <toggleGroup>
                         <ToggleGroup fx:id="paymentType" />
                      </toggleGroup>
                      <properties value="CASH" />
                   </RadioButton>
-                  <RadioButton text="%member.check" toggleGroup="$paymentType">
+                  <RadioButton id="paymentCheck" mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType">
                     <properties value="CHECK" />
                   </RadioButton>
-                  <RadioButton text="%member.online" toggleGroup="$paymentType">
+                  <RadioButton id="paymentOnline" mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType">
                     <properties value="ONLINE" />
                   </RadioButton>
-                  <RadioButton text="%member.dd" toggleGroup="$paymentType">
+                  <RadioButton id="paymentDD" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
                   	<properties value="DD" />
                   </RadioButton>
                </children>
@@ -92,8 +92,8 @@
             
             <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="%common.cancel" onAction="#loadDonations"/>
-                  <Button mnemonicParsing="false" text="%common.save" onAction="#saveDonation"/>
+                  <Button id="donationCancelBtn" text="%common.cancel" onAction="#loadDonations"/>
+                  <Button id="saveDonationBtn" text="%common.save" onAction="#saveDonation"/>
                </children>
             </FlowPane>
             

@@ -3,67 +3,34 @@ package org.sampratistaana;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringWhiteSpace;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.sampratistaana.TestUtils.createMember;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Member.MembershipType;
-import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit.ApplicationTest;
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.stage.Stage;
 
 @SuppressWarnings("rawtypes")
-public class MemberUITest extends ApplicationTest{
-
-	@Override
-	public void start(Stage stage) throws Exception {
-		new Mainwindow().start(stage);		
-	}
+public class MemberUITest extends BaseApplicationTest{
 
 	@Before
 	public void setup() {
-		clickOn("#credit");
-		clickOn("#member");
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		FxToolkit.hideStage();
-		release(new KeyCode[]{});
-		release(new MouseButton[]{});
-	}
-
-	private <T extends Node> T find(String id) {
-		return lookup(id).query();
-	}
-
-	private String getLabelText(String id) {
-		return ((Label)find(id)).getText();
-	}
-
-	private void writeToTextFiled(String id, String val) {
-		((TextInputControl)find(id)).clear();
-		clickOn(id);		
-		write(val);
+		clickOn("#creditMenu");
+		clickOn("#memberMenu");
 	}
 
 	private void enterMemberDetails(Member memberForUI) {
@@ -74,7 +41,6 @@ public class MemberUITest extends ApplicationTest{
 		writeToTextFiled("#mobileNo",memberForUI.getMobileNo());		
 		writeToTextFiled("#phoneNo",memberForUI.getPhoneNo());		
 		writeToTextFiled("#email",memberForUI.getEmail());
-//		LocalDate dob = Instant.ofEpochMilli(memberForUI.getDateOfBirth()).atZone(ZoneId.systemDefault()).toLocalDate();
 		((DatePicker)find("#dateOfBirth")).setValue(memberForUI.getDateOfBirth());
 
 		writeToTextFiled("#amount","Invalid Amount");
@@ -122,21 +88,7 @@ public class MemberUITest extends ApplicationTest{
 		assertThat("For new members, memeber id is not assigned",getLabelText("#memberNo"), equalTo("0"));
 		assertThat("Date is set to today's date", getLabelText("#entryDate"),equalTo(Messages.formatDate(System.currentTimeMillis())));
 
-		Member memberForUI=new Member()
-				.setName(UUID.randomUUID().toString())
-				.setNickName("GodKnows")
-				.setAddress("blah house blah post")
-				.setMembershipType(MembershipType.YEARLY)
-				.setMobileNo("9878432456")
-				.setPhoneNo("5345634563")
-				.setEmail("abc@gmail.com")
-				.setDateOfBirth(LocalDate.now())
-				.setLedger(
-						new Ledger()
-						.setEntryValue(101)
-						.setModeOfTranscation(TransactionMode.ONLINE)
-						.setExternalTranNo("SomeBank123")
-						);	
+		Member memberForUI=createMember();
 		enterMemberDetails(memberForUI);
 
 		//TODO: Description is not yet implemented
@@ -183,14 +135,12 @@ public class MemberUITest extends ApplicationTest{
 						);	
 		enterMemberDetails(memberForUI);
 		clickOn("#memberSave");
-		listOfMembers=new CreditManager().getAllMembers();
-		member=listOfMembers.get(0);
-		matchMemberBean(member,memberForUI);
+		listOfMembers=new CreditManager().getAllMembers();		
+		matchMemberBean(listOfMembers.get(0),memberForUI);
 		
 		//test Delete
 		((TableView)find("#memberList")).getSelectionModel().select(0);
-		int size=listOfMembers.size();
 		clickOn("#deleteBtn");
-		assertThat("should have one row less after delete", new CreditManager().getAllMembers().size(),equalTo(size-1));
+		assertThat("should have one row less after delete", new CreditManager().getAllMembers().size(),equalTo(listOfMembers.size()-1));
 	}
 }

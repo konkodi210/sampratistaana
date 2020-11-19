@@ -25,7 +25,7 @@
       </Label>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button text="%donation.action.new" onAction="#loadNewDonation"/>
+            <Button id="donationNew" text="%donation.action.new" onAction="#loadNewDonation"/>
           	<Button fx:id="editBtn" text="%common.edit" onAction="#editDonation" disable="true"/>
             <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteDonation" disable="true"/>
         </buttons>
