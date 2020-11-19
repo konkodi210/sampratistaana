@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class CreditOperationTest {
 				.setMobileNo("12345454")
 				.setPhoneNo("23434234234")
 				.setEmail("abc@gmail.com")
-				.setDateOfBirth(System.currentTimeMillis())
+				.setDateOfBirth(LocalDate.now())
 				.setLedger(
 						new Ledger()
 						.setEntryType(EntryType.CREDIT)

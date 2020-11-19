@@ -56,13 +56,13 @@
             <Label text="%member.type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <RadioButton selected="true" text="%member.lifetime">
+                  <RadioButton id="monthlyMembership" selected="true" text="%member.lifetime">
 					 <toggleGroup>
                         <ToggleGroup fx:id="membership" />
                      </toggleGroup>
                      <properties value="LIFE" />                                       
                   </RadioButton>
-                  <RadioButton text="%member.yearly" toggleGroup="$membership">
+                  <RadioButton id="yearlyMembership" text="%member.yearly" toggleGroup="$membership">
                     <properties value="YEARLY" />
                   </RadioButton>
                </children>
@@ -84,19 +84,19 @@
             <Label text="%member.payment-type" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <children>
-               	  <RadioButton mnemonicParsing="false" selected="true" text="%member.cash">
+               	  <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
                      <toggleGroup>
                         <ToggleGroup fx:id="paymentType" />
                      </toggleGroup>
                      <properties value="CASH" />
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType">
+                  <RadioButton id="paymentCheck" mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType">
                     <properties value="CHECK" />
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType">
+                  <RadioButton id="paymentOnline" mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType">
                     <properties value="ONLINE" />
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
+                  <RadioButton id="paymentDD" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
                   	<properties value="DD" />
                   </RadioButton>
                </children>
@@ -109,8 +109,8 @@
             
             <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <children>                  
-                  <Button mnemonicParsing="false" onAction="#saveMember" text="%common.save" />
-                  <Button mnemonicParsing="false" onAction="#loadMembers" text="%common.cancel" />
+                  <Button id="memberSave" onAction="#saveMember" text="%common.save" />
+                  <Button id="memberCancel" onAction="#loadMembers" text="%common.cancel" />
                </children>
             </FlowPane>
             

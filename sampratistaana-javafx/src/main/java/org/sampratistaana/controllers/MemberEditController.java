@@ -61,14 +61,14 @@ public class MemberEditController extends BaseController implements Initializabl
 				break;
 			}
 		}
-		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
+//		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		mobileNo.setText(member.getMobileNo());
-		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
+//		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		phoneNo.setText(member.getPhoneNo());		
 		email.setText(member.getEmail());
-		if(member.getDateOfBirth() >0) {
-			LocalDate dob = Instant.ofEpochMilli(member.getDateOfBirth()).atZone(ZoneId.systemDefault()).toLocalDate();
-			dateOfBirth.setValue(dob);
+		if(member.getDateOfBirth()!=null) {
+//			LocalDate dob = Instant.ofEpochMilli(member.getDateOfBirth()).atZone(ZoneId.systemDefault()).toLocalDate();
+			dateOfBirth.setValue(member.getDateOfBirth());
 		}
 		for(Toggle toggle:paymentType.getToggles()) {			
 			if(member.getPaymentType().toString().equals(toggle.getProperties().get("value"))) {
@@ -105,7 +105,7 @@ public class MemberEditController extends BaseController implements Initializabl
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
 			.setEntryValue(Double.parseDouble(amount.getText()));
 		if(dateOfBirth.getValue()!=null) {
-			member.setDateOfBirth(dateOfBirth.getValue().toEpochDay());
+			member.setDateOfBirth(dateOfBirth.getValue());
 		}
 		new CreditManager().saveMember(member);
 		loadMembers();
