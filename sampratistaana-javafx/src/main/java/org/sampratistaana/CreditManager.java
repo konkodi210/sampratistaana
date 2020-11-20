@@ -135,18 +135,28 @@ public class CreditManager {
 			return session.get(Inventory.class, inventoryId);
 		}
 	}
+	
+	public List<Inventory> getInventory(InventoryType type){
+		try(Session session=dbSession()){
+			return session
+					.createQuery("SELECT i FROM Inventory AS i WHERE i.inventoryType=:type",Inventory.class)
+					.setParameter("type", type)
+					.getResultList();
+		}
+	}
 
 	/**
 	 * This is temporary function until inventory management screen comes
 	 */
 	public void loadBookInventory() {
 		ResourceBundle res=Messages.getResource();
-		try(Session session=dbSession()){			
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
 			for(Enumeration<String> enm=res.getKeys();enm.hasMoreElements();) {
 				String key=enm.nextElement();
 				if(key.startsWith("book.")) {
 					Inventory inv=session.byNaturalId(Inventory.class).using("unitName", res.getString(key)).load();
-					if(inv!=null) {
+					if(inv==null) {
 						session.saveOrUpdate(new Inventory()
 								.setInventoryType(InventoryType.BOOK)
 								.setUnitName(res.getString(key))
@@ -161,6 +171,7 @@ public class CreditManager {
 					}
 				}
 			}
+			tran.commit();
 		}
 	}
 

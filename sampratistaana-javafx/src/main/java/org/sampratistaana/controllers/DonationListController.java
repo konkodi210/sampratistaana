@@ -23,6 +23,8 @@ public class DonationListController extends BaseController{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		intializeTableColumns(donationList);
+		
 		for(TableColumn<Donation, ?> col:donationList.getColumns()) {
 			col.setCellValueFactory(new PropertyValueFactory<>(col.getId()));
 		}

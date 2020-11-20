@@ -50,6 +50,7 @@ public class MemberUITest extends BaseApplicationTest{
 
 		clickOn("#paymentOnline");
 		writeToTextFiled("#externalTranNo",memberForUI.getLedger().getExternalTranNo());
+		writeToTextFiled("#description", memberForUI.getLedger().getEntryDesc());
 	}
 
 	private void matchMemberBean(Member member, Member memberForUI) {
@@ -62,6 +63,7 @@ public class MemberUITest extends BaseApplicationTest{
 		assertThat(member.getDateOfBirth(), equalTo(memberForUI.getDateOfBirth()));
 		assertThat(member.getLedger().getEntryValue(), equalTo(memberForUI.getLedger().getEntryValue()));
 		assertThat(member.getLedger().getExternalTranNo(), equalTo(memberForUI.getLedger().getExternalTranNo()));
+		assertThat(member.getLedger().getEntryDesc(), equalTo(memberForUI.getLedger().getEntryDesc()));
 	}
 
 	@Test
@@ -91,8 +93,6 @@ public class MemberUITest extends BaseApplicationTest{
 		Member memberForUI=createMember();
 		enterMemberDetails(memberForUI);
 
-		//TODO: Description is not yet implemented
-		writeToTextFiled("#description","Some Description");
 		clickOn("#memberSave");
 
 		assertThat("when save is clicked, page should navigate back to listing page",
@@ -132,6 +132,7 @@ public class MemberUITest extends BaseApplicationTest{
 						.setEntryValue(858)
 						.setModeOfTranscation(TransactionMode.ONLINE)
 						.setExternalTranNo("SomeBank123111")
+						.setEntryDesc("Some new description")
 						);	
 		enterMemberDetails(memberForUI);
 		clickOn("#memberSave");

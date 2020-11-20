@@ -46,6 +46,7 @@ public class DonationUITest extends BaseApplicationTest {
 		clickOn("#paymentOnline");
 		writeToTextFiled("#externalTranNo",donationUI.getLedger().getExternalTranNo());
 		writeToTextFiled("#pan", donationUI.getLedger().getPanNo());
+		writeToTextFiled("#description", donationUI.getLedger().getEntryDesc());
 	}
 	
 	private void matchDonationBean(Donation donation, Donation donationUI) {
@@ -59,6 +60,7 @@ public class DonationUITest extends BaseApplicationTest {
 		assertThat(donation.getLedger().getEntryValue(), equalTo(donationUI.getLedger().getEntryValue()));
 		assertThat(donation.getLedger().getExternalTranNo(), equalTo(donationUI.getLedger().getExternalTranNo()));
 		assertThat(donation.getLedger().getPanNo(), equalTo(donationUI.getLedger().getPanNo()));
+		assertThat(donation.getLedger().getEntryDesc(), equalTo(donation.getLedger().getEntryDesc()));
 	}
 	
 	@Test
@@ -119,6 +121,7 @@ public class DonationUITest extends BaseApplicationTest {
 						.setModeOfTranscation(TransactionMode.ONLINE)
 						.setExternalTranNo("SomeBank123111")
 						.setPanNo("SomeNewPAN")
+						.setEntryDesc("New Description")
 						);	
 		enterDonationDetails(donationUI);
 		clickOn("#saveDonationBtn");

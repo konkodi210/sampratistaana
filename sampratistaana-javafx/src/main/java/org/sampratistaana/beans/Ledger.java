@@ -43,6 +43,9 @@ public class Ledger implements Serializable{
 	@Column(name = "PAN_NO")
 	private String panNo;
 	
+	@Column(name="ENTRY_DESC")
+	private String entryDesc;
+	
 	public long getEntryNo() {
 		return entryNo;
 	}
@@ -99,13 +102,20 @@ public class Ledger implements Serializable{
 	public Ledger setPanNo(String panNo) {
 		this.panNo = panNo;
 		return this;
+	}	
+	public String getEntryDesc() {
+		return entryDesc;
+	}
+
+	public Ledger setEntryDesc(String entryDesc) {
+		this.entryDesc = entryDesc;
+		return this;
 	}
 
 	@Override
 	public String toString() {
 		return "Ledger [entryNo=" + entryNo + ", entryType=" + entryType + ", entryCategory=" + entryCategory
 				+ ", entryValue=" + entryValue + ", entryDate=" + entryDate + ", modeOfTranscation=" + modeOfTranscation
-				+ ", externalTranNo=" + externalTranNo + ", panNo=" + panNo + "]";
+				+ ", externalTranNo=" + externalTranNo + ", panNo=" + panNo + ", entryDesc=" + entryDesc + "]";
 	}
-	
 }

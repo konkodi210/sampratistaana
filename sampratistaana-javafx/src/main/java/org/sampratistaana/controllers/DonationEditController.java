@@ -2,9 +2,6 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
@@ -23,7 +20,6 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
 public class DonationEditController extends BaseController{
 	public static final String CACHE_KEY="DonationEdit";
@@ -54,9 +50,7 @@ public class DonationEditController extends BaseController{
 		nickName.setText(donation.getNickName());
 		address.setText(donation.getAddress());
 		pan.setText(donation.getLedger().getPanNo());
-//		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		mobileNo.setText(donation.getMobileNo());
-//		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		phoneNo.setText(donation.getPhoneNo());
 		email.setText(donation.getEmail());
 		if(donation.getDateOfBirth() !=null) {
@@ -71,6 +65,7 @@ public class DonationEditController extends BaseController{
 		externalTranNo.setText(donation.getLedger().getExternalTranNo());
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(donation.getLedger().getEntryValue()));		
+		description.setText(donation.getLedger().getEntryDesc());
 	}
 
 	public void saveDonation() throws IOException{
@@ -88,7 +83,8 @@ public class DonationEditController extends BaseController{
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
 			.setEntryValue(Double.parseDouble(amount.getText()))
-			.setPanNo(pan.getText());
+			.setPanNo(pan.getText())
+			.setEntryDesc(description.getText());
 		if(dateOfBirth.getValue()!=null) {
 			donation.setDateOfBirth(dateOfBirth.getValue());
 		}

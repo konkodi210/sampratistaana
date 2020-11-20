@@ -2,9 +2,6 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
@@ -15,7 +12,6 @@ import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Member.MembershipType;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -25,9 +21,8 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
-public class MemberEditController extends BaseController implements Initializable{
+public class MemberEditController extends BaseController{
 	public static final String CACHE_KEY="MemberEdit";
 	@FXML private VBox memberForm;
 	@FXML private Label memberNo;
@@ -61,13 +56,10 @@ public class MemberEditController extends BaseController implements Initializabl
 				break;
 			}
 		}
-//		mobileNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		mobileNo.setText(member.getMobileNo());
-//		phoneNo.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		phoneNo.setText(member.getPhoneNo());		
 		email.setText(member.getEmail());
 		if(member.getDateOfBirth()!=null) {
-//			LocalDate dob = Instant.ofEpochMilli(member.getDateOfBirth()).atZone(ZoneId.systemDefault()).toLocalDate();
 			dateOfBirth.setValue(member.getDateOfBirth());
 		}
 		for(Toggle toggle:paymentType.getToggles()) {			
@@ -78,9 +70,8 @@ public class MemberEditController extends BaseController implements Initializabl
 		}
 		externalTranNo.setText(member.getLedger().getExternalTranNo());
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
-		amount.setText(String.valueOf(member.getLedger().getEntryValue()));
-		//TODO:Description need to be added
-		//description.setText(member.getLedger().get);
+		amount.setText(String.valueOf(member.getLedger().getEntryValue()));		
+		description.setText(member.getLedger().getEntryDesc());
 
 	}
 
@@ -103,7 +94,8 @@ public class MemberEditController extends BaseController implements Initializabl
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
-			.setEntryValue(Double.parseDouble(amount.getText()));
+			.setEntryValue(Double.parseDouble(amount.getText()))
+			.setEntryDesc(description.getText());
 		if(dateOfBirth.getValue()!=null) {
 			member.setDateOfBirth(dateOfBirth.getValue());
 		}

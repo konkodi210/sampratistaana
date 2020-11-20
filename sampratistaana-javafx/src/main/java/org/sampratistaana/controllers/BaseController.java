@@ -11,6 +11,8 @@ import org.sampratistaana.Messages;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BaseController implements Initializable{
 	private static Map<String, Object> cache=new HashMap<>(); 
@@ -36,5 +38,11 @@ public class BaseController implements Initializable{
 	
 	protected String formatDate(long date) {
 		return Messages.formatDate(date);
+	}
+	
+	protected <S> void intializeTableColumns(TableView<S> table) {
+		table
+		.getColumns()
+		.forEach(col -> col.setCellValueFactory(new PropertyValueFactory<>(col.getId())));
 	}
 }

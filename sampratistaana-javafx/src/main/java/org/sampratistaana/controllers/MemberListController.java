@@ -11,14 +11,11 @@ import org.sampratistaana.beans.Member;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
-public class MemberListController extends BaseController implements Initializable{
+public class MemberListController extends BaseController{
 	private static final String MEMBER_FORM="MemberForm";
 
 	@FXML private TableView<Member> memberList;
@@ -27,9 +24,8 @@ public class MemberListController extends BaseController implements Initializabl
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		for(TableColumn<Member, ?> col:memberList.getColumns()) {
-			col.setCellValueFactory(new PropertyValueFactory<>(col.getId()));
-		}
+		intializeTableColumns(memberList);
+		
 		memberList.setItems(FXCollections.observableArrayList(new CreditManager().getAllMembers()));
 		memberList
 		.getSelectionModel()

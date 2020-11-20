@@ -15,7 +15,7 @@
 	   <Menu id="creditMenu" text="%menu.credit">
 	   	 <MenuItem id="memberMenu" onAction="#openNewMembershipForm" text="%menu.membership" />
 	   	 <MenuItem id="donationMenu" onAction="#openDonationForm" text="%menu.donation" />
-	   	 <MenuItem onAction="#openBookSaleForm" text="%menu.book.sale" />
+	   	 <MenuItem id="booksaleMenu" onAction="#openBookSaleForm" text="%menu.book.sale" />
 	   </Menu>
 	   <Menu text="%menu.expense" />
 	   <Menu text="%menu.report">

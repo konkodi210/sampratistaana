@@ -5,12 +5,12 @@ import java.util.UUID;
 
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
-import org.sampratistaana.beans.Ledger;
-import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Inventory.InventoryType;
+import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
+import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Member.MembershipType;
 
 public class TestUtils {
@@ -34,6 +34,7 @@ public class TestUtils {
 						.setModeOfTranscation(TransactionMode.CASH)
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
+						.setEntryDesc("Description123")
 				);	
 	}
 	
@@ -55,6 +56,7 @@ public class TestUtils {
 						.setModeOfTranscation(TransactionMode.CASH)
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
+						.setEntryDesc("Description123")
 				);	
 	}
 	
@@ -73,6 +75,7 @@ public class TestUtils {
 						.setModeOfTranscation(TransactionMode.CASH)
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
+						.setEntryDesc("Description123")
 				);	
 	}
 }
