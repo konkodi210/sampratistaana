@@ -13,17 +13,16 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.beans.value.WritableValue;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
-import javafx.util.converter.IntegerStringConverter;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class BookSaleControler extends BaseController {
@@ -35,18 +34,28 @@ public class BookSaleControler extends BaseController {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {	
 		booksaleTable.getColumns().forEach((TableColumn col) -> {
-			col.setCellValueFactory((Callback<CellDataFeatures,ObservableValue>)(p) 
-					-> ((BookEntry) p.getValue()).getProperty(col.getId()));
 
 			if(col.getId().equals("quantity")) {
-				col.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-				col.setOnEditCommit((EventHandler<CellEditEvent<BookEntry, Integer>>)(t) 
-						-> ((BookEntry) t.getTableView()
-								.getItems()
-								.get(t.getTablePosition().getRow())
-								).quantity.set(t.getNewValue())
-						);
+				//For editable text filed in the quantity
+				col.setCellFactory((Callback<TableColumn<BookEntry,Integer>,TableCell<BookEntry,Integer>>)(p)->{					
+					return new TableCell<BookEntry,Integer>() {
+						Spinner<Integer> spinner = new Spinner<>(0, Integer.MAX_VALUE, 0, 1);
+						{
+							spinner.valueProperty().addListener((o, oldValue, newValue) -> {
+								((WritableValue<Number>) getTableColumn().getCellObservableValue(getTableRow().getItem())).setValue(newValue);
+							});
+						}
+						@Override
+						protected void updateItem(Integer item, boolean empty) {
+							setGraphic(spinner);
+							super.updateItem(item, empty);							
+						}
+					};					
+				});
+
 			}
+			col.setCellValueFactory((Callback<CellDataFeatures,ObservableValue>)(p) 
+					-> ((BookEntry) p.getValue()).getProperty(col.getId()));
 		});
 
 		index=1;
@@ -80,7 +89,6 @@ public class BookSaleControler extends BaseController {
 			unitName.set(inventory.getUnitName());
 			unitPrice.set(inventory.getUnitPrice());
 			quantity.addListener((observable, oldVal, newValue) -> {
-				System.out.println("Value "+newValue);
 				totalPrice.set(unitPrice.get()*newValue.intValue());
 			});
 		}
