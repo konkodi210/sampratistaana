@@ -1,6 +1,7 @@
 package org.sampratistaana.beans;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class Ledger implements Serializable{
 	private double entryValue;
 	
 	@Column(name = "ENTRY_DATE", nullable = false)
-	private long entryDate;
+	private LocalDate entryDate;
 	
 	@Column(name = "MODE_OF_TRAN", nullable = false)
 	private TransactionMode modeOfTranscation;
@@ -75,10 +76,10 @@ public class Ledger implements Serializable{
 		this.entryValue = entryValue;
 		return this;
 	}
-	public long getEntryDate() {
+	public LocalDate getEntryDate() {
 		return entryDate;
 	}
-	public Ledger setEntryDate(long entryDate) {
+	public Ledger setEntryDate(LocalDate entryDate) {
 		this.entryDate = entryDate;
 		return this;
 	}

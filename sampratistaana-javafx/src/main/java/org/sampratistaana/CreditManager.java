@@ -2,6 +2,7 @@ package org.sampratistaana;
 
 import static org.sampratistaana.ConnectionFactory.dbSession;
 
+import java.time.LocalDate;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,7 +54,7 @@ public class CreditManager {
 		// Even though we have mentioned in lazy loading for Ledger in member bean, we are fetching to avoid multiple child queries
 		try(Session session=dbSession()){			
 			return session
-					.createQuery("SELECT m FROM Member as m INNER JOIN FETCH m.ledger ORDER BY m.ledger.entryDate DESC", Member.class)
+					.createQuery("SELECT m FROM Member as m INNER JOIN FETCH m.ledger ORDER BY m.ledger.entryNo DESC", Member.class)
 					.getResultList();
 		}
 	}
@@ -99,7 +100,7 @@ public class CreditManager {
 		// Even though we have mentioned in lazy loading for Ledger in member bean, we are fetching to avoid multiple child queries
 		try(Session session=dbSession()){			
 			return session
-					.createQuery("SELECT m FROM Donation as m INNER JOIN FETCH m.ledger ORDER BY m.ledger.entryDate DESC", Donation.class)
+					.createQuery("SELECT m FROM Donation as m INNER JOIN FETCH m.ledger ORDER BY m.ledger.entryNo DESC", Donation.class)
 					.getResultList();
 		}
 	}
@@ -165,7 +166,7 @@ public class CreditManager {
 										.setEntryType(EntryType.DEBIT)
 										.setEntryCategory(EntryCategory.BOOK_PURCHASE)
 										.setEntryValue(250*101)
-										.setEntryDate(System.currentTimeMillis())
+										.setEntryDate(LocalDate.now())
 										.setModeOfTranscation(TransactionMode.CASH))
 								);
 					}
@@ -193,7 +194,7 @@ public class CreditManager {
 			.setEntryCategory(EntryCategory.BOOK_SALE)
 			.setEntryType(EntryType.CREDIT)
 			.setEntryValue(bookSale.getUnitCount() * inv.getUnitPrice())
-			.setEntryDate(System.currentTimeMillis());
+			.setEntryDate(LocalDate.now());
 
 			session.saveOrUpdate(bookSale);
 			tran.commit();

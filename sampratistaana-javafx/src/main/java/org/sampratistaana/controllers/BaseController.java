@@ -2,6 +2,7 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -36,7 +37,7 @@ public class BaseController implements Initializable{
 		return cache.remove(key);
 	}
 	
-	protected String formatDate(long date) {
+	protected String formatDate(LocalDate date) {
 		return Messages.formatDate(date);
 	}
 	

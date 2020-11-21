@@ -26,7 +26,7 @@ public class MemberEditController extends BaseController{
 	public static final String CACHE_KEY="MemberEdit";
 	@FXML private VBox memberForm;
 	@FXML private Label memberNo;
-	@FXML private Label entryDate;
+	@FXML private DatePicker entryDate;
 	@FXML private TextField name;
 	@FXML private TextField nickName;
 	@FXML private TextArea address;
@@ -46,7 +46,7 @@ public class MemberEditController extends BaseController{
 		Member member = (Member)getFromCache(CACHE_KEY);
 		memberForm.setUserData(member);
 		memberNo.setText(String.valueOf(member.getMemberNo()));
-		entryDate.setText(formatDate(member.getLedger().getEntryDate()));
+		entryDate.setValue(member.getLedger().getEntryDate());
 		name.setText(member.getName());
 		nickName.setText(member.getNickName());
 		address.setText(member.getAddress());

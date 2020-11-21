@@ -1,6 +1,8 @@
 package org.sampratistaana;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -16,7 +18,7 @@ public class Messages {
 		}
 		return resource;
 	}
-	
+
 	public static synchronized String getMessage(String key,Object...args) {
 		ResourceBundle res=getResource();
 		String val = res.containsKey(key)?res.getString(key):key;
@@ -25,10 +27,12 @@ public class Messages {
 		}
 		return val;
 	}
-	
-	public static String formatDate(long date) {
-		if(date>0) {
-		return new SimpleDateFormat(resource.getString("common.date-format")).format(new Date(date));
+
+	public static String formatDate(LocalDate date) {
+		if(date!=null) {
+			//return new SimpleDateFormat(resource.getString("common.date-format")).format(date);
+			return DateTimeFormatter.ofPattern(resource.getString("common.date-format")).format(date);
+					
 		}else {
 			return null;
 		}

@@ -44,7 +44,8 @@
             <Label fx:id="memberNo" />
             </FlowPane>            
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <!-- Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" /-->
+            <DatePicker fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             
             <Label text="%member.name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />

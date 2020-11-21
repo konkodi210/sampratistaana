@@ -2,6 +2,7 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
@@ -44,7 +45,7 @@ public class MemberListController extends BaseController{
 		Member member=new Member()
 				.setLedger(
 						new Ledger()
-						.setEntryDate(System.currentTimeMillis())
+						.setEntryDate(LocalDate.now())
 						.setModeOfTranscation(TransactionMode.CASH)
 						);
 		addToCache(MemberEditController.CACHE_KEY, member);

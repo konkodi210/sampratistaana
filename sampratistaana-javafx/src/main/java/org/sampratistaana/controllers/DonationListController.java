@@ -2,6 +2,7 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
@@ -42,7 +43,7 @@ public class DonationListController extends BaseController{
 		Donation member=new Donation()
 				.setLedger(
 						new Ledger()
-						.setEntryDate(System.currentTimeMillis())
+						.setEntryDate(LocalDate.now())
 						.setModeOfTranscation(TransactionMode.CASH)
 						);
 		addToCache(DonationEditController.CACHE_KEY, member);

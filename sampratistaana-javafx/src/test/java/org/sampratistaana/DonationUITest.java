@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.sampratistaana.TestUtils.createDonation;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -78,7 +79,7 @@ public class DonationUITest extends BaseApplicationTest {
 		//new Donation
 		clickOn("#donationNew");
 		assertThat("For new donations, id is not assigned",getLabelText("#donationId"), equalTo("0"));
-		assertThat("Date is set to today's date", getLabelText("#entryDate"),equalTo(Messages.formatDate(System.currentTimeMillis())));
+		assertThat("Date is set to today's date", Messages.formatDate(((DatePicker)find("#entryDate")).getValue()),equalTo(Messages.formatDate(LocalDate.now())));
 
 		Donation donationUI=createDonation();
 		enterDonationDetails(donationUI);

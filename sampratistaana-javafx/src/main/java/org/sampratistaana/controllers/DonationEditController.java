@@ -26,7 +26,7 @@ public class DonationEditController extends BaseController{
 	
 	@FXML private VBox donationForm;
 	@FXML private Label donationId;
-	@FXML private Label entryDate;
+	@FXML private DatePicker entryDate;
 	@FXML private TextField name;
 	@FXML private TextField nickName;
 	@FXML private TextArea address;
@@ -45,7 +45,7 @@ public class DonationEditController extends BaseController{
 		Donation donation = (Donation)getFromCache(CACHE_KEY);
 		donationForm.setUserData(donation);
 		donationId.setText(String.valueOf(donation.getDonationId()));
-		entryDate.setText(formatDate(donation.getLedger().getEntryDate()));
+		entryDate.setValue(donation.getLedger().getEntryDate());
 		name.setText(donation.getName());
 		nickName.setText(donation.getNickName());
 		address.setText(donation.getAddress());

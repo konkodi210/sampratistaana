@@ -88,7 +88,7 @@ public class MemberUITest extends BaseApplicationTest{
 		//new Member
 		clickOn("#newMember");
 		assertThat("For new members, memeber id is not assigned",getLabelText("#memberNo"), equalTo("0"));
-		assertThat("Date is set to today's date", getLabelText("#entryDate"),equalTo(Messages.formatDate(System.currentTimeMillis())));
+		assertThat("Date is set to today's date", Messages.formatDate(((DatePicker)find("#entryDate")).getValue()),equalTo(Messages.formatDate(LocalDate.now())));
 
 		Member memberForUI=createMember();
 		enterMemberDetails(memberForUI);
