@@ -20,8 +20,8 @@ public class MainController {
 	}
 	
 	@FXML
-	private void openBookSaleForm() throws IOException{
-		loadForm("BookSale");
+	private void openBookSaleForm() throws IOException{		
+		loadForm("BookSaleList");
 	}
 
 }

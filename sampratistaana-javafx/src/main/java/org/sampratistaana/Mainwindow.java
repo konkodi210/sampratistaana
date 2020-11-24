@@ -26,7 +26,7 @@ public class Mainwindow extends Application {
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle(getMessage("window.title"));
         stage.centerOnScreen();
-//        stage.sizeToScene();
+        stage.sizeToScene();
         stage.setScene(scene);
         stage.show();
     }

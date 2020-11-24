@@ -79,7 +79,6 @@ public class DonationEditController extends BaseController{
 		.getLedger()
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)
-			.setEntryValue(100)
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
 			.setEntryValue(Double.parseDouble(amount.getText()))

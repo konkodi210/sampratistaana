@@ -13,17 +13,17 @@
 <VBox alignment="TOP_CENTER" 
 	xmlns="http://javafx.com/javafx/11.0.1" 
 	xmlns:fx="http://javafx.com/fxml/1" 
-	fx:controller="org.sampratistaana.controllers.DonationListController">
+	fx:controller="org.sampratistaana.controllers.BookSaleListController">
    <children>
-      <Label alignment="TOP_CENTER" text="%donation.list.title" styleClass="title-label"/> 
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+      <Label alignment="TOP_CENTER" text="%booksale.list.title" styleClass="title-label"/> 
+      <ButtonBar>
         <buttons>
-            <Button id="donationNew" text="%donation.action.new" onAction="#loadNewDonation"/>
-          	<Button fx:id="editBtn" text="%common.edit" onAction="#editDonation" disable="true"/>
-            <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteDonation" disable="true"/>
+            <Button id="donationNew" text="%booksale.action.new" onAction="#loadBookSale"/>
+          	<Button fx:id="editBtn" text="%common.edit" onAction="#editBookSale" disable="true"/>
+            <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteBookSale" disable="true"/>
         </buttons>
       </ButtonBar>
-      <TableView fx:id="donationList" editable="true" tableMenuButtonVisible="true" >
+      <TableView fx:id="bookSaleList" editable="true" tableMenuButtonVisible="true" >
         <columns>
           <TableColumn id="name" text="%member.name" />
           <TableColumn id="nickName" text="%member.nickname" />          

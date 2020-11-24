@@ -1,4 +1,3 @@
-/*Dummy styles. @Ramprakash to update*/
 .root {
 	-fx-body-color : #F5F5F5;
 	-fx-outer-border : #cecece;
@@ -928,4 +927,16 @@ VBox > .split-menu-button.last > .arrow-button {
 }
 .slider:vertical .track {
 	-fx-pref-width: 5;
+}
+
+.title-label {
+	-fx-font-size: 20;
+	-fx-font-weight: bolder;
+	-fx-padding: 20,0,20,0
+}
+
+.serial-no {
+	-fx-font-size: 13;
+	-fx-font-weight: bolder;
+	-fx-text-fill: #e43131
 }

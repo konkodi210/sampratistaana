@@ -136,7 +136,7 @@ public class CreditManager {
 			return session.get(Inventory.class, inventoryId);
 		}
 	}
-	
+
 	public List<Inventory> getInventory(InventoryType type){
 		try(Session session=dbSession()){
 			return session
@@ -161,6 +161,7 @@ public class CreditManager {
 						session.saveOrUpdate(new Inventory()
 								.setInventoryType(InventoryType.BOOK)
 								.setUnitName(res.getString(key))
+								.setInventoryCount(100)
 								.setUnitPrice(250)
 								.setLedger(new Ledger()
 										.setEntryType(EntryType.DEBIT)
@@ -175,34 +176,56 @@ public class CreditManager {
 			tran.commit();
 		}
 	}
-
-	public void makeBookSale(BookSale bookSale) {
+	
+	/**
+	 * Records book sale in the database
+	 * @param bookSales
+	 */
+	public void makeBookSale(BookSale... bookSales) {
+		//Ensure there atleast one book sales to record.
+		if(bookSales==null || bookSales.length==0) {
+			return;
+		}
+		/*
+		 * Assumption 1: If more than one books sold in one transaction, then we will make single entry in ledger and individual entry in booksale table
+		 * 
+		 * For example, a person buys more than one books, then total amount is added as one entry in the ledger. Otherwise, it is hard to
+		 * track how much in total person has paid.
+		 */
 		Transaction tran=null;
 		try(Session session=dbSession()){
-			tran=session.beginTransaction();			
+			tran=session.beginTransaction();
 
-			//Update the inventory
-			Inventory inv=bookSale.getInventory();
-			int currentInventory = inv.getInventoryCount();
-			if(currentInventory < bookSale.getUnitCount()) {
-				throw new SampratistaanaException("book.nostock",currentInventory,bookSale.getUnitCount());
-			}
-			inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
-
-			//Update the Ledger entry 
-			bookSale.getLedger()
-			.setEntryCategory(EntryCategory.BOOK_SALE)
+			double totalPrice=0;
+			for(BookSale bookSale:bookSales) {
+				totalPrice+= bookSale.getUnitCount() * bookSale.getInventory().getUnitPrice();
+			}						
+			Ledger ledger=bookSales[0].getLedger();
+			ledger.setEntryCategory(EntryCategory.BOOK_SALE)
 			.setEntryType(EntryType.CREDIT)
-			.setEntryValue(bookSale.getUnitCount() * inv.getUnitPrice())
+			.setEntryValue(totalPrice)
 			.setEntryDate(LocalDate.now());
 
-			session.saveOrUpdate(bookSale);
+			session.saveOrUpdate(ledger);
+
+			for(BookSale bookSale:bookSales) {
+				bookSale.setLedger(ledger);
+				//Update the inventory				
+				Inventory inv=bookSale.getInventory();
+				int currentInventory = inv.getInventoryCount();
+				if(currentInventory < bookSale.getUnitCount()) {
+					throw new SampratistaanaException("book.nostock",currentInventory,bookSale.getUnitCount());
+				}
+				inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
+
+				session.saveOrUpdate(bookSale);
+			}
 			tran.commit();
 		}catch(Exception e) {
-			//			if(tran!=null) {
-			//				tran.rollback();
-			//			}
-			throw new SampratistaanaException(e);
+//			if(tran!=null) {
+//				tran.rollback();
+//			}
+			throw e instanceof SampratistaanaException ? (SampratistaanaException)e : new SampratistaanaException(e);
 		}
 	}
 }

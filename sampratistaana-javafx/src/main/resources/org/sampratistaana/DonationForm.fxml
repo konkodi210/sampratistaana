@@ -21,21 +21,10 @@
 	fx:id="donationForm"
 	fx:controller="org.sampratistaana.controllers.DonationEditController">
    <children>
-      <Label alignment="TOP_CENTER" text="%donation.title">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-         <padding>
-            <Insets top="20.0" bottom="20.0" />
-         </padding>
-      </Label>
+      <Label alignment="TOP_CENTER" text="%donation.title" styleClass="title-label"/> 
       <GridPane hgap="10.0" vgap="20.0">
          <children>
-         	<Label text="%common.serial-no" textFill="#e43131" GridPane.columnIndex="0" GridPane.rowIndex="0">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
+         	<Label text="%common.serial-no" styleClass="serial-no"  GridPane.columnIndex="0" GridPane.rowIndex="0"/>
             <Label fx:id="donationId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <!-- Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" /-->

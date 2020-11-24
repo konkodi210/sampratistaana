@@ -2,70 +2,57 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.BookSaleControler">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.BookSaleEditControler">
    <children>
-      <Label alignment="TOP_CENTER" text="%booksale.title">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-         <padding>
-            <Insets bottom="20.0" top="20.0" />
-         </padding>
-      </Label>
-      <GridPane hgap="10.0" vgap="20.0">
+      <Label alignment="TOP_CENTER" styleClass="title-label" text="%booksale.title" />
+      <HBox spacing="10.0">
          <children>
-         	<Label text="%common.serial-no" textFill="#e43131" GridPane.columnIndex="0" GridPane.rowIndex="0">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="bookSaleId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-            <TableView fx:id="booksaleTable" editable="true" GridPane.columnSpan="4" GridPane.rowIndex="1">
-              <columns>
-                  <TableColumn id="serialNo" editable="false" prefWidth="10.0" text="%booksale.serial-no" />
-                  <TableColumn id="unitName" editable="false" text="%booksale.name" />
-                  <TableColumn id="unitPrice" editable="false" text="%booksale.unit-price" />
-                  <TableColumn id="quantity" text="%booksale.quantity" />
-                  <TableColumn id="totalPrice" editable="false" text="%booksale.total-price" />
-              </columns>
+         	<Label styleClass="serial-no" text="%common.serial-no" />
+            <Label fx:id="bookSaleId" text="0" />
+            <Label text="%booksale.seller-name" />
+            <TextField fx:id="sellerName" />
+            <Label text="%booksale.customer-name" />
+            <TextField fx:id="customerName" />
+            <Label text="%common.date" />
+            <DatePicker fx:id="entryDate" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </HBox>
+      <TableView fx:id="bookSaleTable" editable="true" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn id="serialNo" editable="false"  prefWidth="20" text="%booksale.serial-no" />
+            <TableColumn id="unitName" editable="false" text="%booksale.name" />
+            <TableColumn id="unitPrice" editable="false" prefWidth="25" text="%booksale.unit-price" />
+            <TableColumn id="quantity"  prefWidth="100" text="%booksale.quantity" />
+            <TableColumn id="totalPrice" editable="false" prefWidth="100.0" text="%booksale.total-price" />
+        </columns>
 	         <columnResizePolicy>
 	            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 	         </columnResizePolicy>              
-            </TableView>
-            
-            <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <children>
-                  <Button id="saleCancelBtn" onAction="#makeSale" text="%common.cancel" />
-                  <Button id="saleSaveBtn" onAction="#cancel" text="%common.save" />
-               </children>
-            </FlowPane>            
+      </TableView>
+      <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="10.0">
+         <children>
+          <Label styleClass="lg" text="%common.rupayi" />
+          <Label fx:id="grandTotal" styleClass="lg" text="0.0" />
+         	<Label styleClass="lg" text="%booksale.total-prize" />
          </children>
-         <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-      </GridPane>
+      </HBox>
+      <ButtonBar>
+        <buttons>
+            <Button id="saleCancelBtn" onAction="#makeSale" text="%common.cancel" />
+            <Button id="saleSaveBtn" onAction="#cancel" text="%common.save" />
+        </buttons>
+      </ButtonBar>
    </children>
-   <padding>
-      <Insets left="5.0" right="25.0" />
-   </padding>
 </VBox>
