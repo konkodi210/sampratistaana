@@ -13,6 +13,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+import org.hibernate.dialect.function.SQLFunctionTemplate;
+import org.hibernate.type.StringType;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
@@ -55,6 +57,7 @@ public class ConnectionFactory {
 						.addAnnotatedClass(Inventory.class)
 						.addAnnotatedClass(BookSale.class)
 						.getMetadataBuilder()
+						.applySqlFunction("GROUP_CONCAT", new SQLFunctionTemplate(StringType.INSTANCE, "GROUP_CONCAT(?1)"))
 						.build()
 						.getSessionFactoryBuilder()
 						.build();

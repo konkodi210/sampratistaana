@@ -113,4 +113,9 @@ public class CreditOperationTest {
 		assertThat("Total Prize should multiplication of unit count and unit price",
 				bookSale.getLedger().getEntryValue(), equalTo(bookSale.getUnitCount()*inventory.getUnitPrice()));
 	}
+	
+	@Test
+	public void testBookListUI() throws Exception {
+		new CreditManager().getBookSaleList();
+	}
 }

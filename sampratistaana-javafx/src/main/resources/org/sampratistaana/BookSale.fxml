@@ -1,40 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.BookSaleEditControler">
+<VBox alignment="TOP_CENTER" 
+	xmlns="http://javafx.com/javafx/11.0.1" 
+	xmlns:fx="http://javafx.com/fxml/1" 
+	fx:controller="org.sampratistaana.controllers.BookSaleEditControler">
    <children>
       <Label alignment="TOP_CENTER" styleClass="title-label" text="%booksale.title" />
-      <HBox spacing="10.0">
+      <GridPane hgap="10.0" vgap="5">
          <children>
          	<Label styleClass="serial-no" text="%common.serial-no" />
-            <Label fx:id="bookSaleId" text="0" />
-            <Label text="%booksale.seller-name" />
-            <TextField fx:id="sellerName" />
-            <Label text="%booksale.customer-name" />
-            <TextField fx:id="customerName" />
-            <Label text="%common.date" />
-            <DatePicker fx:id="entryDate" />
+            <Label fx:id="bookSaleId" text="0" GridPane.columnIndex="1" />
+            <Label text="%booksale.customer-name" GridPane.rowIndex="1" />
+            <TextField fx:id="customerName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="%common.date" GridPane.columnIndex="4" />
+            <DatePicker fx:id="entryDate" GridPane.columnIndex="5" />
+            <Label text="%booksale.seller-name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="sellerName" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label text="%member.check-no" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="externalTranNo" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label text="%member.payment-type" GridPane.rowIndex="3" />
+            <FlowPane GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <children>
+                  <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
+                     <properties value="CASH" />
+                     <toggleGroup>
+                        <ToggleGroup fx:id="paymentType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton id="paymentCheck" mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType">
+                    <properties value="CHECK" />
+                  </RadioButton>
+                  <RadioButton id="paymentOnline" mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType">
+                    <properties value="ONLINE" />
+                  </RadioButton>
+                  <RadioButton id="paymentDD" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
+                  	<properties value="DD" />
+                  </RadioButton>
+               </children>
+            </FlowPane>
+            <Label text="%donation.pan" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <TextField fx:id="pan" GridPane.columnIndex="5" GridPane.rowIndex="3" />            
          </children>
-         <padding>
-            <Insets bottom="10.0" />
-         </padding>
-      </HBox>
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+        </columnConstraints>
+         <rowConstraints>
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
       <TableView fx:id="bookSaleTable" editable="true" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn id="serialNo" editable="false"  prefWidth="20" text="%booksale.serial-no" />
+            <TableColumn id="serialNo" editable="false" prefWidth="20" text="%booksale.serial-no" />
             <TableColumn id="unitName" editable="false" text="%booksale.name" />
             <TableColumn id="unitPrice" editable="false" prefWidth="25" text="%booksale.unit-price" />
-            <TableColumn id="quantity"  prefWidth="100" text="%booksale.quantity" />
+            <TableColumn id="quantity" prefWidth="100" text="%booksale.quantity" />
             <TableColumn id="totalPrice" editable="false" prefWidth="100.0" text="%booksale.total-price" />
         </columns>
 	         <columnResizePolicy>
@@ -54,5 +96,6 @@
             <Button id="saleSaveBtn" onAction="#cancel" text="%common.save" />
         </buttons>
       </ButtonBar>
+      <Label text="Label" />
    </children>
 </VBox>

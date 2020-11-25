@@ -28,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.util.Callback;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
@@ -36,6 +37,9 @@ public class BookSaleEditControler extends BaseController {
 	@FXML private TextField sellerName;
 	@FXML private TextField customerName;
 	@FXML private DatePicker entryDate;
+	@FXML private TextField pan;
+	@FXML private ToggleGroup paymentType;
+	@FXML private TextField externalTranNo;
 	@FXML private TableView<BookEntry> bookSaleTable;
 	@FXML private Label grandTotal;
 	private int index;
@@ -91,7 +95,9 @@ public class BookSaleEditControler extends BaseController {
 
 	public void makeSale() throws Exception {
 		Ledger ledger= new Ledger()
-				.setModeOfTranscation(TransactionMode.CASH); //TODO: Need collect the transaction mode,PAN and trasaction id 
+				.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
+				.setExternalTranNo(externalTranNo.getText())
+				.setPanNo(pan.getText());
 		//Collect the entry from table table and make array of books sale to save
 		new CreditManager().makeBookSale(
 				bookSaleTable

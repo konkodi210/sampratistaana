@@ -6,10 +6,12 @@ import java.time.LocalDate;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.sampratistaana.beans.BookSale;
+import org.sampratistaana.beans.BookSaleUIList;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Inventory.InventoryType;
@@ -222,10 +224,30 @@ public class CreditManager {
 			}
 			tran.commit();
 		}catch(Exception e) {
-//			if(tran!=null) {
-//				tran.rollback();
-//			}
 			throw e instanceof SampratistaanaException ? (SampratistaanaException)e : new SampratistaanaException(e);
+		}
+	}
+	
+	public List<BookSaleUIList> getBookSaleList(){
+		try(Session session=dbSession()){
+			return session
+					.createQuery("SELECT l.entryNo , function('GROUP_CONCAT',i.unitName) as BOOK_NAMES, bs.customerName, l.entryValue "
+							+ ",l.entryDate, l.modeOfTranscation, l.externalTranNo "
+							+ "FROM BookSale bs "
+							+ "LEFT OUTER JOIN bs.ledger l "
+							+ "LEFT OUTER JOIN bs.inventory i "
+							+ "GROUP BY l.entryNo",Object[].class)
+					.stream()
+					.map(arr -> new BookSaleUIList()
+							.setLedgerEntryNo((Long)arr[0])
+							.setBookNames((String)arr[1])
+							.setCustomerName((String)arr[2])
+							.setEntryValue((Double)arr[3])
+							.setEntryDate((LocalDate)arr[4])
+							.setModeOfTran((TransactionMode)arr[5])
+							.setExternalTranId((String)arr[6]))
+					.collect(Collectors.toList());
+					
 		}
 	}
 }
