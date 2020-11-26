@@ -3,6 +3,7 @@ package org.sampratistaana;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Inventory.InventoryType;
@@ -77,5 +78,16 @@ public class TestUtils {
 						.setPanNo("ABC64246")
 						.setEntryDesc("Description123")
 				);	
+	}
+	
+	public static BookSale createBookSale() {
+		Inventory inventory=createInventory();		
+		return new BookSale()
+				.setInventory(inventory)
+				.setCustomerName("Good Hearted Man")
+				.setUnitCount(5)
+				.setLedger(new Ledger()
+						.setModeOfTranscation(TransactionMode.CASH)
+						);
 	}
 }

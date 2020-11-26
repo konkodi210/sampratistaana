@@ -18,25 +18,20 @@
       <Label alignment="TOP_CENTER" text="%booksale.list.title" styleClass="title-label"/> 
       <ButtonBar>
         <buttons>
-            <Button id="donationNew" text="%booksale.action.new" onAction="#loadBookSale"/>
+            <Button text="%booksale.action.new" onAction="#loadBookSale"/>
           	<Button fx:id="editBtn" text="%common.edit" onAction="#editBookSale" disable="true"/>
             <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteBookSale" disable="true"/>
         </buttons>
       </ButtonBar>
-      <TableView fx:id="bookSaleList" editable="true" tableMenuButtonVisible="true" >
+      <TableView fx:id="bookSaleList" tableMenuButtonVisible="true" >
         <columns>
-          <TableColumn id="name" text="%member.name" />
-          <TableColumn id="nickName" text="%member.nickname" />          
-          <TableColumn id="donationValue" text="%member.amount" />
-          <TableColumn id="date" text="%member.date" />
-          <TableColumn id="email" text="%member.email" />
-          <TableColumn id="mobileNo" text="%member.mobile" />
-          <TableColumn id="phoneNo" text="%member.phone" />
-          <TableColumn id="paymentType" text="%member.payment-type" />
-          <TableColumn id="panNo" text="%donation.pan" visible="false" />
-          <TableColumn id="address" text="%member.address" visible="false" />	  
-		  <TableColumn id="dob" text="%member.dob" visible="false" />
-		  <TableColumn id="description" text="%member.description" visible="false" />
+          <TableColumn id="ledgerEntryNo" text="%booksale.receipt-no" />
+          <TableColumn id="bookNames" text="%booksale.booknames" />          
+          <TableColumn id="customerName" text="%booksale.customer-name" />
+          <TableColumn id="entryValue" text="%booksale.amount" />
+          <TableColumn id="entryDate" text="%booksale.date" />
+          <TableColumn id="modeOfTran" text="%booksale.transaction-type" />
+          <TableColumn id="externalTranId" text="%booksale.external-transaction-no" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

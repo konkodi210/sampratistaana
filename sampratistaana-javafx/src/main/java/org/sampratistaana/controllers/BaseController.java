@@ -3,9 +3,11 @@ package org.sampratistaana.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
@@ -45,5 +47,9 @@ public class BaseController implements Initializable{
 		table
 		.getColumns()
 		.forEach(col -> col.setCellValueFactory(new PropertyValueFactory<>(col.getId())));
+	}
+	
+	protected <T> Stream<T> stream(Collection<T> coll){
+		return coll == null ? Stream.empty() : coll.stream();
 	}
 }

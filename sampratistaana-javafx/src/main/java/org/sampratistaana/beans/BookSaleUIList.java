@@ -2,6 +2,7 @@ package org.sampratistaana.beans;
 
 import java.time.LocalDate;
 
+import org.sampratistaana.Messages;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
 public class BookSaleUIList {
@@ -41,8 +42,8 @@ public class BookSaleUIList {
 		this.entryValue = entryValue;
 		return this;
 	}
-	public LocalDate getEntryDate() {
-		return entryDate;
+	public String getEntryDate() {
+		return Messages.formatDate(entryDate);
 	}
 	public BookSaleUIList setEntryDate(LocalDate entryDate) {
 		this.entryDate = entryDate;

@@ -178,7 +178,7 @@ public class CreditManager {
 			tran.commit();
 		}
 	}
-	
+
 	/**
 	 * Records book sale in the database
 	 * @param bookSales
@@ -228,6 +228,10 @@ public class CreditManager {
 		}
 	}
 	
+	/**
+	 * Get books list with limited number of columns for listing purpose.
+	 * @return
+	 */
 	public List<BookSaleUIList> getBookSaleList(){
 		try(Session session=dbSession()){
 			return session
@@ -236,7 +240,7 @@ public class CreditManager {
 							+ "FROM BookSale bs "
 							+ "LEFT OUTER JOIN bs.ledger l "
 							+ "LEFT OUTER JOIN bs.inventory i "
-							+ "GROUP BY l.entryNo",Object[].class)
+							+ "GROUP BY l.entryNo ORDER BY l.entryNo DESC",Object[].class)
 					.stream()
 					.map(arr -> new BookSaleUIList()
 							.setLedgerEntryNo((Long)arr[0])
@@ -247,7 +251,33 @@ public class CreditManager {
 							.setModeOfTran((TransactionMode)arr[5])
 							.setExternalTranId((String)arr[6]))
 					.collect(Collectors.toList());
-					
+
+		}
+	}
+	
+	/**
+	 *  Get the complete book sale details based on the ledger entry no. This sale record may have one or more book sale in single trasaction.
+	 * @param ledgerNo
+	 * @return
+	 */
+	public List<BookSale> getBookSale(long ledgerNo){
+		try(Session session=dbSession()){
+			return session
+					.createQuery("SELECT bs FROM BookSale bs "
+							+ "INNER JOIN bs.ledger l "
+							+ "INNER JOIN bs.inventory "
+							+ "WHERE l.entryNo=:entryNo", BookSale.class)
+					.setParameter("entryNo", ledgerNo)
+					.getResultList();
+		}
+	}
+	
+	//TODO: I am really not sure we should implement this. This will have serious consequences on the inventory as well as ledger.
+	public void removeSaleEntry(long ledgerNo) {
+		try(Session session=dbSession()){
+			//Restore the inventory back
+			//Delete the booksale entries
+			//Delete ledger entry.
 		}
 	}
 }

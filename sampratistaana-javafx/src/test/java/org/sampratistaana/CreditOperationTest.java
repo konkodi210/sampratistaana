@@ -1,9 +1,14 @@
 package org.sampratistaana;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+import static org.sampratistaana.TestUtils.createBookSale;
 import static org.sampratistaana.TestUtils.createDonation;
 import static org.sampratistaana.TestUtils.createInventory;
 import static org.sampratistaana.TestUtils.createMember;
@@ -12,12 +17,12 @@ import java.util.List;
 
 import org.junit.Test;
 import org.sampratistaana.beans.BookSale;
+import org.sampratistaana.beans.BookSaleUIList;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
-import org.sampratistaana.beans.Ledger;
-import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
 
+@SuppressWarnings("unchecked")
 public class CreditOperationTest {
 
 	@Test
@@ -97,25 +102,27 @@ public class CreditOperationTest {
 
 	@Test
 	public void testMakeSale() throws Exception {
-		Inventory inventory=createInventory();
-		int currentInventory=inventory.getInventoryCount();
-		BookSale bookSale=new BookSale()
-				.setInventory(inventory)
-				.setCustomerName("Good Hearted Man")
-				.setUnitCount(5)
-				.setLedger(new Ledger()
-						.setModeOfTranscation(TransactionMode.CASH)
-						);
+		BookSale bookSale=createBookSale();
+		int currentInventory=bookSale.getInventory().getInventoryCount();
 		new CreditManager().makeBookSale(bookSale);
 		assertThat("Booksale id must be generated", (int)bookSale.getBookSaleId(),greaterThan(0));
 		assertThat("Inventory count should reduced", 
-				inventory.getInventoryCount(),equalTo(currentInventory-bookSale.getUnitCount()));
+				bookSale.getInventory().getInventoryCount(),equalTo(currentInventory-bookSale.getUnitCount()));
 		assertThat("Total Prize should multiplication of unit count and unit price",
-				bookSale.getLedger().getEntryValue(), equalTo(bookSale.getUnitCount()*inventory.getUnitPrice()));
+				bookSale.getLedger().getEntryValue(), equalTo(bookSale.getUnitCount()*bookSale.getInventory().getUnitPrice()));
 	}
 	
 	@Test
 	public void testBookListUI() throws Exception {
-		new CreditManager().getBookSaleList();
+		BookSale bookSale=createBookSale();
+		new CreditManager().makeBookSale(bookSale);
+		List<BookSaleUIList> bookSaleList=new CreditManager().getBookSaleList();		
+		assertThat("Must have atleast one sale record", bookSaleList,not(anyOf(nullValue(),empty())));
+		BookSaleUIList saleListing=bookSaleList.get(0);
+		//Match the bean property again the listing value
+		assertThat("Bean values should match", saleListing.getBookNames(),equalTo(bookSale.getInventory().getUnitName()));
+		assertThat(saleListing.getCustomerName(),equalTo(bookSale.getCustomerName()));
+		assertThat(saleListing.getLedgerEntryNo(),equalTo(bookSale.getLedger().getEntryNo()));
+		//if ledger no matches. Let us assume remaining attributes also match.
 	}
 }
