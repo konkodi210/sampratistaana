@@ -127,7 +127,7 @@ public class BookSaleEditControler extends BaseController {
 	}
 
 	/*
-	 * Book sale table is editable table. This means we need to capture the user entry from the table and
+	 * Book sale table is an editable table. This means we need to capture the user entry from the table and
 	 * save in the database. Hence, we need UI bean class which reads the values from the DTO bean and UI compatible property.
 	 * 
 	 * To make code short, we could created the DTO bean class which works for both UI as well as Entity layer. But it against the principle

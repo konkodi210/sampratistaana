@@ -13,6 +13,7 @@
 1. Download JDK 8 [Link](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html). You can download higher version as well. If you do, we may have manually configure Java FX
 	1. Optional - You can install eclipse fx plugin [Link](https://marketplace.eclipse.org/category/free-tagging/javafx)
 1. For UI drag and drop, use Scene Builder [Link](https://gluonhq.com/products/scene-builder/)
+1. Resource bundle editor [Link](https://marketplace.eclipse.org/content/resourcebundle-editor#group-details)
 
 ## Open issues
 * SQLLite does not have default dialect for Hibernate. For now we are can go with H2 dialect but it going cause problem soon. We need to move to either H2 or write custom dialect for SQLLite
