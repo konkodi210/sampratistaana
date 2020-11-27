@@ -12,11 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "BOOK_SALE")
 public class BookSale implements Serializable{
-	private static final long serialVersionUID = 3360702599003533050L;
+	private static final long serialVersionUID = 3360702599003533050L;	
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BOOK_SALE_ID", nullable = false)
@@ -35,7 +36,10 @@ public class BookSale implements Serializable{
 	
 	@Column(name = "CUSTOMER_NAME", nullable = false)
 	private String customerName;
-
+	
+	@Transient
+	private int oldUnitCount;
+	
 	public long getBookSaleId() {
 		return bookSaleId;
 	}
@@ -78,8 +82,13 @@ public class BookSale implements Serializable{
 	}
 
 	public BookSale setUnitCount(int unitCount) {
+		this.oldUnitCount = this.unitCount;
 		this.unitCount = unitCount;
 		return this;
+	}
+	
+	public int getOldUnitCount() {
+		return this.oldUnitCount;
 	}
 
 	@Override

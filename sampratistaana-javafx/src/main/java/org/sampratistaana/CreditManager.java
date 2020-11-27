@@ -215,9 +215,13 @@ public class CreditManager {
 				//Update the inventory				
 				Inventory inv=bookSale.getInventory();
 				int currentInventory = inv.getInventoryCount();
+				//incase of the update, we need to take care only delta changes if it is edit
+				if(bookSale.getOldUnitCount() > 0 ) {
+					currentInventory+= bookSale.getOldUnitCount();
+				}	
 				if(currentInventory < bookSale.getUnitCount()) {
 					throw new SampratistaanaException("book.nostock",currentInventory,bookSale.getUnitCount());
-				}
+				}				
 				inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
 
 				session.saveOrUpdate(bookSale);

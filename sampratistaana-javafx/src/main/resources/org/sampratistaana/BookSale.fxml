@@ -92,8 +92,8 @@
       </HBox>
       <ButtonBar>
         <buttons>
-            <Button id="saleCancelBtn" onAction="#makeSale" text="%common.cancel" />
-            <Button id="saleSaveBtn" onAction="#cancel" text="%common.save" />
+            <Button id="saleCancelBtn" onAction="#cancel" text="%common.cancel" />
+            <Button id="saleSaveBtn" onAction="#makeSale" text="%common.save" />
         </buttons>
       </ButtonBar>
       <Label text="Label" />
