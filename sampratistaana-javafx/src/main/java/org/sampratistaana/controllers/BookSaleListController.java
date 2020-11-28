@@ -42,5 +42,12 @@ public class BookSaleListController extends BaseController {
 						.getLedgerEntryNo()));
 		loadBookSale();
 	}
-	public void deleteBookSale() {}
+	public void deleteBookSale() throws Exception{
+		new CreditManager()
+		.deleteSaleEntry(bookSaleList
+				.getSelectionModel()
+				.getSelectedItem()
+				.getLedgerEntryNo());
+		loadForm("BookSaleList");
+	}
 }

@@ -23,11 +23,11 @@ public class BookSale implements Serializable{
 	@Column(name = "BOOK_SALE_ID", nullable = false)
 	private long bookSaleId;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "LEDGER_ENTRY_NO")
 	private Ledger ledger;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "INVENTORY_ID")
 	private Inventory inventory;
 	

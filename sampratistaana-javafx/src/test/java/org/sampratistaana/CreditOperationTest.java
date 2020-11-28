@@ -2,9 +2,11 @@ package org.sampratistaana;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.either;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
@@ -104,6 +106,7 @@ public class CreditOperationTest {
 	public void testMakeSale() throws Exception {
 		BookSale bookSale=createBookSale();
 		int currentInventory=bookSale.getInventory().getInventoryCount();
+		new CreditManager().saveInventory(bookSale.getInventory());
 		new CreditManager().makeBookSale(bookSale);
 		assertThat("Booksale id must be generated", (int)bookSale.getBookSaleId(),greaterThan(0));
 		assertThat("Inventory count should reduced", 
@@ -115,6 +118,7 @@ public class CreditOperationTest {
 	@Test
 	public void testBookListUI() throws Exception {
 		BookSale bookSale=createBookSale();
+		new CreditManager().saveInventory(bookSale.getInventory());
 		new CreditManager().makeBookSale(bookSale);
 		List<BookSaleUIList> bookSaleList=new CreditManager().getBookSaleList();		
 		assertThat("Must have atleast one sale record", bookSaleList,not(anyOf(nullValue(),empty())));
@@ -124,5 +128,17 @@ public class CreditOperationTest {
 		assertThat(saleListing.getCustomerName(),equalTo(bookSale.getCustomerName()));
 		assertThat(saleListing.getLedgerEntryNo(),equalTo(bookSale.getLedger().getEntryNo()));
 		//if ledger no matches. Let us assume remaining attributes also match.
+	}
+	
+	@Test
+	public void testDeleteBookSale() throws Exception {
+		BookSale bookSale=createBookSale();
+		new CreditManager().saveInventory(bookSale.getInventory());
+		new CreditManager().makeBookSale(bookSale);
+		assertThat("Booksale id must be generated", (int)bookSale.getBookSaleId(),greaterThan(0));
+		new CreditManager().deleteSaleEntry(bookSale.getLedger().getEntryNo());
+		assertThat("There should be no record in the database",
+				new CreditManager().getBookSale(bookSale.getLedger().getEntryNo())
+						,either(is(empty())).or(is(nullValue())));
 	}
 }

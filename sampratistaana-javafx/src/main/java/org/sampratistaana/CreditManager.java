@@ -277,8 +277,19 @@ public class CreditManager {
 	}
 	
 	//TODO: I am really not sure we should implement this. This will have serious consequences on the inventory as well as ledger.
-	public void removeSaleEntry(long ledgerNo) {
+	public void deleteSaleEntry(long ledgerNo) {
 		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			Ledger ledger = null;
+			for(BookSale sale:getBookSale(ledgerNo)) {
+				ledger=sale.getLedger();
+				Inventory inv=sale.getInventory();
+				inv.setInventoryCount(inv.getInventoryCount()+sale.getUnitCount());
+				session.saveOrUpdate(inv);
+				session.remove(sale);
+			}
+			session.remove(ledger);
+			tran.commit();
 			//Restore the inventory back
 			//Delete the booksale entries
 			//Delete ledger entry.
