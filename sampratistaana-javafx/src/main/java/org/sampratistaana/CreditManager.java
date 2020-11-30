@@ -223,7 +223,7 @@ public class CreditManager {
 					throw new SampratistaanaException("book.nostock",currentInventory,bookSale.getUnitCount());
 				}				
 				inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
-
+				session.saveOrUpdate(inv);
 				session.saveOrUpdate(bookSale);
 			}
 			tran.commit();

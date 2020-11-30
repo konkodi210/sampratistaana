@@ -134,11 +134,15 @@ public class CreditOperationTest {
 	public void testDeleteBookSale() throws Exception {
 		BookSale bookSale=createBookSale();
 		new CreditManager().saveInventory(bookSale.getInventory());
-		new CreditManager().makeBookSale(bookSale);
+		int inventoryCount = bookSale.getInventory().getInventoryCount();
+		new CreditManager().makeBookSale(bookSale);	
+		long inventoryId = bookSale.getInventory().getInventoryId();		
 		assertThat("Booksale id must be generated", (int)bookSale.getBookSaleId(),greaterThan(0));
 		new CreditManager().deleteSaleEntry(bookSale.getLedger().getEntryNo());
 		assertThat("There should be no record in the database",
 				new CreditManager().getBookSale(bookSale.getLedger().getEntryNo())
 						,either(is(empty())).or(is(nullValue())));
+		assertThat("Once book is deleted, inventory should be restored"
+				,inventoryCount,equalTo(new CreditManager().getInventory(inventoryId).getInventoryCount()) );
 	}
 }
