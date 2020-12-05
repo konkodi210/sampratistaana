@@ -17,7 +17,10 @@
 	   	 <MenuItem id="donationMenu" onAction="#openDonationForm" text="%menu.donation" />
 	   	 <MenuItem id="booksaleMenu" onAction="#openBookSaleForm" text="%menu.book.sale" />
 	   </Menu>
-	   <Menu text="%menu.expense" />
+	   <Menu id="expenseMenu" text="%menu.expense">
+	   <MenuItem id="expenseEntry" onAction="#openExpenseEntryForm" text="%menu.expenseEntry" />
+	   	<MenuItem id="expenseReport" onAction="#openExpenseReportForm" text="%menu.expenseReport" />
+	   </Menu>
 	   <Menu text="%menu.report">
 	   	 <MenuItem text="%menu.monthly.report" />
 	   	 <MenuItem text="%menu.yearly.report" />

@@ -16,7 +16,7 @@ public class Ledger implements Serializable{
 	private static final long serialVersionUID = -1797795357655017900L;
 
 	public enum EntryType{CREDIT,DEBIT}
-	public enum EntryCategory{MEMBER, DONATION, BOOK_SALE,BOOK_PURCHASE}
+	public enum EntryCategory{MEMBER, DONATION, BOOK_SALE,BOOK_PURCHASE,EXPENSE}
 	public enum TransactionMode {CASH, CHECK, ONLINE, DD}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

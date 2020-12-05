@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="expenseForm" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.ExpenseEditController">
+   <children>
+      <Label alignment="TOP_CENTER" text="%expense.entry.new">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding>
+      </Label>
+      <GridPane hgap="10.0" vgap="10.0">
+         <children>
+         	<Label text="%common.serial-no" textFill="#e43131" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <FlowPane GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="LM" />
+            <Label fx:id="expenseNo" />
+            </FlowPane>            
+            <Label prefHeight="17.0" prefWidth="197.0" text="%common.date" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <DatePicker fx:id="entryDate" prefHeight="25.0" prefWidth="280.0" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <Label alignment="TOP_LEFT" text="%expense.fundType" GridPane.rowIndex="4" />
+             <ComboBox id="fundType" fx:id="fundType" prefHeight="25.0" prefWidth="201.0" promptText="Select" visibleRowCount="15" GridPane.columnIndex="1" GridPane.rowIndex="4">
+           
+            </ComboBox>
+            
+            <Label alignment="TOP_LEFT" text="%expense.category" GridPane.rowIndex="7" />
+             <ComboBox id="expenseType" fx:id="expenseType" prefHeight="25.0" prefWidth="201.0" promptText="Select" visibleRowCount="15" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            
+            </ComboBox>
+           
+            <Label text="%expense.amount" GridPane.rowIndex="13" />
+            <TextField fx:id="amount" prefHeight="66.0" prefWidth="270.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            
+            <Label alignment="TOP_LEFT" text="%expense.bankAccount" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+             <ComboBox id="bankAccount" fx:id="bankAccount" prefHeight="25.0" prefWidth="201.0" promptText="Select" visibleRowCount="15" GridPane.columnIndex="4" GridPane.rowIndex="7">
+           
+            </ComboBox>
+            
+            <Label prefHeight="17.0" prefWidth="199.0" text="%member.payment-type" GridPane.columnIndex="3" GridPane.rowIndex="15" />
+            <FlowPane alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="476.0" GridPane.columnIndex="4" GridPane.rowIndex="15">
+               <children>
+               	  <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="paymentType" />
+                     </toggleGroup>
+                     <properties value="CASH" />
+                  </RadioButton>
+                  <RadioButton id="paymentCheck" mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType">
+                    <properties value="CHECK" />
+                  </RadioButton>
+                  <RadioButton id="paymentOnline" mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType">
+                    <properties value="ONLINE" />
+                  </RadioButton>
+                  <RadioButton id="paymentDD" layoutX="10.0" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
+                  	<properties value="DD" />
+                  </RadioButton>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </FlowPane>
+            <Label prefHeight="17.0" prefWidth="203.0" text="%expense.transactionNum" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+            <TextField fx:id="externalTranNo" prefHeight="25.0" prefWidth="370.0" GridPane.columnIndex="4" GridPane.rowIndex="13" />              
+                      
+            <Label text="%expense.desc" GridPane.rowIndex="15" />
+            <TextField fx:id="description" prefHeight="25.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            
+            <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="64.0" prefWidth="550.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="16" GridPane.valignment="CENTER">
+               <children>
+                  <Button id="expenseCancel" onAction="#loadExpenses" text="%common.cancel" />                  
+                  <Button id="expenseSave" onAction="#saveExpense" text="%common.save" />
+               </children>
+            </FlowPane>
+            
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="179.0" minWidth="105.0" prefWidth="130.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="425.0" minWidth="214.0" prefWidth="270.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="425.0" minWidth="55.0" prefWidth="91.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="572.0" minWidth="89.0" prefWidth="281.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="681.0" minWidth="394.0" prefWidth="649.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
+            <RowConstraints />
+            <RowConstraints maxHeight="130.0" minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints maxHeight="64.0" minHeight="32.0" prefHeight="64.0" />
+            <RowConstraints maxHeight="193.0" minHeight="162.0" prefHeight="192.0" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets left="5.0" right="25.0" />
+   </padding>
+</VBox>
