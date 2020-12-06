@@ -13,6 +13,7 @@ import org.hibernate.Transaction;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.BookSaleUIList;
 import org.sampratistaana.beans.Donation;
+import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Inventory.InventoryType;
 import org.sampratistaana.beans.Ledger;
@@ -34,6 +35,20 @@ public class CreditManager {
 			session.saveOrUpdate(member);
 			tran.commit();
 			return member.getMemberNo();
+		}
+	}
+	
+	/**
+	 * Saves the expense into the database
+	 * @param expense 
+	 * @return Expense expenseId 
+	 */
+	public Long saveExpense(Expense expense) {
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			session.saveOrUpdate(expense);
+			tran.commit();
+			return expense.getExpenseId();
 		}
 	}
 
@@ -62,6 +77,20 @@ public class CreditManager {
 	}
 
 	/**
+	 * get all expense from the database.
+	 * @return List of all expenses sorted by Creation date in descending order.
+	 */
+	public List<Expense> getAllExpenses(){
+		// Even though we have mentioned in lazy loading for Ledger in member bean, we are fetching to avoid multiple child queries
+		try(Session session=dbSession()){			
+			return session
+					.createQuery("SELECT e FROM Expense as e INNER JOIN FETCH e.ledger ORDER BY e.ledger.entryNo DESC", Expense.class)
+					.getResultList();
+		}
+	}
+	
+	
+	/**
 	 * Saves the Donation into the database
 	 * @param donation 
 	 * @return Member number 
@@ -79,6 +108,14 @@ public class CreditManager {
 		try(Session session=dbSession()){
 			Transaction tran=session.beginTransaction();
 			session.delete(member);
+			tran.commit();
+		}
+	}
+	
+	public void deleteExpense(Expense expense) {
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			session.delete(expense);
 			tran.commit();
 		}
 	}
@@ -232,6 +269,24 @@ public class CreditManager {
 		}
 	}
 	
+	public List<Object[]> getBankAccounts(){
+		try(Session session=dbSession()){			
+			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='BANK_ACCOUNT' AND p.flag='Y'",Object[].class).list();
+		}
+	}
+	
+	public List<Object[]> getFundTypes(){
+		try(Session session=dbSession()){			
+			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='FUND_TYPE' AND p.flag='Y'",Object[].class).list();
+		}
+	}
+	
+	public List<Object[]> getExpenseTypes(){
+		try(Session session=dbSession()){			
+			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='EXPENSE_TYPE' AND p.flag='Y'",Object[].class).list();
+		}
+	}
+
 	/**
 	 * Get books list with limited number of columns for listing purpose.
 	 * @return

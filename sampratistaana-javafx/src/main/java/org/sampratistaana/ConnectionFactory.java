@@ -17,9 +17,11 @@ import org.hibernate.dialect.function.SQLFunctionTemplate;
 import org.hibernate.type.StringType;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
+import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Member;
+import org.sampratistaana.beans.Property;
 
 public class ConnectionFactory {	
 	private static final String DB_TEMPLATE_FILE="database.sqlite";
@@ -56,6 +58,8 @@ public class ConnectionFactory {
 						.addAnnotatedClass(Donation.class)
 						.addAnnotatedClass(Inventory.class)
 						.addAnnotatedClass(BookSale.class)
+						.addAnnotatedClass(Expense.class)
+						.addAnnotatedClass(Property.class)
 						.getMetadataBuilder()
 						.applySqlFunction("GROUP_CONCAT", new SQLFunctionTemplate(StringType.INSTANCE, "GROUP_CONCAT(?1)"))
 						.build()

@@ -23,5 +23,14 @@ public class MainController {
 	private void openBookSaleForm() throws IOException{		
 		loadForm("BookSaleList");
 	}
+	
+	@FXML
+	private void openExpenseReportForm() throws IOException {
+		//loadForm("MemberList");TBD
+	}
 
+	@FXML
+	private void openExpenseEntryForm() throws IOException {
+		loadForm("ExpenseEntryList");
+	}
 }
