@@ -2,8 +2,6 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
@@ -11,10 +9,8 @@ import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
-import org.sampratistaana.beans.Property;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -35,17 +31,18 @@ public class ExpenseEditController extends BaseController{
 	@FXML private ToggleGroup paymentType;
 	@FXML private TextField externalTranNo;
 	@FXML private TextField description;
-	@FXML private ComboBox expenseType;
-	@FXML private ComboBox fundType;
-	@FXML private ComboBox bankAccount;
+	@FXML private ComboBox<String> expenseType;
+	@FXML private ComboBox<String> fundType;
+	@FXML private ComboBox<String> bankAccount;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		expenseType.getItems().clear();
+		//if we are setting item, no need to clear them. Moreover this is initialization method. At this point combo box will not have anything
+//		expenseType.getItems().clear();
 		expenseType.setItems(FXCollections.observableArrayList(new CreditManager().getExpenseTypes()));
-		fundType.getItems().clear();
+//		fundType.getItems().clear();
 		fundType.setItems(FXCollections.observableArrayList(new CreditManager().getFundTypes()));
-		bankAccount.getItems().clear();
+//		bankAccount.getItems().clear();
 		bankAccount.setItems(FXCollections.observableArrayList(new CreditManager().getBankAccounts()));
 		Expense expense = (Expense)getFromCache(CACHE_KEY);
 		expenseForm.setUserData(expense);
@@ -83,7 +80,7 @@ public class ExpenseEditController extends BaseController{
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
 			.setEntryDesc(description.getText());
 		
-		Long expenseId = new CreditManager().saveExpense(expense);
+		new CreditManager().saveExpense(expense);
 		loadExpenses();
 	}
 }

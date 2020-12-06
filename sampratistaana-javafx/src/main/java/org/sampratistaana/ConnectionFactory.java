@@ -76,7 +76,7 @@ public class ConnectionFactory {
 
 	}
 
-	private static String dbUrl() throws IOException{
+	private static synchronized String dbUrl() throws IOException{
 		if(dbUrl == null) {
 			String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana.sqlite";
 			Path filePath=new File(dbFilePath).toPath();

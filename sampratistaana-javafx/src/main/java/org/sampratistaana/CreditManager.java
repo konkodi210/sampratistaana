@@ -269,35 +269,35 @@ public class CreditManager {
 		}
 	}
 	
-	public List<Object[]> getBankAccounts(){
+	public List<String> getBankAccounts(){
 		return getProperties("EXPENSE","BANK_ACCOUNT");
 //		try(Session session=dbSession()){			
 //			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='BANK_ACCOUNT' AND p.flag='Y'",Object[].class).list();
 //		}
 	}
 	
-	public List<Object[]> getFundTypes(){
+	public List<String> getFundTypes(){
 		return getProperties("EXPENSE","FUND_TYPE");
 //		try(Session session=dbSession()){			
 //			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='FUND_TYPE' AND p.flag='Y'",Object[].class).list();
 //		}
 	}
 	
-	public List<Object[]> getExpenseTypes(){
+	public List<String> getExpenseTypes(){
 		return getProperties("EXPENSE","EXPENSE_TYPE");
 //		try(Session session=dbSession()){			
 //			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='EXPENSE_TYPE' AND p.flag='Y'",Object[].class).list();
 //		}
 	}
 	
-	public List<Object[]> getProperties(String propertyName, String propertyKey){
+	public List<String> getProperties(String propertyName, String propertyKey){
 		try(Session session = dbSession()){
-			return session
+			 return session
 					.createQuery("SELECT p.propertyValue "
 							+ " FROM Property p "
 							+ " where p.propertyName = :propertyName "
 							+ " AND p.propertyKey= :propertyKey "
-							+ " AND p.flag='Y'",Object[].class)
+							+ " AND p.flag='Y'",String.class)
 					.setParameter("propertyName", propertyName)
 					.setParameter("propertyKey", propertyKey)
 					.list();
