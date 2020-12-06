@@ -270,20 +270,37 @@ public class CreditManager {
 	}
 	
 	public List<Object[]> getBankAccounts(){
-		try(Session session=dbSession()){			
-			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='BANK_ACCOUNT' AND p.flag='Y'",Object[].class).list();
-		}
+		return getProperties("EXPENSE","BANK_ACCOUNT");
+//		try(Session session=dbSession()){			
+//			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='BANK_ACCOUNT' AND p.flag='Y'",Object[].class).list();
+//		}
 	}
 	
 	public List<Object[]> getFundTypes(){
-		try(Session session=dbSession()){			
-			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='FUND_TYPE' AND p.flag='Y'",Object[].class).list();
-		}
+		return getProperties("EXPENSE","FUND_TYPE");
+//		try(Session session=dbSession()){			
+//			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='FUND_TYPE' AND p.flag='Y'",Object[].class).list();
+//		}
 	}
 	
 	public List<Object[]> getExpenseTypes(){
-		try(Session session=dbSession()){			
-			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='EXPENSE_TYPE' AND p.flag='Y'",Object[].class).list();
+		return getProperties("EXPENSE","EXPENSE_TYPE");
+//		try(Session session=dbSession()){			
+//			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='EXPENSE_TYPE' AND p.flag='Y'",Object[].class).list();
+//		}
+	}
+	
+	public List<Object[]> getProperties(String propertyName, String propertyKey){
+		try(Session session = dbSession()){
+			return session
+					.createQuery("SELECT p.propertyValue "
+							+ " FROM Property p "
+							+ " where p.propertyName = :propertyName "
+							+ " AND p.propertyKey= :propertyKey "
+							+ " AND p.flag='Y'",Object[].class)
+					.setParameter("propertyName", propertyName)
+					.setParameter("propertyKey", propertyKey)
+					.list();
 		}
 	}
 
@@ -345,9 +362,6 @@ public class CreditManager {
 			}
 			session.remove(ledger);
 			tran.commit();
-			//Restore the inventory back
-			//Delete the booksale entries
-			//Delete ledger entry.
 		}
 	}
 }

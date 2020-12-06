@@ -18,7 +18,7 @@
       <Label alignment="TOP_CENTER" text="%booksale.list.title" styleClass="title-label"/> 
       <ButtonBar>
         <buttons>
-            <Button text="%booksale.action.new" onAction="#loadBookSale"/>
+            <Button id="bookSaleNew" text="%booksale.action.new" onAction="#loadBookSale"/>
           	<Button fx:id="editBtn" text="%common.edit" onAction="#editBookSale" disable="true"/>
             <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteBookSale" disable="true"/>
         </buttons>
