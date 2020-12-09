@@ -17,7 +17,7 @@ public class Ledger implements Serializable{
 
 	public enum EntryType{CREDIT,DEBIT}
 	public enum EntryCategory{MEMBER, DONATION, BOOK_SALE,BOOK_PURCHASE,EXPENSE}
-	public enum TransactionMode {CASH, CHECK, ONLINE, DD}
+	public enum TransactionMode {CASH, CHEQUE, ONLINE, DD}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ENTRY_NO", nullable = false, insertable = false, updatable = false)

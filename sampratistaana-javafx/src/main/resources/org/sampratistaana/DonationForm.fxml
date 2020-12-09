@@ -64,7 +64,7 @@
                      <properties value="CASH" />
                   </RadioButton>
                   <RadioButton id="paymentCheck" mnemonicParsing="false" text="%member.check" toggleGroup="$paymentType">
-                    <properties value="CHECK" />
+                    <properties value="CHEQUE" />
                   </RadioButton>
                   <RadioButton id="paymentOnline" mnemonicParsing="false" text="%member.online" toggleGroup="$paymentType">
                     <properties value="ONLINE" />
