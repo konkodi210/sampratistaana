@@ -93,7 +93,7 @@
       <ButtonBar>
         <buttons>
             <Button id="saleCancelBtn" onAction="#cancel" text="%common.cancel" />
-            <Button id="saleSaveBtn" onAction="#makeSale" text="%common.save" />
+            <Button fx:id="saleSaveBtn" onAction="#makeSale" text="%common.save" disable="true"/>
         </buttons>
       </ButtonBar>
       <Label text="Label" />

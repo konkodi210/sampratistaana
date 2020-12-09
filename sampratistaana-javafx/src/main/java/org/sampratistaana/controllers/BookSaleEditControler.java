@@ -22,6 +22,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -45,6 +46,7 @@ public class BookSaleEditControler extends BaseController {
 	@FXML private TextField externalTranNo;
 	@FXML private TableView<BookEntry> bookSaleTable;
 	@FXML private Label grandTotal;
+	@FXML private Button saleSaveBtn;
 	private int index;
 
 	@Override
@@ -100,6 +102,9 @@ public class BookSaleEditControler extends BaseController {
 		//save ledger reference for making a sale. As per design, we will have one ledger entry for complete sale
 		Ledger ledger = bookSaleMap.size()>0 ? editList.get(0).getLedger():new Ledger();
 		bookSaleTable.setUserData(ledger);
+		
+		//enable save only if any book is selected for sale
+		grandTotal.textProperty().addListener((ob, old, newVal) -> saleSaveBtn.setDisable(Double.parseDouble(newVal) == 0));
 		grandTotal.setText(String.valueOf(ledger.getEntryValue()));
 	}
 
@@ -164,6 +169,10 @@ public class BookSaleEditControler extends BaseController {
 			case "totalPrice":return totalPrice;
 			}
 			throw new NullPointerException("No Property for id="+id);
+		}
+		
+		public void setUnitCount(int unitCount) {
+			this.quantity.set(unitCount);
 		}
 		
 	}
