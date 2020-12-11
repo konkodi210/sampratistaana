@@ -11,11 +11,13 @@ import java.util.stream.Stream;
 
 import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
+import org.sampratistaana.beans.Property;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.StringConverter;
 
 public class BaseController implements Initializable{
 	private static Map<String, Object> cache=new HashMap<>(); 
@@ -51,5 +53,23 @@ public class BaseController implements Initializable{
 	
 	protected <T> Stream<T> stream(Collection<T> coll){
 		return coll == null ? Stream.empty() : coll.stream();
+	}
+	
+	public StringConverter<Property> getPropertyStringConvertor(){
+		return new StringConverter<Property>() {
+		    private Map<String, Property> propertyMap = new HashMap<>();
+
+		    @Override
+		    public String toString(Property property) {
+		    	String value = Messages.getMessage(property.getPropertyValue());
+		        propertyMap.put(value, property);
+		        return value;
+		    }
+
+		    @Override
+		    public Property fromString(String value) {
+		        return propertyMap.get(value);
+		    }
+		};
 	}
 }

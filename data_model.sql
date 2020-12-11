@@ -90,4 +90,27 @@ CREATE TABLE PROPERTIES (
 );
 
 
+INSERT  INTO PROPERTIES (PROPERTY_NAME,PROPERTY_KEY,PROPERTY_VALUE,FLAG)
+values
+('FUND','FUND_TYPE','nidhi.art','Y'),
+('FUND','FUND_TYPE','nidhi.book-print','Y'),
+('FUND','FUND_TYPE','nidhi.daily-expense','Y'),
+('FUND','FUND_TYPE','nidhi.karmakaanda','Y'),
+('FUND','FUND_TYPE','nidhi.kattada','Y'),
+('FUND','FUND_TYPE','nidhi.misc','Y'),
+('FUND','FUND_TYPE','nidhi.mm-bhat-prize','Y'),
+('FUND','FUND_TYPE','nidhi.samparaka-library','Y'),
+('FUND','FUND_TYPE','nidhi.sampradaana','Y'),
+('FUND','FUND_TYPE','nidhi.samskrita','Y'),
+('FUND','FUND_TYPE','nidhi.sangaveda','Y'),
+('FUND','FUND_TYPE','nidhi.scholar-appriciation','Y'),
+('FUND','FUND_TYPE','nidhi.social-work','Y'),
+('FUND','FUND_TYPE','nidhi.speech','Y'),
+('FUND','FUND_TYPE','nidhi.suvidha','Y'),
+('FUND','FUND_TYPE','nidhi.swastya','Y'),
+('FUND','FUND_TYPE','nidhi.symposium','Y'),
+('FUND','FUND_TYPE','nidhi.uggappakodi-prize','Y'),
+('FUND','FUND_TYPE','nidhi.yearly-celeberation','Y')
+
+
 

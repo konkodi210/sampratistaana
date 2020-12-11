@@ -21,6 +21,7 @@ import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
+import org.sampratistaana.beans.Property;
 
 public class CreditManager {
 
@@ -269,35 +270,35 @@ public class CreditManager {
 		}
 	}
 	
-	public List<String> getBankAccounts(){
+	public List<Property> getBankAccounts(){
 		return getProperties("EXPENSE","BANK_ACCOUNT");
 //		try(Session session=dbSession()){			
 //			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='BANK_ACCOUNT' AND p.flag='Y'",Object[].class).list();
 //		}
 	}
 	
-	public List<String> getFundTypes(){
-		return getProperties("EXPENSE","FUND_TYPE");
+	public List<Property> getFundTypes(){
+		return getProperties("FUND","FUND_TYPE");
 //		try(Session session=dbSession()){			
 //			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='FUND_TYPE' AND p.flag='Y'",Object[].class).list();
 //		}
 	}
 	
-	public List<String> getExpenseTypes(){
+	public List<Property> getExpenseTypes(){
 		return getProperties("EXPENSE","EXPENSE_TYPE");
 //		try(Session session=dbSession()){			
 //			return session.createQuery("SELECT p.propertyValue FROM Property p where p.propertyName = 'EXPENSE' AND p.propertyKey='EXPENSE_TYPE' AND p.flag='Y'",Object[].class).list();
 //		}
 	}
 	
-	public List<String> getProperties(String propertyName, String propertyKey){
+	public List<Property> getProperties(String propertyName, String propertyKey){
 		try(Session session = dbSession()){
 			 return session
-					.createQuery("SELECT p.propertyValue "
+					.createQuery("SELECT p"
 							+ " FROM Property p "
 							+ " where p.propertyName = :propertyName "
 							+ " AND p.propertyKey= :propertyKey "
-							+ " AND p.flag='Y'",String.class)
+							+ " AND p.flag='Y'",Property.class)
 					.setParameter("propertyName", propertyName)
 					.setParameter("propertyKey", propertyKey)
 					.list();

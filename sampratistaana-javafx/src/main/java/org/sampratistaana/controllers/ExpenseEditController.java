@@ -9,6 +9,7 @@ import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
+import org.sampratistaana.beans.Property;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -31,18 +32,21 @@ public class ExpenseEditController extends BaseController{
 	@FXML private ToggleGroup paymentType;
 	@FXML private TextField externalTranNo;
 	@FXML private TextField description;
-	@FXML private ComboBox<String> expenseType;
-	@FXML private ComboBox<String> fundType;
-	@FXML private ComboBox<String> bankAccount;
+	@FXML private ComboBox<Property> expenseType;
+	@FXML private ComboBox<Property> fundType;
+	@FXML private ComboBox<Property> bankAccount;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//if we are setting item, no need to clear them. Moreover this is initialization method. At this point combo box will not have anything
 //		expenseType.getItems().clear();
+		expenseType.setConverter(getPropertyStringConvertor());
 		expenseType.setItems(FXCollections.observableArrayList(new CreditManager().getExpenseTypes()));
 //		fundType.getItems().clear();
+		fundType.setConverter(getPropertyStringConvertor());
 		fundType.setItems(FXCollections.observableArrayList(new CreditManager().getFundTypes()));
 //		bankAccount.getItems().clear();
+		bankAccount.setConverter(getPropertyStringConvertor());
 		bankAccount.setItems(FXCollections.observableArrayList(new CreditManager().getBankAccounts()));
 		Expense expense = (Expense)getFromCache(CACHE_KEY);
 		expenseForm.setUserData(expense);
@@ -54,8 +58,8 @@ public class ExpenseEditController extends BaseController{
 				break;
 			}
 		}
-		expenseType.setValue(expense.getExpenseType());
-		fundType.setValue(expense.getFundType());
+		expenseType.setValue(expenseType.getConverter().fromString(expense.getExpenseType()));
+		fundType.setValue(fundType.getConverter().fromString(expense.getFundType()));
 		externalTranNo.setText(expense.getLedger().getExternalTranNo());
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(expense.getLedger().getEntryValue()));		
@@ -69,8 +73,8 @@ public class ExpenseEditController extends BaseController{
 
 	public void saveExpense() throws IOException{
 		Expense expense = (Expense)expenseForm.getUserData();
-		expense.setExpenseType(expenseType.getValue().toString());
-		expense.setFundType(fundType.getValue().toString())
+		expense.setExpenseType(expenseType.getValue().getPropertyKey());
+		expense.setFundType(fundType.getValue().getPropertyKey())
 		.getLedger()
 			.setEntryCategory(EntryCategory.EXPENSE)
 			.setEntryType(EntryType.DEBIT)
