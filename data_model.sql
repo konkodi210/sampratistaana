@@ -89,6 +89,7 @@ CREATE TABLE PROPERTIES (
     CONSTRAINT FLG_Y_N CHECK (FLAG IN ('Y', 'N') ) 
 );
 
+DELETE FROM PROPERTIES  WHERE PROPERTY_KEY  IN ('EXPENSE_TYPE','FUND_TYPE','BANK_ACCOUNT');
 
 INSERT  INTO PROPERTIES (PROPERTY_NAME,PROPERTY_KEY,PROPERTY_VALUE,FLAG)
 values
@@ -97,7 +98,6 @@ values
 ('FUND','FUND_TYPE','nidhi.daily-expense','Y'),
 ('FUND','FUND_TYPE','nidhi.karmakaanda','Y'),
 ('FUND','FUND_TYPE','nidhi.kattada','Y'),
-('FUND','FUND_TYPE','nidhi.misc','Y'),
 ('FUND','FUND_TYPE','nidhi.mm-bhat-prize','Y'),
 ('FUND','FUND_TYPE','nidhi.samparaka-library','Y'),
 ('FUND','FUND_TYPE','nidhi.sampradaana','Y'),
@@ -110,7 +110,21 @@ values
 ('FUND','FUND_TYPE','nidhi.swastya','Y'),
 ('FUND','FUND_TYPE','nidhi.symposium','Y'),
 ('FUND','FUND_TYPE','nidhi.uggappakodi-prize','Y'),
-('FUND','FUND_TYPE','nidhi.yearly-celeberation','Y')
+('FUND','FUND_TYPE','nidhi.yearly-celeberation','Y'),
+('FUND','FUND_TYPE','nidhi.misc','Y'),
 
+('SAVINGS','BANK_ACCOUNT','bank.karanataka','Y'),
+('SAVINGS','BANK_ACCOUNT','bank.syndicate','Y'),
 
+('EXPENSE','EXPENSE_TYPE','expense.book-printing','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.book-publishing','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.book-purchase','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.phone-bill','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.internet-bill','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.transportation','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.asset-purchase','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.stationery-or-printing','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.donation','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.events','Y'),
+('EXPENSE','EXPENSE_TYPE','expense.others','Y')
 

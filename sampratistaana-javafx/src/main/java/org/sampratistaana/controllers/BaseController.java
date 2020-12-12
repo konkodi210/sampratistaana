@@ -9,12 +9,14 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
+import org.sampratistaana.ListOfValues;
 import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
 import org.sampratistaana.beans.Property;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
@@ -71,5 +73,16 @@ public class BaseController implements Initializable{
 		        return propertyMap.get(value);
 		    }
 		};
+	}
+	
+	protected void setPropertyComboBoxValue(ComboBox<Property> box,String key) {
+		if(key!=null) {
+			box.getItems().forEach(obj -> box.getConverter().toString(obj));
+			box.setValue(box.getConverter().fromString(Messages.getMessage(key)));
+		}
+	}
+	
+	protected ListOfValues lov() {
+		return new ListOfValues();
 	}
 }

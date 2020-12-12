@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.sampratistaana.Messages;
+
 @Entity
 @Table(name = "EXPENSE")
 public class Expense implements Serializable{
@@ -55,11 +57,11 @@ public class Expense implements Serializable{
 	}
 
 	public String getType() {
-		return getExpenseType();
+		return Messages.getMessage(getExpenseType());
 	}
 
 	public String getFund() {
-		return getFundType();
+		return Messages.getMessage(getFundType());
 	}
 	
 	public Expense setExpenseType(String expenseType) {
