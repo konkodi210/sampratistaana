@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
-import org.sampratistaana.ListOfValues;
-import org.sampratistaana.Messages;
 import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;

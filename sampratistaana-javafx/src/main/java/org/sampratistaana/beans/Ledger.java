@@ -5,9 +5,11 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -46,6 +48,10 @@ public class Ledger implements Serializable{
 	
 	@Column(name="ENTRY_DESC")
 	private String entryDesc;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@Column(name="BANK_ACCOUNT_NO")
+	private BankAccount bankAccount;
 	
 	public long getEntryNo() {
 		return entryNo;
