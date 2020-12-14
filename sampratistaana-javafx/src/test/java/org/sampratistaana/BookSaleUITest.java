@@ -99,7 +99,7 @@ public class BookSaleUITest extends BaseApplicationTest {
 		
 				
 		TableView<BookSaleUIList> bookSaleList = (TableView<BookSaleUIList>)find("#bookSaleList");
-		interact(() -> bookSaleList.getSelectionModel().select(0));
+		bookSaleList.getSelectionModel().select(0);
 		assertThat("Save button must be disabled", false, equalTo(((Button)find("#editBtn")).isDisabled()));
 		
 		BookSaleUIList listObj = bookSaleList.getSelectionModel().getSelectedItem();
@@ -111,9 +111,9 @@ public class BookSaleUITest extends BaseApplicationTest {
 		
 	}
 	
-	private void waitUntil(BooleanSupplier fun) {
-		for(int i=0;i<50 && !fun.getAsBoolean();i++) {
-			sleep(100);
-		}
-	}
+//	private void waitUntil(BooleanSupplier fun) {
+//		for(int i=0;i<50 && !fun.getAsBoolean();i++) {
+//			sleep(100);
+//		}
+//	}
 }

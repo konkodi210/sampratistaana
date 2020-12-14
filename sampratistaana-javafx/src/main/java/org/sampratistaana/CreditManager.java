@@ -21,7 +21,6 @@ import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
-import org.sampratistaana.beans.Property;
 
 public class CreditManager {
 
