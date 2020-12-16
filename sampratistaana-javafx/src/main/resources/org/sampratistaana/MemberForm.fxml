@@ -65,7 +65,7 @@
             <Label text="%member.amount" GridPane.columnSpan="3" GridPane.rowIndex="5" />
             <TextField fx:id="amount" GridPane.columnIndex="3" GridPane.rowIndex="5" />            
             <Label text="%member.payment-type" GridPane.rowIndex="5" />
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <FlowPane alignment="CENTER_LEFT"  GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                	  <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
                      <toggleGroup>
@@ -82,7 +82,12 @@
                   <RadioButton id="paymentDD" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
                   	<properties value="DD" />
                   </RadioButton>
-                  <ComboBox fx:id="bankAccount"  visible="false"/>
+                  <Label fx:id="depositAccountLabel" text="%depoist.account" visible="false">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <ComboBox fx:id="depositAccount" visible="false" />
                </children>
             </FlowPane>
             

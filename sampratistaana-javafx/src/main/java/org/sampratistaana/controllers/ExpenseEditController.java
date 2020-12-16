@@ -39,13 +39,13 @@ public class ExpenseEditController extends BaseController{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//if we are setting item, no need to clear them. Moreover this is initialization method. At this point combo box will not have anything
-		expenseType.setConverter(getPropertyStringConvertor());
+		expenseType.setConverter(getStringConvertor());
 		expenseType.setItems(FXCollections.observableArrayList(lov().getExpenseTypes()));
 		
-		fundType.setConverter(getPropertyStringConvertor());
+		fundType.setConverter(getStringConvertor());
 		fundType.setItems(FXCollections.observableArrayList(lov().getFundTypes()));
 		
-		bankAccount.setConverter(getPropertyStringConvertor());
+		bankAccount.setConverter(getStringConvertor());
 		bankAccount.setItems(FXCollections.observableArrayList(lov().getBankAccounts()));
 		
 		Expense expense = (Expense)getFromCache(CACHE_KEY);
@@ -58,8 +58,8 @@ public class ExpenseEditController extends BaseController{
 				break;
 			}
 		}
-		setPropertyComboBoxValue(expenseType,expense.getExpenseType());
-		setPropertyComboBoxValue(fundType,expense.getFundType());
+		setComboBoxValue(expenseType,expense.getExpenseType());
+		setComboBoxValue(fundType,expense.getFundType());
 		//TODO: Bank account is not persisted
 //		setPropertyComboBoxValue(bankAccount,expense.getFundType());
 		externalTranNo.setText(expense.getLedger().getExternalTranNo());

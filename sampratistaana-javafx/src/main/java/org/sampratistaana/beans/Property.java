@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.sampratistaana.Messages;
+
 @Entity
 @Table(name = "PROPERTIES")
 public class Property implements Serializable{
@@ -61,9 +63,9 @@ public class Property implements Serializable{
 	public Property setPropertyValue(String propertyValue) {
 		this.propertyValue = propertyValue;
 		return this;
+	}
+	@Override
+	public String toString() {
+		return Messages.getMessage(propertyValue);
 	}	
-
-	
-	
-	
 }

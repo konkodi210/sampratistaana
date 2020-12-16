@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 import org.sampratistaana.ListOfValues;
 import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
-import org.sampratistaana.beans.Property;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
 
@@ -57,25 +57,25 @@ public class BaseController implements Initializable{
 		return coll == null ? Stream.empty() : coll.stream();
 	}
 	
-	public StringConverter<Property> getPropertyStringConvertor(){
-		return new StringConverter<Property>() {
-		    private Map<String, Property> propertyMap = new HashMap<>();
+	public <T> StringConverter<T> getStringConvertor(){
+		return new StringConverter<T>() {
+		    private Map<String, T> propertyMap = new HashMap<>();
 
 		    @Override
-		    public String toString(Property property) {
-		    	String value = Messages.getMessage(property.getPropertyValue());
+		    public String toString(T property) {
+		    	String value = Messages.getMessage(property.toString());
 		        propertyMap.put(value, property);
 		        return value;
 		    }
 
 		    @Override
-		    public Property fromString(String value) {
+		    public T fromString(String value) {
 		        return propertyMap.get(value);
 		    }
 		};
 	}
 	
-	protected void setPropertyComboBoxValue(ComboBox<Property> box,String key) {
+	protected <T> void setComboBoxValue(ComboBox<T> box,String key) {
 		if(key!=null) {
 			box.getItems().forEach(obj -> box.getConverter().toString(obj));
 			box.setValue(box.getConverter().fromString(Messages.getMessage(key)));
@@ -84,5 +84,12 @@ public class BaseController implements Initializable{
 	
 	protected ListOfValues lov() {
 		return new ListOfValues();
+	}
+	
+	protected String getToggleValue(ToggleGroup toggleGroup) {
+		if(toggleGroup.getSelectedToggle()!=null) {
+			return (String)toggleGroup.getSelectedToggle().getProperties().get("value");
+		}
+		return null;
 	}
 }

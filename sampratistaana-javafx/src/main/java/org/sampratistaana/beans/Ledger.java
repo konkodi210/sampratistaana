@@ -124,8 +124,9 @@ public class Ledger implements Serializable{
 		return bankAccount;
 	}
 
-	public void setBankAccount(BankAccount bankAccount) {
+	public Ledger setBankAccount(BankAccount bankAccount) {
 		this.bankAccount = bankAccount;
+		return this;
 	}
 
 	@Override

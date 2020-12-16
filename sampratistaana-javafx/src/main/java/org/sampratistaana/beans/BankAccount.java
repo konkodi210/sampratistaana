@@ -43,4 +43,8 @@ public class BankAccount {
 	public String getFormattedBankName() {
 		return Messages.getMessage(getBankName());
 	}
+	@Override
+	public String toString() {
+		return Messages.getMessage(bankName);
+	}	
 }

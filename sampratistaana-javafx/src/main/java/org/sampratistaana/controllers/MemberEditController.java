@@ -2,13 +2,9 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
-import org.sampratistaana.ListOfValues;
-import org.sampratistaana.Messages;
 import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
@@ -27,7 +23,6 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 
 public class MemberEditController extends BaseController{
@@ -47,38 +42,24 @@ public class MemberEditController extends BaseController{
 	@FXML private TextField amount;
 	@FXML private TextField externalTranNo;
 	@FXML private TextField description;
-	@FXML private ComboBox<BankAccount> bankAccount;
+	@FXML private Label depositAccountLabel;
+	@FXML private ComboBox<BankAccount> depositAccount;
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Member member = (Member)getFromCache(CACHE_KEY);
-		bankAccount.setConverter(new StringConverter<BankAccount>() {
-		    Map<String, BankAccount> propertyMap = new HashMap<>();
+		depositAccount.setConverter(getStringConvertor());
+		depositAccount.setItems(FXCollections.observableArrayList(lov().getBankAccountTable()));
 
-		    @Override
-		    public String toString(BankAccount bank) {
-		    	if(bank == null) {
-		    		return null;
-		    	}
-		    	String value = Messages.getMessage(bank.getBankName());
-		        propertyMap.put(value, bank);
-		        return value;
-		    }
-
-		    @Override
-		    public BankAccount fromString(String value) {
-		        return propertyMap.get(value);
-		    }
-		});
-		bankAccount.setItems(FXCollections.observableArrayList(new ListOfValues().getBankAccountTable()));
 		if(member.getLedger().getBankAccount()!=null) {
-			bankAccount.setValue(member.getLedger().getBankAccount());
-		}else if(bankAccount.getItems().size()>0) {
-			bankAccount.setValue(bankAccount.getItems().get(0));
+			depositAccount.setValue(member.getLedger().getBankAccount());
+		}else if(depositAccount.getItems().size()>0) {
+			depositAccount.setValue(depositAccount.getItems().get(0));
 		}
 		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
-			bankAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
+			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
+			depositAccountLabel.setVisible(depositAccount.isVisible());
 		});
 		
 		memberForm.setUserData(member);
@@ -118,19 +99,21 @@ public class MemberEditController extends BaseController{
 
 	public void saveMember() throws IOException{
 		Member member = (Member)memberForm.getUserData();
+		TransactionMode tranMode = TransactionMode.valueOf(getToggleValue(paymentType));
 		member.setName(name.getText())
 		.setNickName(nickName.getText())
 		.setAddress(address.getText())
 		.setMobileNo(mobileNo.getText())
 		.setPhoneNo(phoneNo.getText())
 		.setEmail(email.getText())
-		.setMembershipType(MembershipType.valueOf((String)membership.getSelectedToggle().getProperties().get("value")))		
+		.setMembershipType(MembershipType.valueOf(getToggleValue(membership)))		
 		.getLedger()
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setExternalTranNo(externalTranNo.getText())
-			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
+			.setModeOfTranscation(tranMode)
+			.setBankAccount(tranMode == TransactionMode.CASH?null:depositAccount.getValue())
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setEntryDesc(description.getText());
 		if(dateOfBirth.getValue()!=null) {
