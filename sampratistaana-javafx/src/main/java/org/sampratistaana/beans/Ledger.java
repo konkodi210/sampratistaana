@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -50,7 +51,7 @@ public class Ledger implements Serializable{
 	private String entryDesc;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@Column(name="BANK_ACCOUNT_NO")
+	@JoinColumn(name="BANK_ACCOUNT_ID")
 	private BankAccount bankAccount;
 	
 	public long getEntryNo() {
@@ -117,6 +118,14 @@ public class Ledger implements Serializable{
 	public Ledger setEntryDesc(String entryDesc) {
 		this.entryDesc = entryDesc;
 		return this;
+	}
+	
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 
 	@Override

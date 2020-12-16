@@ -5,6 +5,7 @@ import static org.sampratistaana.ConnectionFactory.dbSession;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.Property;
 
 public class ListOfValues {
@@ -32,6 +33,12 @@ public class ListOfValues {
 					.setParameter("propertyName", propertyName)
 					.setParameter("propertyKey", propertyKey)
 					.list();
+		}
+	}
+	
+	public List<BankAccount> getBankAccountTable(){
+		try(Session session = dbSession()){
+			return session.createQuery("FROM BankAccount",BankAccount.class).getResultList();
 		}
 	}
 }

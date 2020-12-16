@@ -15,6 +15,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
 import org.hibernate.type.StringType;
+import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Expense;
@@ -60,6 +61,7 @@ public class ConnectionFactory {
 						.addAnnotatedClass(BookSale.class)
 						.addAnnotatedClass(Expense.class)
 						.addAnnotatedClass(Property.class)
+						.addAnnotatedClass(BankAccount.class)
 						.getMetadataBuilder()
 						.applySqlFunction("GROUP_CONCAT", new SQLFunctionTemplate(StringType.INSTANCE, "GROUP_CONCAT(?1)"))
 						.build()
