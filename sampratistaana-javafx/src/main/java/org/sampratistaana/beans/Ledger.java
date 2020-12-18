@@ -133,6 +133,7 @@ public class Ledger implements Serializable{
 	public String toString() {
 		return "Ledger [entryNo=" + entryNo + ", entryType=" + entryType + ", entryCategory=" + entryCategory
 				+ ", entryValue=" + entryValue + ", entryDate=" + entryDate + ", modeOfTranscation=" + modeOfTranscation
-				+ ", externalTranNo=" + externalTranNo + ", panNo=" + panNo + ", entryDesc=" + entryDesc + "]";
+				+ ", externalTranNo=" + externalTranNo + ", panNo=" + panNo + ", entryDesc=" + entryDesc
+				+ ", bankAccount=" + bankAccount + "]";
 	}
 }

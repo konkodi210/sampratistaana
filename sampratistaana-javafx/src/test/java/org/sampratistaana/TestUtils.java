@@ -3,6 +3,7 @@ package org.sampratistaana;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Inventory;
@@ -15,6 +16,10 @@ import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Member.MembershipType;
 
 public class TestUtils {
+	
+	public static BankAccount getBankAccount() {
+		return new ListOfValues().getBankAccountTable().get(0);
+	}
 
 	public static Member createMember() {
 		return new Member()
@@ -36,6 +41,7 @@ public class TestUtils {
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
 						.setEntryDesc("Description123")
+						.setBankAccount(getBankAccount())
 				);	
 	}
 	

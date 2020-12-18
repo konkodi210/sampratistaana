@@ -62,8 +62,7 @@
             <Label text="%member.dob" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             
-            <Label text="%member.amount" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-            <TextField fx:id="amount" GridPane.columnIndex="3" GridPane.rowIndex="5" />            
+ 
             <Label text="%member.payment-type" GridPane.rowIndex="5" />
             <FlowPane alignment="CENTER_LEFT"  GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
@@ -90,6 +89,8 @@
                   <ComboBox fx:id="depositAccount" visible="false" />
                </children>
             </FlowPane>
+            <Label text="%member.amount" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="amount" GridPane.columnIndex="3" GridPane.rowIndex="5" />          
             
             <Label text="%member.check-no" GridPane.rowIndex="6" />
             <TextField fx:id="externalTranNo" GridPane.columnIndex="1" GridPane.rowIndex="6" />            

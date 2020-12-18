@@ -123,6 +123,7 @@ public class DonationUITest extends BaseApplicationTest {
 						.setExternalTranNo("SomeBank123111")
 						.setPanNo("SomeNewPAN")
 						.setEntryDesc("New Description")
+						.setBankAccount(TestUtils.getBankAccount())
 						);	
 		enterDonationDetails(donationUI);
 		clickOn("#saveDonationBtn");

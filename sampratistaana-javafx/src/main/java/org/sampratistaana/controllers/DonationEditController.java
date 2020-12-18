@@ -5,12 +5,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
+import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -39,10 +42,25 @@ public class DonationEditController extends BaseController{
 	@FXML private TextField amount;
 	@FXML private TextField externalTranNo;
 	@FXML private TextField description;
+	@FXML private Label depositAccountLabel;
+	@FXML private ComboBox<BankAccount> depositAccount;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Donation donation = (Donation)getFromCache(CACHE_KEY);
+		depositAccount.setConverter(getStringConvertor());
+		depositAccount.setItems(FXCollections.observableArrayList(lov().getBankAccountTable()));
+		
+		if(donation.getLedger().getBankAccount()!=null) {
+			depositAccount.setValue(donation.getLedger().getBankAccount());
+		}else if(depositAccount.getItems().size()>0) {
+			depositAccount.setValue(depositAccount.getItems().get(0));
+		}
+		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
+			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
+			depositAccountLabel.setVisible(depositAccount.isVisible());
+		});
+		
 		donationForm.setUserData(donation);
 		donationId.setText(String.valueOf(donation.getDonationId()));
 		entryDate.setValue(donation.getLedger().getEntryDate());

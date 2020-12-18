@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -52,10 +53,9 @@
             <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             
             
-            <Label text="%member.amount" GridPane.rowIndex="5" />
-            <TextField fx:id="amount" GridPane.columnIndex="1" GridPane.rowIndex="5" />            
-            <Label text="%member.payment-type" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+      
+            <Label text="%member.payment-type" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <FlowPane alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                	  <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
                      <toggleGroup>
@@ -72,8 +72,16 @@
                   <RadioButton id="paymentDD" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
                   	<properties value="DD" />
                   </RadioButton>
+                  <Label fx:id="depositAccountLabel" text="%depoist.account" visible="false">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <ComboBox fx:id="depositAccount" visible="false" />
                </children>
             </FlowPane>
+            <Label text="%member.amount" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="amount" GridPane.columnIndex="3" GridPane.rowIndex="5" />      
             
             <Label text="%member.check-no"  GridPane.rowIndex="6" />
             <TextField fx:id="externalTranNo" GridPane.columnIndex="1" GridPane.rowIndex="6" />            

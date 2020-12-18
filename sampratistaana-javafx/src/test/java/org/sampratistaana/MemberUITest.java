@@ -64,6 +64,7 @@ public class MemberUITest extends BaseApplicationTest{
 		assertThat(member.getLedger().getEntryValue(), equalTo(memberForUI.getLedger().getEntryValue()));
 		assertThat(member.getLedger().getExternalTranNo(), equalTo(memberForUI.getLedger().getExternalTranNo()));
 		assertThat(member.getLedger().getEntryDesc(), equalTo(memberForUI.getLedger().getEntryDesc()));
+		assertThat(member.getLedger().getBankAccount().getBankAccountId(), equalTo(memberForUI.getLedger().getBankAccount().getBankAccountId()));
 	}
 
 	@Test
@@ -133,6 +134,7 @@ public class MemberUITest extends BaseApplicationTest{
 						.setModeOfTranscation(TransactionMode.ONLINE)
 						.setExternalTranNo("SomeBank123111")
 						.setEntryDesc("Some new description")
+						.setBankAccount(TestUtils.getBankAccount())
 						);	
 		enterMemberDetails(memberForUI);
 		clickOn("#memberSave");
