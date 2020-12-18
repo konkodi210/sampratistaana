@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import org.sampratistaana.CreditManager;
+import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Inventory.InventoryType;
@@ -23,6 +24,7 @@ import javafx.beans.value.WritableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -47,6 +49,8 @@ public class BookSaleEditControler extends BaseController {
 	@FXML private TableView<BookEntry> bookSaleTable;
 	@FXML private Label grandTotal;
 	@FXML private Button saleSaveBtn;
+	@FXML private Label depositAccountLabel;
+	@FXML private ComboBox<BankAccount> depositAccount;	
 	private int index;
 
 	@Override
@@ -102,6 +106,19 @@ public class BookSaleEditControler extends BaseController {
 		//save ledger reference for making a sale. As per design, we will have one ledger entry for complete sale
 		Ledger ledger = bookSaleMap.size()>0 ? editList.get(0).getLedger():new Ledger();
 		bookSaleTable.setUserData(ledger);
+		
+		depositAccount.setConverter(getStringConvertor());
+		depositAccount.setItems(FXCollections.observableArrayList(lov().getBankAccountTable()));
+		
+		if(ledger.getBankAccount()!=null) {
+			depositAccount.setValue(ledger.getBankAccount());
+		}else if(depositAccount.getItems().size()>0) {
+			depositAccount.setValue(depositAccount.getItems().get(0));
+		}
+		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
+			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
+			depositAccountLabel.setVisible(depositAccount.isVisible());
+		});
 		
 		//enable save only if any book is selected for sale
 		grandTotal.textProperty().addListener((ob, old, newVal) -> saleSaveBtn.setDisable(Double.parseDouble(newVal) == 0));

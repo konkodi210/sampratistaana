@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -16,10 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" 
-	xmlns="http://javafx.com/javafx/11.0.1" 
-	xmlns:fx="http://javafx.com/fxml/1" 
-	fx:controller="org.sampratistaana.controllers.BookSaleEditControler">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.BookSaleEditControler">
    <children>
       <Label alignment="TOP_CENTER" styleClass="title-label" text="%booksale.title" />
       <GridPane hgap="10.0" vgap="5">
@@ -35,7 +33,7 @@
             <Label text="%member.check-no" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="externalTranNo" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <Label text="%member.payment-type" GridPane.rowIndex="3" />
-            <FlowPane GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <FlowPane GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <children>
                   <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
                      <properties value="CASH" />
@@ -52,6 +50,10 @@
                   <RadioButton id="paymentDD" mnemonicParsing="false" text="%member.dd" toggleGroup="$paymentType">
                   	<properties value="DD" />
                   </RadioButton>
+                  <Label fx:id="depositAccountLabel" text="%depoist.account" visible="false">
+ 
+                  </Label>
+                  <ComboBox fx:id="depositAccount" visible="false" />
                </children>
             </FlowPane>
             <Label text="%donation.pan" GridPane.columnIndex="4" GridPane.rowIndex="3" />
@@ -69,6 +71,7 @@
             <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints />
          </rowConstraints>
       </GridPane>
       <TableView fx:id="bookSaleTable" editable="true" VBox.vgrow="ALWAYS">
@@ -93,7 +96,7 @@
       <ButtonBar>
         <buttons>
             <Button id="saleCancelBtn" onAction="#cancel" text="%common.cancel" />
-            <Button fx:id="saleSaveBtn" onAction="#makeSale" text="%common.save" disable="true"/>
+            <Button fx:id="saleSaveBtn" disable="true" onAction="#makeSale" text="%common.save" />
         </buttons>
       </ButtonBar>
       <Label text="Label" />
