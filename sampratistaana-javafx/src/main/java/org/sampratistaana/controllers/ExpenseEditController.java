@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
+import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
@@ -34,19 +35,14 @@ public class ExpenseEditController extends BaseController{
 	@FXML private TextField description;
 	@FXML private ComboBox<Property> expenseType;
 	@FXML private ComboBox<Property> fundType;
-	@FXML private ComboBox<Property> bankAccount;
+	@FXML private ComboBox<BankAccount> bankAccount;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//if we are setting item, no need to clear them. Moreover this is initialization method. At this point combo box will not have anything
-		expenseType.setConverter(getStringConvertor());
-		expenseType.setItems(FXCollections.observableArrayList(lov().getExpenseTypes()));
-		
-		fundType.setConverter(getStringConvertor());
-		fundType.setItems(FXCollections.observableArrayList(lov().getFundTypes()));
-		
-		bankAccount.setConverter(getStringConvertor());
-		bankAccount.setItems(FXCollections.observableArrayList(lov().getBankAccounts()));
+		setComboxItems(expenseType,lov().getExpenseTypes());
+		setComboxItems(fundType,lov().getFundTypes());
+		setComboxItems(bankAccount,lov().getBankAccountTable());
 		
 		Expense expense = (Expense)getFromCache(CACHE_KEY);
 		expenseForm.setUserData(expense);
@@ -60,8 +56,12 @@ public class ExpenseEditController extends BaseController{
 		}
 		setComboBoxValue(expenseType,expense.getExpenseType());
 		setComboBoxValue(fundType,expense.getFundType());
-		//TODO: Bank account is not persisted
-//		setPropertyComboBoxValue(bankAccount,expense.getFundType());
+		if(expense.getLedger()!=null) {
+			bankAccount.setValue(expense.getLedger().getBankAccount());
+		}
+		if(expense.getLedger()!=null && expense.getLedger().getBankAccount()!=null) {
+			bankAccount.setValue(expense.getLedger().getBankAccount());
+		}
 		externalTranNo.setText(expense.getLedger().getExternalTranNo());
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(expense.getLedger().getEntryValue()));		
@@ -84,7 +84,9 @@ public class ExpenseEditController extends BaseController{
 			.setEntryDate(entryDate.getValue())
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
-			.setEntryDesc(description.getText());
+			.setBankAccount(bankAccount.getValue())
+			.setEntryDesc(description.getText())
+			.setBankAccount(bankAccount.getValue());
 		
 		new CreditManager().saveExpense(expense);
 		loadExpenses();

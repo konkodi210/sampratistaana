@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
@@ -13,6 +14,7 @@ import org.sampratistaana.ListOfValues;
 import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
@@ -73,6 +75,11 @@ public class BaseController implements Initializable{
 		        return propertyMap.get(value);
 		    }
 		};
+	}
+	
+	protected <T> void setComboxItems(ComboBox<T> box,List<T> items) {
+		box.setConverter(getStringConvertor());
+		box.setItems(FXCollections.observableArrayList(items));
 	}
 	
 	protected <T> void setComboBoxValue(ComboBox<T> box,String key) {

@@ -49,8 +49,7 @@ public class MemberEditController extends BaseController{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Member member = (Member)getFromCache(CACHE_KEY);
-		depositAccount.setConverter(getStringConvertor());
-		depositAccount.setItems(FXCollections.observableArrayList(lov().getBankAccountTable()));
+		setComboxItems(depositAccount,lov().getBankAccountTable());
 
 		if(member.getLedger().getBankAccount()!=null) {
 			depositAccount.setValue(member.getLedger().getBankAccount());

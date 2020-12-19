@@ -107,8 +107,7 @@ public class BookSaleEditControler extends BaseController {
 		Ledger ledger = bookSaleMap.size()>0 ? editList.get(0).getLedger():new Ledger();
 		bookSaleTable.setUserData(ledger);
 		
-		depositAccount.setConverter(getStringConvertor());
-		depositAccount.setItems(FXCollections.observableArrayList(lov().getBankAccountTable()));
+		setComboxItems(depositAccount,lov().getBankAccountTable());
 		
 		if(ledger.getBankAccount()!=null) {
 			depositAccount.setValue(ledger.getBankAccount());

@@ -11,7 +11,6 @@ import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -48,8 +47,7 @@ public class DonationEditController extends BaseController{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Donation donation = (Donation)getFromCache(CACHE_KEY);
-		depositAccount.setConverter(getStringConvertor());
-		depositAccount.setItems(FXCollections.observableArrayList(lov().getBankAccountTable()));
+		setComboxItems(depositAccount,lov().getBankAccountTable());
 		
 		if(donation.getLedger().getBankAccount()!=null) {
 			depositAccount.setValue(donation.getLedger().getBankAccount());
