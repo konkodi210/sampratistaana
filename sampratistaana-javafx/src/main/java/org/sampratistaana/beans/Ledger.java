@@ -54,6 +54,9 @@ public class Ledger implements Serializable{
 	@JoinColumn(name="BANK_ACCOUNT_ID")
 	private BankAccount bankAccount;
 	
+	@Column(name = "FUND_TYPE")
+	private String fundType;
+	
 	public long getEntryNo() {
 		return entryNo;
 	}
@@ -129,11 +132,20 @@ public class Ledger implements Serializable{
 		return this;
 	}
 
+	public String getFundType() {
+		return fundType;
+	}
+
+	public Ledger setFundType(String fundType) {
+		this.fundType = fundType;
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return "Ledger [entryNo=" + entryNo + ", entryType=" + entryType + ", entryCategory=" + entryCategory
 				+ ", entryValue=" + entryValue + ", entryDate=" + entryDate + ", modeOfTranscation=" + modeOfTranscation
 				+ ", externalTranNo=" + externalTranNo + ", panNo=" + panNo + ", entryDesc=" + entryDesc
-				+ ", bankAccount=" + bankAccount + "]";
+				+ ", bankAccount=" + bankAccount + ", fundType=" + fundType + "]";
 	}
 }

@@ -42,6 +42,7 @@ public class TestUtils {
 						.setPanNo("ABC64246")
 						.setEntryDesc("Description123")
 						.setBankAccount(getBankAccount())
+						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
 				);	
 	}
 	
@@ -64,6 +65,7 @@ public class TestUtils {
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
 						.setEntryDesc("Description123")
+						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
 				);	
 	}
 	
@@ -83,6 +85,7 @@ public class TestUtils {
 						.setExternalTranNo("SomeBank123")
 						.setPanNo("ABC64246")
 						.setEntryDesc("Description123")
+						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
 				);	
 	}
 	

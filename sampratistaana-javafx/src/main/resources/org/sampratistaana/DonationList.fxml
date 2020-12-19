@@ -26,7 +26,8 @@
       <TableView fx:id="donationList" editable="true" tableMenuButtonVisible="true" >
         <columns>
           <TableColumn id="name" text="%member.name" />
-          <TableColumn id="nickName" text="%member.nickname" />          
+          <TableColumn id="nickName" text="%member.nickname" />
+          <TableColumn id="fund" text="%fund" />          
           <TableColumn id="donationValue" text="%member.amount" />
           <TableColumn id="date" text="%member.date" />
           <TableColumn id="email" text="%member.email" />

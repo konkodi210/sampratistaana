@@ -25,74 +25,78 @@ import javafx.util.StringConverter;
 
 public class BaseController implements Initializable{
 	private static Map<String, Object> cache=new HashMap<>(); 
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {}
 
 	public Parent loadForm(String formName) throws IOException {
 		return Mainwindow.loadForm(formName);
 	}
-	
+
 	protected synchronized void addToCache(String key,Object value) {
 		cache.put(key, value);
 	}
-	
+
 	protected synchronized Object getFromCache(String key) {
 		return cache.get(key);
 	}
-	
+
 	protected synchronized Object removeFromCache(String key) {
 		return cache.remove(key);
 	}
-	
+
 	protected String formatDate(LocalDate date) {
 		return Messages.formatDate(date);
 	}
-	
+
 	protected <S> void intializeTableColumns(TableView<S> table) {
 		table
 		.getColumns()
 		.forEach(col -> col.setCellValueFactory(new PropertyValueFactory<>(col.getId())));
 	}
-	
+
 	protected <T> Stream<T> stream(Collection<T> coll){
 		return coll == null ? Stream.empty() : coll.stream();
 	}
-	
+
 	public <T> StringConverter<T> getStringConvertor(){
 		return new StringConverter<T>() {
-		    private Map<String, T> propertyMap = new HashMap<>();
+			private Map<String, T> propertyMap = new HashMap<>();
 
-		    @Override
-		    public String toString(T property) {
-		    	String value = Messages.getMessage(property.toString());
-		        propertyMap.put(value, property);
-		        return value;
-		    }
+			@Override
+			public String toString(T property) {
+				if(property!=null) {
+					String value = Messages.getMessage(property.toString());
+					propertyMap.put(value, property);
+					return value;
+				}else {
+					return null;
+				}
+			}
 
-		    @Override
-		    public T fromString(String value) {
-		        return propertyMap.get(value);
-		    }
+			@Override
+			public T fromString(String value) {
+				return propertyMap.get(value);
+			}
 		};
 	}
-	
+
 	protected <T> void setComboxItems(ComboBox<T> box,List<T> items) {
 		box.setConverter(getStringConvertor());
 		box.setItems(FXCollections.observableArrayList(items));
 	}
-	
+
 	protected <T> void setComboBoxValue(ComboBox<T> box,String key) {
 		if(key!=null) {
 			box.getItems().forEach(obj -> box.getConverter().toString(obj));
 			box.setValue(box.getConverter().fromString(Messages.getMessage(key)));
 		}
 	}
-	
+
 	protected ListOfValues lov() {
 		return new ListOfValues();
 	}
-	
+
 	protected String getToggleValue(ToggleGroup toggleGroup) {
 		if(toggleGroup.getSelectedToggle()!=null) {
 			return (String)toggleGroup.getSelectedToggle().getProperties().get("value");

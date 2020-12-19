@@ -23,7 +23,7 @@ public class Mainwindow extends Application {
 	@Override
     public void start(Stage stage) throws IOException {
 		Platform.runLater(() -> new CreditManager().loadBookInventory());
-        scene = new Scene(loadFXML("MainWindow"),1000,600);
+        scene = new Scene(loadFXML("MainWindow"),1000,700);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle(getMessage("window.title"));
         stage.centerOnScreen();

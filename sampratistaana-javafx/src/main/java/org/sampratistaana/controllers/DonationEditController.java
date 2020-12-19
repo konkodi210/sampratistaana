@@ -10,6 +10,7 @@ import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
+import org.sampratistaana.beans.Property;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -43,11 +44,13 @@ public class DonationEditController extends BaseController{
 	@FXML private TextField description;
 	@FXML private Label depositAccountLabel;
 	@FXML private ComboBox<BankAccount> depositAccount;
+	@FXML private ComboBox<Property> fundType;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Donation donation = (Donation)getFromCache(CACHE_KEY);
 		setComboxItems(depositAccount,lov().getBankAccountTable());
+		setComboxItems(fundType,lov().getFundTypes());
 		
 		if(donation.getLedger().getBankAccount()!=null) {
 			depositAccount.setValue(donation.getLedger().getBankAccount());
@@ -69,6 +72,7 @@ public class DonationEditController extends BaseController{
 		mobileNo.setText(donation.getMobileNo());
 		phoneNo.setText(donation.getPhoneNo());
 		email.setText(donation.getEmail());
+		setComboBoxValue(fundType,donation.getLedger().getFundType());
 		if(donation.getDateOfBirth() !=null) {
 			dateOfBirth.setValue(donation.getDateOfBirth() );
 		}
@@ -99,6 +103,7 @@ public class DonationEditController extends BaseController{
 			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setPanNo(pan.getText())
+			.setFundType(fundType.getValue().getPropertyValue())
 			.setEntryDesc(description.getText());
 		if(dateOfBirth.getValue()!=null) {
 			donation.setDateOfBirth(dateOfBirth.getValue());

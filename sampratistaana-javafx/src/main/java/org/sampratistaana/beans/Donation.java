@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.sampratistaana.Messages;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
 @Entity
@@ -148,6 +149,13 @@ public class Donation implements Serializable{
 	public String getDate() {
 		if(getLedger()!=null) {
 			return formatDate(getLedger().getEntryDate());
+		}
+		return null;
+	}
+	
+	public String getFund() {
+		if(getLedger()!=null) {
+			return Messages.getMessage(getLedger().getFundType());
 		}
 		return null;
 	}
