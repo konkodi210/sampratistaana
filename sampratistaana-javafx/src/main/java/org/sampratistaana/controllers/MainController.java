@@ -33,4 +33,9 @@ public class MainController {
 	private void openExpenseEntryForm() throws IOException {
 		loadForm("ExpenseEntryList");
 	}
+	
+	@FXML
+	private void openLovAdmin() throws IOException{
+		loadForm("ManageListOfValues");
+	}
 }

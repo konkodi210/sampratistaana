@@ -41,4 +41,12 @@ public class ListOfValues {
 			return session.createQuery("FROM BankAccount",BankAccount.class).getResultList();
 		}
 	}
+	
+	public List<String> getLovs(){
+		try(Session session = dbSession()){
+			return session
+					.createQuery("SELECT DISTINCT p.propertyName FROM Property p",String.class)
+					.getResultList();
+		}
+	}
 }
