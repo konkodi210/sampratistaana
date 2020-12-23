@@ -126,8 +126,8 @@ values
 ('FUND','FUND_TYPE','nidhi.yearly-celeberation','Y'),
 ('FUND','FUND_TYPE','nidhi.misc','Y'),
 
-('SAVINGS','BANK_ACCOUNT','bank.karanataka','Y'),
-('SAVINGS','BANK_ACCOUNT','bank.syndicate','Y'),
+--('SAVINGS','BANK_ACCOUNT','bank.karanataka','Y'),
+--('SAVINGS','BANK_ACCOUNT','bank.syndicate','Y'),
 
 ('EXPENSE','EXPENSE_TYPE','expense.book-printing','Y'),
 ('EXPENSE','EXPENSE_TYPE','expense.book-publishing','Y'),

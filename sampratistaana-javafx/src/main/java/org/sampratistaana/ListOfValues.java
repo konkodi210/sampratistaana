@@ -42,10 +42,10 @@ public class ListOfValues {
 		}
 	}
 	
-	public List<String> getLovs(){
+	public List<Object[]> getLovs(){
 		try(Session session = dbSession()){
 			return session
-					.createQuery("SELECT DISTINCT p.propertyName FROM Property p",String.class)
+					.createQuery("SELECT DISTINCT propertyName,propertyKey FROM Property",Object[].class)
 					.getResultList();
 		}
 	}
