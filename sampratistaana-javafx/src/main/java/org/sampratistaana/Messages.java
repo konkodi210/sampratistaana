@@ -18,6 +18,9 @@ public class Messages {
 	}
 
 	public static synchronized String getMessage(String key,Object...args) {
+		if(key==null) {
+			return key;
+		}
 		ResourceBundle res=getResource();
 		String val = res.containsKey(key)?res.getString(key):key;
 		if(args!=null && args.length >0) {

@@ -21,14 +21,14 @@
                   <ComboBox fx:id="lovComboBox" prefWidth="150.0" />
                </children>
             </HBox>
-          <Button fx:id="addBtn" disable="true" mnemonicParsing="false" text="%common.add" />
-            <Button fx:id="deleteBtn" disable="true" mnemonicParsing="false" text="%common.delete" />
-            <Button fx:id="saveBtn" disable="true" mnemonicParsing="false" text="%common.save" />
+          <Button fx:id="addBtn" onAction="#addRow" disable="true" text="%common.add" />
+            <Button fx:id="deleteBtn" onAction="#deleteRow" disable="true" text="%common.delete" />
+            <Button fx:id="saveBtn" onAction="#save" disable="true" text="%common.save" />
          </buttons>
       </ButtonBar>
-      <TableView fx:id="lovTable">
+      <TableView fx:id="lovTable" editable="true">
         <columns>
-          <TableColumn id="propertyValue" text="%common.name" />
+          <TableColumn id="lovVal" text="%common.name" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
