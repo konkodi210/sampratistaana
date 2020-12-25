@@ -25,8 +25,9 @@
 	   	 <MenuItem text="%menu.monthly.report" />
 	   	 <MenuItem text="%menu.yearly.report" />
 	   </Menu>
-	   <Menu text="%admin">
-	   	<MenuItem text="%admin.inventory.books" onAction="#openLovAdmin"/>
+	   <Menu text="%admin" id="admin">
+	   	<MenuItem id="adminDropdown" text="%admin.dropdown" onAction="#openLovAdmin"/>
+	   	<MenuItem id="adminInventoryBooks" text="%admin.inventory.books" />
 	   </Menu>	   
 	</MenuBar>
 	<VBox id="body" alignment="TOP_LEFT">

@@ -1,5 +1,6 @@
 package org.sampratistaana;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Member.MembershipType;
 
 public class TestUtils {
-	
+
 	public static BankAccount getBankAccount() {
 		return new ListOfValues().getBankAccountTable().get(0);
 	}
@@ -43,9 +44,9 @@ public class TestUtils {
 						.setEntryDesc("Description123")
 						.setBankAccount(getBankAccount())
 						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
-				);	
+						);	
 	}
-	
+
 	public static Donation createDonation() {
 		return new Donation()
 				.setName(UUID.randomUUID().toString())
@@ -66,9 +67,9 @@ public class TestUtils {
 						.setPanNo("ABC64246")
 						.setEntryDesc("Description123")
 						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
-				);	
+						);	
 	}
-	
+
 	public static Inventory createInventory() {
 		return new Inventory()
 				.setInventoryType(InventoryType.BOOK)
@@ -86,9 +87,9 @@ public class TestUtils {
 						.setPanNo("ABC64246")
 						.setEntryDesc("Description123")
 						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
-				);	
+						);	
 	}
-	
+
 	public static BookSale createBookSale() {
 		Inventory inventory=createInventory();		
 		return new BookSale()
@@ -98,5 +99,21 @@ public class TestUtils {
 				.setLedger(new Ledger()
 						.setModeOfTranscation(TransactionMode.CASH)
 						);
+	}
+
+	/**
+	 * For testing, we may need to read attributes which are private. Hence use brute force (Reflection) to read values
+	 * @param obj
+	 * @param property
+	 * @return
+	 */
+	public static Object getProperty(Object obj,String property) {
+		try {
+			Field field = obj.getClass().getDeclaredField(property);
+			field.setAccessible(true);
+			return field.get(obj);
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

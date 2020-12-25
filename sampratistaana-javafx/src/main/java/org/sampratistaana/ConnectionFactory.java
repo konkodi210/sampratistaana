@@ -50,6 +50,7 @@ public class ConnectionFactory {
 						.applySetting(Environment.DIALECT, "org.hibernate.dialect.H2Dialect")
 						.applySetting(Environment.SHOW_SQL, true)
 						.applySetting(Environment.FORMAT_SQL, true)
+						.applySetting(Environment.STATEMENT_BATCH_SIZE, 10)
 						.applySetting("hibernate.enable_lazy_load_no_trans", true)
 						.build();
 				sessionFactory= new MetadataSources(registry)

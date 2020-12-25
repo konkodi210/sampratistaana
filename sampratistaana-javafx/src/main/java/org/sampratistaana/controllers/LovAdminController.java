@@ -2,6 +2,8 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -77,28 +79,39 @@ public class LovAdminController extends BaseController{
 	}
 
 	@FXML
+	@SuppressWarnings({ "rawtypes", "unchecked" })	
 	public void deleteRow() throws IOException{
-		lovTable.getItems().remove(lovTable.getSelectionModel().getSelectedIndex());
+		Property prop=lovTable.getItems().remove(lovTable.getSelectionModel().getSelectedIndex()).prop;
+		if(prop.getPropertyKey()!=null) {
+			if(deleteBtn.getUserData()==null) {
+				deleteBtn.setUserData(new LinkedList<>());
+			}
+			((List)deleteBtn.getUserData()).add(prop);
+		}
 		deleteBtn.setDisable(true);
 	}
 
 	@FXML
+	@SuppressWarnings({ "unchecked" })	
 	public void save() throws IOException{
-		System.out.println(stream(lovTable.getItems())
+		final LovProp lovProp = lovComboBox.getSelectionModel().getSelectedItem();
+		lov().saveLov((stream(lovTable.getItems())
 				.filter(x -> x.isDirtry())
-				.collect(Collectors.toList()));
+				.map(x -> x.prepareForSave(lovProp.propertyName, lovProp.propertyKey))
+				.collect(Collectors.toList())),
+				(List<Property>)deleteBtn.getUserData());
 	}
 
-	static class LovProp{
+	public static class LovProp{
 		String propertyName;
 		String propertyKey;
-		public LovProp(Object[] result) {
+		LovProp(Object[] result) {
 			propertyName=(String)result[0];
 			propertyKey=(String)result[1];
 		}
 		@Override
 		public String toString() {
-			return propertyKey;
+			return Messages.getMessage("admin.dropdown."+propertyKey);
 		}		
 	}
 
@@ -111,7 +124,16 @@ public class LovAdminController extends BaseController{
 		}	
 
 		boolean isDirtry(){
-			return !Messages.getMessage(prop.getPropertyValue()).equals(lovVal.get());
+			return prop.getPropertyKey()==null 
+					|| !Messages.getMessage(prop.getPropertyValue()).equals(lovVal.get());
+		}
+		
+		Property prepareForSave(String propName, String propKey) {
+			prop.setFlag("Y");
+			prop.setPropertyName(propName);
+			prop.setPropertyKey(propKey);
+			prop.setPropertyValue(lovVal.get());
+			return prop;
 		}
 	}
 }
