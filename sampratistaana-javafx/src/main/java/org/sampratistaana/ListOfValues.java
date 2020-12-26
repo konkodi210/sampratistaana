@@ -10,7 +10,7 @@ import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.Property;
 
 public class ListOfValues {
-	
+
 	public List<Property> getFundTypes(){
 		return getProperties("FUND","FUND_TYPE");
 	}
@@ -33,13 +33,13 @@ public class ListOfValues {
 					.list();
 		}
 	}
-	
+
 	public List<BankAccount> getBankAccountTable(){
 		try(Session session = dbSession()){
 			return session.createQuery("FROM BankAccount",BankAccount.class).getResultList();
 		}
 	}
-	
+
 	public List<Object[]> getLovs(){
 		try(Session session = dbSession()){
 			return session
@@ -47,14 +47,16 @@ public class ListOfValues {
 					.getResultList();
 		}
 	}
-	
+
 	public void saveLov(List<Property> lovValList,List<Property> deleteList) {
 		if((lovValList==null || lovValList.size()==0) && (deleteList==null || deleteList.size() == 0)) {
 			return;
 		}
 		try(Session session=dbSession()){
 			Transaction tran = session.beginTransaction();
-			lovValList.forEach(lov -> session.saveOrUpdate(lov));
+			if(lovValList!=null) {
+				lovValList.forEach(lov -> session.saveOrUpdate(lov));
+			}
 			if(deleteList!=null) {
 				deleteList.forEach(lov -> session.remove(lov));
 			}

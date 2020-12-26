@@ -38,7 +38,7 @@ public class ListOfValuesTest {
 		new ListOfValues().saveLov(Arrays.asList(prop), null);
 		assertThat("Updated Record is saved", hasValueInFundType(prop.getPropertyValue()),equalTo(true));
 		
-		new ListOfValues().saveLov(new ArrayList<Property>(), Arrays.asList(prop));
+		new ListOfValues().saveLov(null, Arrays.asList(prop));
 		assertThat("record is deleted", hasValueInFundType(prop.getPropertyValue()),equalTo(false));
 	}
 

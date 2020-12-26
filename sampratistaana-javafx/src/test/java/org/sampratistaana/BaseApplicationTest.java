@@ -12,12 +12,12 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
 public class BaseApplicationTest extends ApplicationTest {
-	
+
 	@Override
 	public void start(Stage stage) throws Exception {
 		new Mainwindow().start(stage);		
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		FxToolkit.hideStage();
@@ -26,7 +26,17 @@ public class BaseApplicationTest extends ApplicationTest {
 	}
 
 	protected <T extends Node> T find(String id) {
-		return lookup(id).query();
+		for(int i=0;i<10;i++) {
+			try {
+				return lookup(id).query();
+			}catch(Exception e) {
+				sleep(1000);
+				if(i==9) {
+					throw new RuntimeException(e);
+				}
+			}
+		}
+		return null;
 	}
 
 	protected String getLabelText(String id) {

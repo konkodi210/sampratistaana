@@ -2,6 +2,7 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -82,12 +83,13 @@ public class LovAdminController extends BaseController{
 	@SuppressWarnings({ "rawtypes", "unchecked" })	
 	public void deleteRow() throws IOException{
 		Property prop=lovTable.getItems().remove(lovTable.getSelectionModel().getSelectedIndex()).prop;
-		if(prop.getPropertyKey()!=null) {
-			if(deleteBtn.getUserData()==null) {
-				deleteBtn.setUserData(new LinkedList<>());
-			}
-			((List)deleteBtn.getUserData()).add(prop);
-		}
+		lov().saveLov(null, Arrays.asList(prop));
+//		if(prop.getPropertyKey()!=null) {
+//			if(deleteBtn.getUserData()==null) {
+//				deleteBtn.setUserData(new LinkedList<>());
+//			}
+//			((List)deleteBtn.getUserData()).add(prop);
+//		}
 		deleteBtn.setDisable(true);
 	}
 
@@ -98,8 +100,7 @@ public class LovAdminController extends BaseController{
 		lov().saveLov((stream(lovTable.getItems())
 				.filter(x -> x.isDirtry())
 				.map(x -> x.prepareForSave(lovProp.propertyName, lovProp.propertyKey))
-				.collect(Collectors.toList())),
-				(List<Property>)deleteBtn.getUserData());
+				.collect(Collectors.toList())),null);
 	}
 
 	public static class LovProp{

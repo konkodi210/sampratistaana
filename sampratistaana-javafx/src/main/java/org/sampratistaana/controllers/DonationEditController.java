@@ -57,6 +57,11 @@ public class DonationEditController extends BaseController{
 		}else if(depositAccount.getItems().size()>0) {
 			depositAccount.setValue(depositAccount.getItems().get(0));
 		}
+		if(donation.getFund()==null) {
+			fundType.setValue(fundType.getItems().get(0));
+		}else {
+			fundType.setValue(fundType.getConverter().fromString(donation.getFund()));
+		}
 		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
 			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
 			depositAccountLabel.setVisible(depositAccount.isVisible());

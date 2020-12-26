@@ -43,10 +43,24 @@ public class ManageListOfValuesTest extends BaseApplicationTest {
 		assertThat("Delete Button Disabled", deleteBtn.isDisabled(),equalTo(false));
 		clickOn(addBtn);
 		model.select(0);
-		SimpleStringProperty lovVal =(SimpleStringProperty)getProperty(model.getSelectedItem(),"lovVal");
-		lovVal.set(UUID.randomUUID().toString());
+		SimpleStringProperty cellVal =(SimpleStringProperty)getProperty(model.getSelectedItem(),"lovVal");
+		cellVal.set(UUID.randomUUID().toString());
 		clickOn(saveBtn);
-		hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), lovVal.get());
+		assertThat("New Row inserted",
+				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
+				equalTo(true));
+		model.select(0);
+		cellVal.set(UUID.randomUUID().toString());
+		clickOn(saveBtn);
+		assertThat("Row Updated",
+				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
+				equalTo(true));
+		model.select(0);
+		clickOn(deleteBtn);
+		assertThat("Row delete",
+				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
+				equalTo(false));
+		
 	}
 	
 	private boolean hasValueInFundType(LovProp lovProp,String val) {

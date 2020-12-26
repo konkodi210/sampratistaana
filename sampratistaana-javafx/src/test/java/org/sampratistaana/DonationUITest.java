@@ -17,8 +17,10 @@ import org.junit.Test;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.TransactionMode;
+import org.sampratistaana.beans.Property;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -48,6 +50,8 @@ public class DonationUITest extends BaseApplicationTest {
 		writeToTextFiled("#externalTranNo",donationUI.getLedger().getExternalTranNo());
 		writeToTextFiled("#pan", donationUI.getLedger().getPanNo());
 		writeToTextFiled("#description", donationUI.getLedger().getEntryDesc());
+//		ComboBox<Property> fundType=find("#fundType");
+//		fundType.setValue(fundType.getConverter().fromString(donationUI.getFund()));
 	}
 	
 	private void matchDonationBean(Donation donation, Donation donationUI) {
@@ -62,6 +66,7 @@ public class DonationUITest extends BaseApplicationTest {
 		assertThat(donation.getLedger().getExternalTranNo(), equalTo(donationUI.getLedger().getExternalTranNo()));
 		assertThat(donation.getLedger().getPanNo(), equalTo(donationUI.getLedger().getPanNo()));
 		assertThat(donation.getLedger().getEntryDesc(), equalTo(donation.getLedger().getEntryDesc()));
+		assertThat(donation.getFund(), equalTo(donationUI.getFund()));
 	}
 	
 	@Test
@@ -124,6 +129,7 @@ public class DonationUITest extends BaseApplicationTest {
 						.setPanNo("SomeNewPAN")
 						.setEntryDesc("New Description")
 						.setBankAccount(TestUtils.getBankAccount())
+						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
 						);	
 		enterDonationDetails(donationUI);
 		clickOn("#saveDonationBtn");
