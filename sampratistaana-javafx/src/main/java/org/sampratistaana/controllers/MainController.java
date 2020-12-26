@@ -38,4 +38,9 @@ public class MainController {
 	private void openLovAdmin() throws IOException{
 		loadForm("ManageListOfValues");
 	}
+	
+	@FXML
+	private void openBookInventoryManagement() throws IOException{
+		loadForm("BookInventoryManagement");
+	}
 }

@@ -17,10 +17,8 @@ import org.junit.Test;
 import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.TransactionMode;
-import org.sampratistaana.beans.Property;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;

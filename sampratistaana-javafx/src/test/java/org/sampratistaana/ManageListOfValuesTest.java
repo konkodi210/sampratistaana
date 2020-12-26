@@ -1,7 +1,10 @@
 package org.sampratistaana;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
+import static org.sampratistaana.TestUtils.getProperty;
 
 import java.util.UUID;
 
@@ -15,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
-import static org.sampratistaana.TestUtils.getProperty;
 
 public class ManageListOfValuesTest extends BaseApplicationTest {
 	@Before
