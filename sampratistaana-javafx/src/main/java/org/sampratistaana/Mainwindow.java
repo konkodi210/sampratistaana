@@ -5,7 +5,10 @@ import static org.sampratistaana.Messages.getResource;
 
 import java.io.IOException;
 
+import org.hibernate.Session;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,7 +24,7 @@ public class Mainwindow extends Application {
 
 	@Override
     public void start(Stage stage) throws IOException {
-//		Platform.runLater(() -> new CreditManager().loadBookInventory());
+		Platform.runLater(() -> {try(Session session=ConnectionFactory.dbSession()){}});
         scene = new Scene(loadFXML("MainWindow"),1000,700);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle(getMessage("window.title"));

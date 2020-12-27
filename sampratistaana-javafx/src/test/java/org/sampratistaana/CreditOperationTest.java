@@ -87,7 +87,7 @@ public class CreditOperationTest {
 		Inventory inventory=createInventory();				
 		new CreditManager().saveInventory(inventory);
 		//for some reason it does not like long. hence typecasting to int. Since id is will be small, there will not be any overflow 
-		assertThat("Ledger entry no should be generated", (int)inventory.getLedger().getEntryNo(),greaterThan(0));
+//		assertThat("Ledger entry no should be generated", (int)inventory.getLedger().getEntryNo(),greaterThan(0));
 		assertThat("Inventory id should auto generated", (int)inventory.getInventoryId(),greaterThan(0));
 
 	}
@@ -98,7 +98,7 @@ public class CreditOperationTest {
 		new CreditManager().saveInventory(inventory);
 		Inventory inventoryFromDb = new CreditManager().getInventory(inventory.getInventoryId());
 		assertThat("Inventory record must be found", inventoryFromDb,notNullValue());
-		assertThat("A ledger record must be assosiated with that", inventoryFromDb.getLedger(),notNullValue());
+//		assertThat("A ledger record must be assosiated with that", inventoryFromDb.getLedger(),notNullValue());
 		assertThat("Both Objects should match", inventory.toString(),equalTo(inventoryFromDb.toString()));
 	}
 

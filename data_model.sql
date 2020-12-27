@@ -60,13 +60,14 @@ CREATE TABLE IF NOT EXISTS DONATION (
 DROP TABLE IF EXISTS INVENTORY;
 CREATE TABLE IF NOT EXISTS INVENTORY (
 	INVENTORY_ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
-  ,	LEDGER_ENTRY_NO INTEGER NOT NULL
+--  ,	LEDGER_ENTRY_NO INTEGER NOT NULL
   ,	INVENTORY_TYPE TEXT NOT NULL
   ,	UNIT_NAME TEXT NOT NULL UNIQUE
   ,	UNIT_PRICE INTEGER NOT NULL
   ,	INVENTROY_COUNT INTEGER NOT NULL
-  , FOREIGN KEY ([LEDGER_ENTRY_NO]) REFERENCES [LEDGER] ([ENTRY_NO]) 
-		ON DELETE NO ACTION ON UPDATE NO ACTION  
+--TODO: Things become complicated when we link to Ledger. 
+--  , FOREIGN KEY ([LEDGER_ENTRY_NO]) REFERENCES [LEDGER] ([ENTRY_NO]) 
+--		ON DELETE NO ACTION ON UPDATE NO ACTION  
 );
 
 DROP TABLE IF EXISTS BOOK_SALE;
@@ -145,4 +146,23 @@ INSERT INTO BANK_ACCOUNTS (ACCOUNT_NO,BANK_NAME)
 VALUES
 ('1234','bank.karanataka'),
 ('1234','bank.syndicate');
+
+INSERT INTO INVENTORY (INVENTORY_ID, INVENTORY_TYPE, UNIT_NAME, UNIT_PRICE, INVENTROY_COUNT) 
+VALUES
+(1,  '0', 'ಮಂತ್ರಮಂಜರೀ', 250, 100),
+(2,  '0', 'ಶ್ಲೋಕಸಮಾಹಾರಃ  - ಸಂಪುಟ -೧', 250, 100),
+(3,  '0', 'ಪುರಾಣಯಾನ', 250, 100),
+(4,  '0', 'ಶ್ಲೋಕಸಮಾಹಾರಃ  - ಸಂಪುಟ -೨', 250, 100),
+(5,  '0', 'ವ್ಯದಿಕಸಾಂಬಾರಃ', 250, 100),
+(6,  '0', 'ಶಾರದನೂರಾದನಮ್', 250, 100),
+(7,  '0', 'ಕನ್ನಡ ಸಂದ್ಯಾ ಭಾಷ್ಯ ', 250, 100),
+(8,  '0', 'ಪುರಾಣಲೋಕ ', 250, 100),
+(9,  '0', 'ಪಂಚಾಯತನ ದೇವರ ಪೂಜೆ', 250, 100),
+(10, '0', 'ವೇದ-ವೇದಾಂಗಪಾರಿವಾರಃ', 250, 100),
+(11, '0', 'ವ್ಯಧಿಕಾನುಬಂದಸಮುಚ್ಛಯ', 250, 100),
+(12, '0', 'ಶ್ರೀ ವಿಷ್ಣುಪ್ರೋಕ್ತಸಹಸ್ರನಾಮ', 250, 100),
+(13, '0', 'ಗಂಗಾಕಲ್ಪೋಕ್ತಪೂಜಾವಿಧಿ ', 250, 100),
+(14, '0', 'ಆದಿತ್ಯದಿನವಗ್ರಹಪೂಜಾವಿಧಿಹಿ ', 250, 100),
+(15, '0', 'ಸಂಧ್ಯಾವಂದನಮ್ ', 250, 100),
+(16, '0', 'ಶ್ರೀ ವರದಶಂಕರಪೂಜಾವಿಧಿ ', 250, 100);
 

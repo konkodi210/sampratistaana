@@ -2,18 +2,12 @@ package org.sampratistaana.beans;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "INVENTORY")
@@ -26,14 +20,14 @@ public class Inventory implements Serializable{
 	@Column(name = "INVENTORY_ID", nullable = false)	
 	private long inventoryId;
 
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name = "LEDGER_ENTRY_NO")
-	private Ledger ledger;
+	//TODO:For now let us not include ledger to inventory. Let it be seperate expense entry for book purchase
+//	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//	@JoinColumn(name = "LEDGER_ENTRY_NO")
+//	private Ledger ledger;
 	
 	@Column(name = "INVENTORY_TYPE", nullable = false)
 	private InventoryType inventoryType;
 	
-	@NaturalId
 	@Column(name = "UNIT_NAME", nullable = false, unique =  true)
 	private String unitName;
 	
@@ -52,14 +46,14 @@ public class Inventory implements Serializable{
 		return this;
 	}
 
-	public Ledger getLedger() {
-		return ledger;
-	}
-
-	public Inventory setLedger(Ledger ledger) {
-		this.ledger = ledger;
-		return this;
-	}
+//	public Ledger getLedger() {
+//		return ledger;
+//	}
+//
+//	public Inventory setLedger(Ledger ledger) {
+//		this.ledger = ledger;
+//		return this;
+//	}
 
 	public InventoryType getInventoryType() {
 		return inventoryType;
@@ -99,7 +93,7 @@ public class Inventory implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Inventory [inventoryId=" + inventoryId + ", ledger=" + ledger + ", inventoryType=" + inventoryType
+		return "Inventory [inventoryId=" + inventoryId + ", inventoryType=" + inventoryType
 				+ ", unitName=" + unitName + ", unitPrice=" + unitPrice + ", inventoryCount=" + inventoryCount + "]";
 	}
 

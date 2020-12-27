@@ -3,6 +3,7 @@ package org.sampratistaana.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -77,23 +78,26 @@ public class LovAdminController extends BaseController{
 
 	}
 
-	@FXML
-	@SuppressWarnings({ "rawtypes", "unchecked" })	
+	@FXML	
 	public void deleteRow() throws IOException{
 		Property prop=lovTable.getItems().remove(lovTable.getSelectionModel().getSelectedIndex()).prop;
-		lov().saveLov(null, Arrays.asList(prop));
-//		if(prop.getPropertyKey()!=null) {
-//			if(deleteBtn.getUserData()==null) {
-//				deleteBtn.setUserData(new LinkedList<>());
-//			}
-//			((List)deleteBtn.getUserData()).add(prop);
-//		}
+		if(prop.getPropertyKey()!=null) {
+			lov().saveLov(null, Arrays.asList(prop));
+		}
+		
 		deleteBtn.setDisable(true);
 	}
 
 	@FXML
-	@SuppressWarnings({ "unchecked" })	
 	public void save() throws IOException{
+		//remove empty records which user has not entered any values. Using iterator such that I can remove element while iterating
+		for(Iterator<DisplayProp> itr=lovTable.getItems().iterator();itr.hasNext();) {
+			DisplayProp prop = itr.next();
+			if(prop.lovVal.get()==null || prop.lovVal.get().trim().length()==0 ) {
+				itr.remove();
+			}
+		}
+	
 		final LovProp lovProp = lovComboBox.getSelectionModel().getSelectedItem();
 		lov().saveLov((stream(lovTable.getItems())
 				.filter(x -> x.isDirtry())
@@ -123,10 +127,10 @@ public class LovAdminController extends BaseController{
 		}	
 
 		boolean isDirtry(){
-			return prop.getPropertyKey()==null 
-					|| !Messages.getMessage(prop.getPropertyValue()).equals(lovVal.get());
+			return lovVal.get()!=null && lovVal.get().trim().length()>0 && (prop.getPropertyKey()==null 
+					|| !Messages.getMessage(prop.getPropertyValue()).equals(lovVal.get().trim()));
 		}
-		
+
 		Property prepareForSave(String propName, String propKey) {
 			prop.setFlag("Y");
 			prop.setPropertyName(propName);

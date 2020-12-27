@@ -184,37 +184,58 @@ public class CreditManager {
 					.getResultList();
 		}
 	}
-
-	/**
-	 * This is temporary function until inventory management screen comes
-	 */
-	public void loadBookInventory() {
-		ResourceBundle res=Messages.getResource();
+	
+	public void deleteInventory(Inventory inv) {
 		try(Session session=dbSession()){
 			Transaction tran=session.beginTransaction();
-			for(Enumeration<String> enm=res.getKeys();enm.hasMoreElements();) {
-				String key=enm.nextElement();
-				if(key.startsWith("book.")) {
-					Inventory inv=session.byNaturalId(Inventory.class).using("unitName", res.getString(key)).load();
-					if(inv==null) {
-						session.saveOrUpdate(new Inventory()
-								.setInventoryType(InventoryType.BOOK)
-								.setUnitName(res.getString(key))
-								.setInventoryCount(100)
-								.setUnitPrice(250)
-								.setLedger(new Ledger()
-										.setEntryType(EntryType.DEBIT)
-										.setEntryCategory(EntryCategory.BOOK_PURCHASE)
-										.setEntryValue(250*101)
-										.setEntryDate(LocalDate.now())
-										.setModeOfTranscation(TransactionMode.CASH))
-								);
-					}
-				}
+			session.delete(inv);
+			tran.commit();
+		}
+	}
+	
+	public void saveInventory(Inventory... inventories) {
+		if(inventories==null || inventories.length == 0) {
+			return;
+		}
+		try(Session session=dbSession()){
+			Transaction tran=session.beginTransaction();
+			for(Inventory inv:inventories) {
+				session.saveOrUpdate(inv);
 			}
 			tran.commit();
 		}
 	}
+
+	/**
+	 * This is temporary function until inventory management screen comes
+	 */
+//	public void loadBookInventory() {
+//		ResourceBundle res=Messages.getResource();
+//		try(Session session=dbSession()){
+//			Transaction tran=session.beginTransaction();
+//			for(Enumeration<String> enm=res.getKeys();enm.hasMoreElements();) {
+//				String key=enm.nextElement();
+//				if(key.startsWith("book.")) {
+//					Inventory inv=session.byNaturalId(Inventory.class).using("unitName", res.getString(key)).load();
+//					if(inv==null) {
+//						session.saveOrUpdate(new Inventory()
+//								.setInventoryType(InventoryType.BOOK)
+//								.setUnitName(res.getString(key))
+//								.setInventoryCount(100)
+//								.setUnitPrice(250)
+//								.setLedger(new Ledger()
+//										.setEntryType(EntryType.DEBIT)
+//										.setEntryCategory(EntryCategory.BOOK_PURCHASE)
+//										.setEntryValue(250*101)
+//										.setEntryDate(LocalDate.now())
+//										.setModeOfTranscation(TransactionMode.CASH))
+//								);
+//					}
+//				}
+//			}
+//			tran.commit();
+//		}
+//	}
 
 	/**
 	 * Records book sale in the database

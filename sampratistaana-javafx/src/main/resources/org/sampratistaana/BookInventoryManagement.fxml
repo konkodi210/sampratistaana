@@ -3,21 +3,19 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.BookInventoryManagementContoller">
    <children>
-      <Label alignment="TOP_CENTER" styleClass="title-label" text="%admin.book-inventory.title" />
-      <ButtonBar VBox.vgrow="ALWAYS">
+      <Label alignment="TOP_CENTER" styleClass="title-label" text="%admin.book-inventory.title" />            
+      <ButtonBar>
          <buttons>
-            <Button fx:id="addBtn" onAction="#addRow" disable="true" text="%common.add" />
-            <Button fx:id="deleteBtn" onAction="#deleteRow" disable="true" text="%common.delete" />
-            <Button fx:id="saveBtn" onAction="#save" disable="true" text="%common.save" />
+            <Button fx:id="addBtn" onAction="#addRow" text="%common.add" />
+            <Button fx:id="deleteBtn" disable="true" onAction="#deleteRow" text="%common.delete" />
+            <Button fx:id="saveBtn" onAction="#save" text="%common.save" />
          </buttons>
       </ButtonBar>
       <TableView fx:id="bookTable" editable="true">

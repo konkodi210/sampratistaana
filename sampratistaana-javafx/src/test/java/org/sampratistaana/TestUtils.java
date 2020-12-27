@@ -75,19 +75,19 @@ public class TestUtils {
 				.setInventoryType(InventoryType.BOOK)
 				.setUnitName(UUID.randomUUID().toString())
 				.setUnitPrice(100)
-				.setInventoryCount(100)
-				.setLedger(
-						new Ledger()
-						.setEntryType(EntryType.CREDIT)
-						.setEntryCategory(EntryCategory.DONATION)
-						.setEntryValue(101)
-						.setEntryDate(LocalDate.now())
-						.setModeOfTranscation(TransactionMode.CASH)
-						.setExternalTranNo("SomeBank123")
-						.setPanNo("ABC64246")
-						.setEntryDesc("Description123")
-						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
-						);	
+				.setInventoryCount(100);
+//				.setLedger(
+//						new Ledger()
+//						.setEntryType(EntryType.CREDIT)
+//						.setEntryCategory(EntryCategory.DONATION)
+//						.setEntryValue(101)
+//						.setEntryDate(LocalDate.now())
+//						.setModeOfTranscation(TransactionMode.CASH)
+//						.setExternalTranNo("SomeBank123")
+//						.setPanNo("ABC64246")
+//						.setEntryDesc("Description123")
+//						.setFundType(new ListOfValues().getFundTypes().get(0).getPropertyValue())
+//						);	
 	}
 
 	public static BookSale createBookSale() {
