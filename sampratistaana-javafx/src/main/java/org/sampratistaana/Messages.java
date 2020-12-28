@@ -30,9 +30,13 @@ public class Messages {
 	}
 
 	public static String formatDate(LocalDate date) {
+		return formatDate(date,resource.getString("common.date-format"));
+	}
+	
+	public static String formatDate(LocalDate date,String format) {
 		if(date!=null) {
 			//return new SimpleDateFormat(resource.getString("common.date-format")).format(date);
-			return DateTimeFormatter.ofPattern(resource.getString("common.date-format")).format(date);
+			return DateTimeFormatter.ofPattern(format).format(date);
 					
 		}else {
 			return null;

@@ -44,6 +44,7 @@ public class Expense implements Serializable{
 	
 	public Expense setLedger(Ledger ledger) {
 		this.ledger = ledger;
+		setEntryDesc();
 		return this;
 	}
 
@@ -66,6 +67,7 @@ public class Expense implements Serializable{
 	
 	public Expense setExpenseType(String expenseType) {
 		this.expenseType = expenseType;
+		setEntryDesc();
 		return this;
 	}
 	
@@ -102,6 +104,12 @@ public class Expense implements Serializable{
 	}
 	public String getDescription() {
 		return getLedger().getEntryDesc();
+	}
+	
+	private void setEntryDesc() {
+		if(getLedger()!=null && getExpenseType()!=null) {
+			getLedger().setEntryDesc(getExpenseType());
+		}
 	}
 
 	@Override

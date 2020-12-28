@@ -3,9 +3,7 @@ package org.sampratistaana;
 import static org.sampratistaana.ConnectionFactory.dbSession;
 
 import java.time.LocalDate;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import org.hibernate.Session;

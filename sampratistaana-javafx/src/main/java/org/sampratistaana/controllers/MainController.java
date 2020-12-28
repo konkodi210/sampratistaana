@@ -43,4 +43,9 @@ public class MainController {
 	private void openBookInventoryManagement() throws IOException{
 		loadForm("BookInventoryManagement");
 	}
+	
+	@FXML
+	private void openLedgerReport() throws IOException{
+		loadForm("LedgerReport");
+	}
 }
