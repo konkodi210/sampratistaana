@@ -22,7 +22,7 @@
             <ButtonBar>
               <buttons>
                 <Button text="Generate" onAction="#generateReport"/>
-                <Button text="Excel" />
+                <Button text="Excel" onAction="#exportToExcel"/>
               </buttons>
             </ButtonBar>
          </children>

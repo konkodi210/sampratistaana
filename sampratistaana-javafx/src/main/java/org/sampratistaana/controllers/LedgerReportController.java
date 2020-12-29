@@ -1,13 +1,21 @@
 package org.sampratistaana.controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.Currency;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
 import org.sampratistaana.ReportManager;
 import org.sampratistaana.beans.Ledger;
@@ -16,6 +24,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class LedgerReportController extends BaseController{
 	@FXML private DatePicker fromDate; 
@@ -29,7 +39,7 @@ public class LedgerReportController extends BaseController{
 		intializeTableColumns(reportTable);
 		generateReport();
 	}
-	
+
 	@FXML
 	private void generateReport() {
 		reportTable.setItems(
@@ -41,13 +51,44 @@ public class LedgerReportController extends BaseController{
 						)
 				);
 	}
-	
+
+	@FXML
+	private void exportToExcel() throws IOException {
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Excel Export");
+		fc.setInitialFileName("export.xlsx");
+		fc.getExtensionFilters().add(new ExtensionFilter("Excel File", "*.xlsx"));
+		File exportFile = fc.showSaveDialog(Mainwindow.getScene().getWindow());
+		Workbook wb = WorkbookFactory.create(Mainwindow.class.getResourceAsStream("DayBook.xlsx"));
+		Sheet sh=wb.getSheet("Day Book");
+
+		sh.getRow(4)
+		.getCell(0)
+		.setCellValue(String.format("%s to %s", formatDate(fromDate.getValue()),formatDate(toDate.getValue())));
+
+		int rownum = 7;
+		int cellNum=0;		
+		for(Report report:reportTable.getItems()) {
+			Row row = sh.createRow(rownum++);
+			cellNum=0;
+			row.createCell(cellNum++).setCellValue(report.date);
+			row.createCell(cellNum++).setCellValue(report.particular);
+			row.createCell(cellNum++).setCellValue(report.voucherType);
+			row.createCell(cellNum++).setCellValue(report.voucherNo);
+			row.createCell(cellNum++).setCellValue(report.debit);
+			row.createCell(cellNum++).setCellValue(report.credit);
+		}
+		try(OutputStream out = new FileOutputStream(exportFile)){
+			wb.write(out);
+		}
+	}
+
 	public static class Report{
 		static final NumberFormat fmt= NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
 		String date;
 		String particular;
 		String voucherType;
-		String voucherNo;
+		long voucherNo;
 		String debit;
 		String credit;
 
@@ -56,7 +97,7 @@ public class LedgerReportController extends BaseController{
 			switch(ledger.getEntryCategory()) {
 			case EXPENSE:particular=ledger.getEntryDesc();break;
 			case MEMBER: particular="New Member Enrollment";break;
-			case DONATION: particular="Donnation";break;
+			case DONATION: particular="Donation";break;
 			case BOOK_SALE: particular="Book Sale";break;
 			default:throw new RuntimeException("Not implemented for this type "+ledger.getEntryCategory());
 			}
@@ -71,9 +112,9 @@ public class LedgerReportController extends BaseController{
 				break;
 			default:throw new RuntimeException("Not implemented for Entry type "+ledger.getEntryType());
 			}
-			voucherNo=String.valueOf(ledger.getEntryNo());			
+			voucherNo=ledger.getEntryNo();			
 		}
-		
+
 		public String getDate() {
 			return date;
 		}
@@ -86,7 +127,7 @@ public class LedgerReportController extends BaseController{
 			return voucherType;
 		}
 
-		public String getVoucherNo() {
+		public long getVoucherNo() {
 			return voucherNo;
 		}
 
@@ -97,6 +138,6 @@ public class LedgerReportController extends BaseController{
 		public String getCredit() {
 			return credit;
 		}
-		
+
 	}
 }
