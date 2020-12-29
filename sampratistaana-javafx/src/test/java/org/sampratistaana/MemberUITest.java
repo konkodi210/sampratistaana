@@ -7,7 +7,6 @@ import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.sampratistaana.TestUtils.createMember;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +21,7 @@ import org.sampratistaana.beans.Member.MembershipType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 @SuppressWarnings("rawtypes")
@@ -51,6 +51,7 @@ public class MemberUITest extends BaseApplicationTest{
 		clickOn("#paymentOnline");
 		writeToTextFiled("#externalTranNo",memberForUI.getLedger().getExternalTranNo());
 		writeToTextFiled("#description", memberForUI.getLedger().getEntryDesc());
+		writeToTextFiled("#pan", memberForUI.getLedger().getPanNo());
 	}
 
 	private void matchMemberBean(Member member, Member memberForUI) {
@@ -64,6 +65,7 @@ public class MemberUITest extends BaseApplicationTest{
 		assertThat(member.getLedger().getEntryValue(), equalTo(memberForUI.getLedger().getEntryValue()));
 		assertThat(member.getLedger().getExternalTranNo(), equalTo(memberForUI.getLedger().getExternalTranNo()));
 		assertThat(member.getLedger().getEntryDesc(), equalTo(memberForUI.getLedger().getEntryDesc()));
+		assertThat(member.getLedger().getPanNo(), equalTo(memberForUI.getLedger().getPanNo()));
 		assertThat(member.getLedger().getBankAccount().getBankAccountId(), equalTo(memberForUI.getLedger().getBankAccount().getBankAccountId()));
 	}
 
@@ -133,6 +135,7 @@ public class MemberUITest extends BaseApplicationTest{
 						.setEntryValue(858)
 						.setModeOfTranscation(TransactionMode.ONLINE)
 						.setExternalTranNo("SomeBank123111")
+						.setPanNo("ABSC3453")
 						.setEntryDesc("Some new description")
 						.setBankAccount(TestUtils.getBankAccount())
 						);	
@@ -141,9 +144,35 @@ public class MemberUITest extends BaseApplicationTest{
 		listOfMembers=new CreditManager().getAllMembers();		
 		matchMemberBean(listOfMembers.get(0),memberForUI);
 		
+		//Check whether user is able to navigate to Donation page
+		((TableView)find("#memberList")).getSelectionModel().select(0);
+		clickOn("#addDonation");
+		member = listOfMembers.get(0);
+		assertThat(member.getName(), equalTo(getText("#name")));
+		assertThat(member.getNickName(), equalTo(getText("#nickName")));
+		assertThat(member.getAddress(), equalToIgnoringWhiteSpace(getText("#address")));
+		assertThat(member.getMobileNo(), equalTo(getText("#mobileNo")));
+		assertThat(member.getPhoneNo(), equalTo(getText("#phoneNo")));
+		assertThat(member.getEmail(), equalTo(getText("#email")));
+		assertThat(member.getDateOfBirth(), equalTo(((DatePicker)find("#dateOfBirth")).getValue()));
+		
+		setup();
+		
 		//test Delete
 		((TableView)find("#memberList")).getSelectionModel().select(0);
 		clickOn("#deleteBtn");
 		assertThat("should have one row less after delete", new CreditManager().getAllMembers().size(),equalTo(listOfMembers.size()-1));
+		
+	}
+	
+	private String getText(String id) {
+		Object obj=find(id);
+		if(obj instanceof TextField) {
+			return ((TextField)obj).getText();
+		}else if(obj instanceof TextArea) {
+			return ((TextArea)obj).getText();
+		}else {
+			throw new RuntimeException("Object type is not supported "+obj.getClass());
+		}
 	}
 }

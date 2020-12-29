@@ -32,6 +32,7 @@ public class MemberEditController extends BaseController{
 	@FXML private TextField name;
 	@FXML private TextField nickName;
 	@FXML private TextArea address;
+	@FXML private TextField pan;
 	@FXML private ToggleGroup membership;
 	@FXML private TextField mobileNo;
 	@FXML private TextField phoneNo;
@@ -88,6 +89,7 @@ public class MemberEditController extends BaseController{
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(member.getLedger().getEntryValue()));		
 		description.setText(member.getLedger().getEntryDesc());
+		pan.setText(member.getLedger().getPanNo());
 
 	}
 
@@ -111,6 +113,7 @@ public class MemberEditController extends BaseController{
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(tranMode)
+			.setPanNo(pan.getText())
 			.setBankAccount(tranMode == TransactionMode.CASH?null:depositAccount.getValue())
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setEntryDesc(description.getText());
