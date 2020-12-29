@@ -19,7 +19,7 @@
 	   </Menu>
 	   <Menu id="expenseMenu" text="%menu.expense">
 	   <MenuItem id="expenseEntry" onAction="#openExpenseEntryForm" text="%menu.expenseEntry" />
-	   	<MenuItem id="expenseReport" onAction="#openExpenseReportForm" text="%menu.expenseReport" />
+	   	<!-- <MenuItem id="expenseReport" onAction="#openExpenseReportForm" text="%menu.expenseReport" /> -->
 	   </Menu>
 	   <Menu text="%menu.report">
 	   	 <MenuItem id="ledgerReportMenu" text="%menu.ledger-report" onAction="#openLedgerReport" />
