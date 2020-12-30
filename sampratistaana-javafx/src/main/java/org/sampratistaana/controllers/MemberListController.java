@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 import org.sampratistaana.CreditManager;
 import org.sampratistaana.ListOfValues;

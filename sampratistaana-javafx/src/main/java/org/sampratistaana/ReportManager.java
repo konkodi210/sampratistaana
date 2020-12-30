@@ -1,9 +1,9 @@
 package org.sampratistaana;
 
+import static org.sampratistaana.ConnectionFactory.dbSession;
+
 import java.time.LocalDate;
 import java.util.List;
-
-import static org.sampratistaana.ConnectionFactory.dbSession;
 
 import org.hibernate.Session;
 import org.sampratistaana.beans.Ledger;
