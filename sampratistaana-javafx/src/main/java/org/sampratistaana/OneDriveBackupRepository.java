@@ -8,7 +8,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -18,6 +21,8 @@ import java.util.Set;
  *
  */
 public class OneDriveBackupRepository implements BackupRepository {
+	//it is immutable aka thread safe. Hence it can be shared/re-used
+	private static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss");
 	private String repositoryPath;
 
 	@Override
@@ -38,7 +43,7 @@ public class OneDriveBackupRepository implements BackupRepository {
 			@Override
 			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 				if(attrs.isRegularFile()) {
-					fileSet.add(file.toString());
+					fileSet.add(Path.of(repositoryPath).relativize(file).toString());
 				}
 				return super.visitFile(file, attrs);
 			}
@@ -48,20 +53,29 @@ public class OneDriveBackupRepository implements BackupRepository {
 
 	@Override
 	public void createOrReplaceFiles(Path srcFile, String relativePathInRepo) throws IOException {
-		// TODO Auto-generated method stub
-
+		Files.move(srcFile, getAbsolutePath(relativePathInRepo), StandardCopyOption.REPLACE_EXISTING);
 	}
 
 	@Override
 	public void deleteFile(String relativePathInRepo) throws IOException {
-		// TODO Auto-generated method stub
+		//Do the soft delete file by moving into deleted folder		
+		Path targetFile = Path.of(repositoryPath, "deleted",relativePathInRepo);
+		if(Files.exists(targetFile)) {
+			targetFile=Path.of(targetFile.toString()+"_"+fmt.format(LocalDateTime.now()));
+		}else {
+			Files.createDirectories(targetFile.getParent());
+		}
 
+		Files.move(getAbsolutePath(relativePathInRepo), targetFile,StandardCopyOption.REPLACE_EXISTING);
 	}
 
 	@Override
-	public Path getFileContent(String relativePathInRepo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Path getFileContent(String relativePathInRepo) {		
+		return getAbsolutePath(relativePathInRepo);
+	}
+
+	private Path getAbsolutePath(String relativePathInRepo) {
+		return Path.of(repositoryPath, relativePathInRepo);
 	}
 
 }

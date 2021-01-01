@@ -2,6 +2,7 @@ package org.sampratistaana;
 
 import static org.sampratistaana.ConnectionFactory.getConnection;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,25 +27,32 @@ public class BackupService {
 	}
 
 	public void performBackup() throws Exception{
-		String tempDir=Files.createTempDirectory("backup").toString();
-		System.out.println("BackDir:"+tempDir);
+		Path tempDir=Files.createTempDirectory("backup");		
+		String dbRootDir=Path.of(tempDir.toString(),"samprathistaana","db").toString();
+		System.out.println("BackDir:"+dbRootDir);
 		Set<String> srcFileSet=new HashSet<>();
 		try(Connection con=getConnection();
 				Statement st=con.createStatement();){
-			backup("LEDGER","ENTRY_NO",tempDir,st,srcFileSet);
-			backup("MEMBER","MEMBER_NO",tempDir,st,srcFileSet);
-			backup("BANK_ACCOUNTS","BANK_ACCOUNT_ID",tempDir,st,srcFileSet);
-			backup("BOOK_SALE","BOOK_SALE_ID",tempDir,st,srcFileSet);
-			backup("DONATION","DONATION_ID",tempDir,st,srcFileSet);
-			backup("EXPENSE","EXPENSE_ID",tempDir,st,srcFileSet);
-			backup("Inventory","INVENTORY_ID",tempDir,st,srcFileSet);
-			backup("PROPERTIES","PROPERTY_ID",tempDir,st,srcFileSet);
+			backupDb("LEDGER","ENTRY_NO",tempDir,dbRootDir,st,srcFileSet);
+			backupDb("MEMBER","MEMBER_NO",tempDir,dbRootDir,st,srcFileSet);
+			backupDb("BANK_ACCOUNTS","BANK_ACCOUNT_ID",tempDir,dbRootDir,st,srcFileSet);
+			backupDb("BOOK_SALE","BOOK_SALE_ID",tempDir,dbRootDir,st,srcFileSet);
+			backupDb("DONATION","DONATION_ID",tempDir,dbRootDir,st,srcFileSet);
+			backupDb("EXPENSE","EXPENSE_ID",tempDir,dbRootDir,st,srcFileSet);
+			backupDb("INVENTORY","INVENTORY_ID",tempDir,dbRootDir,st,srcFileSet);
+			backupDb("PROPERTIES","PROPERTY_ID",tempDir,dbRootDir,st,srcFileSet);
 			
 		}
+		syncFile(new OneDriveBackupRepository(),srcFileSet,tempDir);
 	}
 
-	private void backup(String table,String idCol,String tmpDir,Statement st,Set<String> srcFileSet) throws Exception {
-		String dir=Files.createDirectories(Paths.get(tmpDir, table)).toString();
+	private void backupDb(String table
+			,String idCol
+			,Path tempDir
+			,String dbRootDir
+			,Statement st
+			,Set<String> srcFileSet) throws Exception {
+		String dir=Files.createDirectories(Path.of(dbRootDir, table)).toString();
 		try(ResultSet rs=st.executeQuery("SELECT * FROM "+table)){
 			ResultSetMetaData rsm=rs.getMetaData();
 			List<String> colList=new ArrayList<String>(rsm.getColumnCount());
@@ -62,8 +70,26 @@ public class BackupService {
 				}
 				String path=String.format("%s_%s.json", table,row.get(idCol));
 				Path tmpFilePath=Paths.get(dir,path);
-				srcFileSet.add(Paths.get(tmpDir).relativize(tmpFilePath).toString());
+				srcFileSet.add(tempDir.relativize(tmpFilePath).toString());
 				Files.write(tmpFilePath, gson.toJson(row).getBytes());
+			}
+		}
+	}
+	
+	private void syncFile(BackupRepository repo,Set<String> srcFile, Path tmpDir) throws IOException {
+		Set<String> filesInRepo = repo.getFiles();
+		for(String file:srcFile) {
+			//create file either it is new file or there is missmatch in the content.
+			if(!filesInRepo.contains(file) 
+					|| Files.mismatch(Path.of(tmpDir.toString(), file), repo.getFileContent(file))!=-1) {
+				repo.createOrReplaceFiles(Path.of(tmpDir.toString(), file), file);
+			}
+		}
+		
+		//delete files if is removed.
+		for(String file:filesInRepo) {
+			if(!srcFile.contains(file)) {
+				repo.deleteFile(file);
 			}
 		}
 	}
