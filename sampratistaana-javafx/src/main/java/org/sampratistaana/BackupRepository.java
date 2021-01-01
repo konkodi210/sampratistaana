@@ -34,7 +34,7 @@ public interface BackupRepository {
 	 * @param relativePathInRepo Destination file path relative to repository root.
 	 * @throws IOException
 	 */
-	void createOrReplaceFiles(Path srcFile,String relativePathInRepo) throws IOException;
+	void createOrReplaceFile(Path srcFile,String relativePathInRepo) throws IOException;
 	
 	/**
 	 * Delete the file in the repository

@@ -52,7 +52,7 @@ public class OneDriveBackupRepository implements BackupRepository {
 	}
 
 	@Override
-	public void createOrReplaceFiles(Path srcFile, String relativePathInRepo) throws IOException {
+	public void createOrReplaceFile(Path srcFile, String relativePathInRepo) throws IOException {
 		Files.move(srcFile, getAbsolutePath(relativePathInRepo), StandardCopyOption.REPLACE_EXISTING);
 	}
 

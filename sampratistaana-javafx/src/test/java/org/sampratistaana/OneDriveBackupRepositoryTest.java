@@ -61,13 +61,13 @@ public class OneDriveBackupRepositoryTest {
 		//check for new file
 		Path file=createTempFile("newFile",".json");
 		write(file,"newFile".getBytes());
-		repo.createOrReplaceFiles(file, "newFile.json");
+		repo.createOrReplaceFile(file, "newFile.json");
 		assertThat("new File Created in Repository", repo.getFiles().contains("newFile.json"),equalTo(true));
 		assertThat("File Content Matches", readAllBytes(repo.getFileContent("newFile.json")),equalTo("newFile".getBytes()));
 
 		//check for updated file
 		write(file,"updated".getBytes());
-		repo.createOrReplaceFiles(file, "newFile.json");
+		repo.createOrReplaceFile(file, "newFile.json");
 		assertThat("File Content Matches", readAllBytes(repo.getFileContent("newFile.json")),equalTo("updated".getBytes()));
 	}
 

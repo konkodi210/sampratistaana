@@ -82,7 +82,7 @@ public class BackupService {
 			//create file either it is new file or there is missmatch in the content.
 			if(!filesInRepo.contains(file) 
 					|| Files.mismatch(Path.of(tmpDir.toString(), file), repo.getFileContent(file))!=-1) {
-				repo.createOrReplaceFiles(Path.of(tmpDir.toString(), file), file);
+				repo.createOrReplaceFile(Path.of(tmpDir.toString(), file), file);
 			}
 		}
 		
