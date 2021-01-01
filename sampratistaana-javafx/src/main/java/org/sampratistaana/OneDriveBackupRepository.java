@@ -3,18 +3,16 @@ package org.sampratistaana;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 /**
  * One drive implementation of repository
@@ -38,22 +36,16 @@ public class OneDriveBackupRepository implements BackupRepository {
 
 	@Override
 	public Set<String> getFiles() throws IOException {
-		final Set<String> fileSet=new HashSet<>();
-		Files.walkFileTree(Paths.get(repositoryPath), new SimpleFileVisitor<>() {
-			@Override
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				if(attrs.isRegularFile()) {
-					fileSet.add(Path.of(repositoryPath).relativize(file).toString());
-				}
-				return super.visitFile(file, attrs);
-			}
-		});
-		return fileSet;
+		Path repoPath = Path.of(repositoryPath);
+		return Files.walk(repoPath)
+				.filter(path -> Files.isRegularFile(path))
+				.map(path -> repoPath.relativize(path).toString())
+				.collect(Collectors.toSet());
 	}
 
 	@Override
 	public void createOrReplaceFile(Path srcFile, String relativePathInRepo) throws IOException {
-		Files.move(srcFile, getAbsolutePath(relativePathInRepo), StandardCopyOption.REPLACE_EXISTING);
+		Files.move(srcFile, getAbsolutePath(relativePathInRepo),REPLACE_EXISTING);
 	}
 
 	@Override
@@ -66,7 +58,7 @@ public class OneDriveBackupRepository implements BackupRepository {
 			Files.createDirectories(targetFile.getParent());
 		}
 
-		Files.move(getAbsolutePath(relativePathInRepo), targetFile,StandardCopyOption.REPLACE_EXISTING);
+		Files.move(getAbsolutePath(relativePathInRepo), targetFile,REPLACE_EXISTING);
 	}
 
 	@Override
