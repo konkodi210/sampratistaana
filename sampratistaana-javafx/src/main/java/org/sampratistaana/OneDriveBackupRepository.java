@@ -1,18 +1,18 @@
 package org.sampratistaana;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 /**
  * One drive implementation of repository
@@ -25,12 +25,15 @@ public class OneDriveBackupRepository implements BackupRepository {
 
 	@Override
 	public void init() throws IOException {
-		Properties prop=new Properties();
-		try {
-			prop.load(new FileInputStream("config.properties"));
-			repositoryPath=prop.getProperty("onedrive.dir");
-		}catch(FileNotFoundException e) {
-			repositoryPath=Paths.get(System.getProperty("user.home"), "samprathistana_backup").toString();
+		repositoryPath=System.getProperty("ONEDRIVE_DIR"); 
+		if(repositoryPath==null) {
+			Properties prop=new Properties();
+			try {
+				prop.load(new FileInputStream("config.properties"));
+				repositoryPath=prop.getProperty("onedrive.dir");
+			}catch(FileNotFoundException e) {
+				repositoryPath=Paths.get(System.getProperty("user.home"), "samprathistana_backup").toString();
+			}
 		}
 	}
 
@@ -45,6 +48,7 @@ public class OneDriveBackupRepository implements BackupRepository {
 
 	@Override
 	public void createOrReplaceFile(Path srcFile, String relativePathInRepo) throws IOException {
+		Files.createDirectories(Path.of(repositoryPath, relativePathInRepo).getParent());
 		Files.move(srcFile, getAbsolutePath(relativePathInRepo),REPLACE_EXISTING);
 	}
 

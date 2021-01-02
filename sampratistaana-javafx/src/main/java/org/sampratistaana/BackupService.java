@@ -1,5 +1,6 @@
 package org.sampratistaana;
 
+import static org.sampratistaana.ConnectionFactory.getBackupService;
 import static org.sampratistaana.ConnectionFactory.getConnection;
 
 import java.io.IOException;
@@ -43,7 +44,8 @@ public class BackupService {
 			backupDb("PROPERTIES","PROPERTY_ID",tempDir,dbRootDir,st,srcFileSet);
 			
 		}
-		syncFile(new OneDriveBackupRepository(),srcFileSet,tempDir);
+		
+		syncFile(getBackupService(),srcFileSet,tempDir);
 	}
 
 	private void backupDb(String table

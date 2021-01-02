@@ -90,4 +90,10 @@ public class ConnectionFactory {
 		}
 		return dbUrl;
 	}
+	
+	public static BackupRepository getBackupService() throws IOException{
+		BackupRepository service=new OneDriveBackupRepository();
+		service.init();
+		return service;
+	}
 }

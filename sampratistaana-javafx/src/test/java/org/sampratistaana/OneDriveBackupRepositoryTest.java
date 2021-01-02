@@ -26,6 +26,7 @@ public class OneDriveBackupRepositoryTest {
 	@Before
 	public void setup() throws Exception{
 		String dir=createTempDirectory("onedirve").toString();
+		System.setProperty("ONEDRIVE_DIR", dir);
 		writeString(Path.of(dir,"file1.json"), "file1");
 		Path file2=Path.of(dir, "db","table1","tab1.json");
 		createDirectories(file2.getParent());
