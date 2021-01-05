@@ -4,6 +4,7 @@ import static org.sampratistaana.ConnectionFactory.getBackupService;
 import static org.sampratistaana.ConnectionFactory.getConnection;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -83,7 +85,7 @@ public class BackupService {
 		for(String file:srcFile) {
 			//create file either it is new file or there is missmatch in the content.
 			if(!filesInRepo.contains(file) 
-					|| Files.mismatch(Path.of(tmpDir.toString(), file), repo.getFileContent(file))!=-1) {
+					|| mismatch(Path.of(tmpDir.toString(), file), repo.getFileContent(file))!=-1) {
 				repo.createOrReplaceFile(Path.of(tmpDir.toString(), file), file);
 			}
 		}
@@ -95,5 +97,33 @@ public class BackupService {
 			}
 		}
 	}
+	
+	//For some reason maven compile was failing. Hence copy pasted the method from Java
+	public static long mismatch(Path path, Path path2) throws IOException {
+		final int BUFFER_SIZE = 8192;
+        if (Files.isSameFile(path, path2)) {
+            return -1;
+        }
+        byte[] buffer1 = new byte[BUFFER_SIZE];
+        byte[] buffer2 = new byte[BUFFER_SIZE];
+        try (InputStream in1 = Files.newInputStream(path);
+             InputStream in2 = Files.newInputStream(path2);) {
+            long totalRead = 0;
+            while (true) {
+                int nRead1 = in1.readNBytes(buffer1, 0, BUFFER_SIZE);
+                int nRead2 = in2.readNBytes(buffer2, 0, BUFFER_SIZE);
+
+                int i = Arrays.mismatch(buffer1, 0, nRead1, buffer2, 0, nRead2);
+                if (i > -1) {
+                    return totalRead + i;
+                }
+                if (nRead1 < BUFFER_SIZE) {
+                    // we've reached the end of the files, but found no mismatch
+                    return -1;
+                }
+                totalRead += nRead1;
+            }
+        }
+    }
 	
 }
