@@ -1,5 +1,6 @@
 package org.sampratistaana;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -7,6 +8,7 @@ import java.util.ResourceBundle;
 
 public class Messages {
 	private static ResourceBundle resource;
+	private static final NumberFormat fmt= NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
 
 	public static synchronized ResourceBundle getResource() {
 		if(resource == null) {
@@ -41,5 +43,9 @@ public class Messages {
 		}else {
 			return null;
 		}
+	}
+	
+	public static String formatCurrency(double val) {
+		return fmt.format(val);
 	}
 }

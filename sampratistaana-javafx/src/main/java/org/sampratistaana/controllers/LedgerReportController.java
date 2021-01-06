@@ -5,9 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -84,7 +82,7 @@ public class LedgerReportController extends BaseController{
 	}
 
 	public static class Report{
-		static final NumberFormat fmt= NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+//		static final NumberFormat fmt= NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
 		String date;
 		String particular;
 		String voucherType;
@@ -104,11 +102,11 @@ public class LedgerReportController extends BaseController{
 			switch(ledger.getEntryType()) {
 			case CREDIT:
 				voucherType="Receipt";
-				credit=fmt.format(ledger.getEntryValue());
+				credit=Messages.formatCurrency(ledger.getEntryValue());
 				break;
 			case DEBIT:
 				voucherType="Payment";
-				debit=fmt.format(ledger.getEntryValue());
+				debit=Messages.formatCurrency(ledger.getEntryValue());
 				break;
 			default:throw new RuntimeException("Not implemented for Entry type "+ledger.getEntryType());
 			}

@@ -22,7 +22,6 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
-import javafx.util.converter.DoubleStringConverter;
 
 public class DonationEditController extends BaseController{
 	public static final String CACHE_KEY="DonationEdit";
@@ -88,7 +87,7 @@ public class DonationEditController extends BaseController{
 			}
 		}
 		externalTranNo.setText(donation.getLedger().getExternalTranNo());
-		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
+		amount.setTextFormatter(new TextFormatter<Double>(getCurrnecyConvertor()));
 		amount.setText(String.valueOf(donation.getLedger().getEntryValue()));		
 		description.setText(donation.getLedger().getEntryDesc());
 	}

@@ -22,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
+import javafx.util.converter.DoubleStringConverter;
 
 public class BaseController implements Initializable{
 	private static Map<String, Object> cache=new HashMap<>(); 
@@ -78,6 +79,17 @@ public class BaseController implements Initializable{
 			public T fromString(String value) {
 				return propertyMap.get(value);
 			}
+		};
+	}
+	
+	public DoubleStringConverter getCurrnecyConvertor() {
+		return new DoubleStringConverter() {
+
+			@Override
+			public String toString(Double value) {				
+				return String.format("%.2f", value);
+			}
+			
 		};
 	}
 

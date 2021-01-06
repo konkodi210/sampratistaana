@@ -85,8 +85,8 @@ public class Expense implements Serializable{
 		return this;
 	}
 
-	public double getAmount() {
-		return getLedger().getEntryValue();
+	public String getAmount() {
+		return Messages.formatCurrency(getLedger().getEntryValue());
 	}
 	
 	public String getDate() {

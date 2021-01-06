@@ -142,8 +142,8 @@ public class Donation implements Serializable{
 		return null;
 	}
 	
-	public double getDonationValue() {
-		return getLedger().getEntryValue();
+	public String getDonationValue() {
+		return Messages.formatCurrency(getLedger().getEntryValue());
 	}
 	
 	public String getDate() {
