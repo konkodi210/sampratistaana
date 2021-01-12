@@ -302,8 +302,8 @@ public class CreditManager {
 					.createQuery("SELECT l.entryNo , function('GROUP_CONCAT',i.unitName) as BOOK_NAMES, bs.customerName, l.entryValue "
 							+ ",l.entryDate, l.modeOfTranscation, l.externalTranNo "
 							+ "FROM BookSale bs "
-							+ "LEFT OUTER JOIN bs.ledger l "
-							+ "LEFT OUTER JOIN bs.inventory i "
+							+ "INNER JOIN bs.ledger l "
+							+ "INNER JOIN bs.inventory i "
 							+ "GROUP BY l.entryNo ORDER BY l.entryNo DESC",Object[].class)
 					.stream()
 					.map(arr -> new BookSaleUIList()
