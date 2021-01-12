@@ -112,7 +112,7 @@ public class BookSaleEditControler extends BaseController {
 		Ledger ledger = bookSaleMap.size()>0 ? editList.get(0).getLedger():new Ledger();
 		bookSaleTable.setUserData(ledger);
 		for(Toggle toggle:paymentType.getToggles()) {			
-			if(ledger.getModeOfTranscation().toString().equals(toggle.getProperties().get("value"))) {
+			if(ledger.getModeOfTranscation()!=null && ledger.getModeOfTranscation().toString().equals(toggle.getProperties().get("value"))) {
 				paymentType.selectToggle(toggle);
 				break;
 			}
