@@ -94,6 +94,7 @@ public class DonationEditController extends BaseController{
 
 	public void saveDonation() throws IOException{
 		Donation donation = (Donation)donationForm.getUserData();
+		TransactionMode tranMode = TransactionMode.valueOf(getToggleValue(paymentType));
 		donation.setName(name.getText())
 		.setNickName(nickName.getText())
 		.setAddress(address.getText())
@@ -104,10 +105,11 @@ public class DonationEditController extends BaseController{
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)
 			.setExternalTranNo(externalTranNo.getText())
-			.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
+			.setModeOfTranscation(tranMode)
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setPanNo(pan.getText())
 			.setFundType(fundType.getValue().getPropertyValue())
+			.setBankAccount(tranMode == TransactionMode.CASH?null:depositAccount.getValue())
 			.setEntryDesc(description.getText());
 		if(dateOfBirth.getValue()!=null) {
 			donation.setDateOfBirth(dateOfBirth.getValue());

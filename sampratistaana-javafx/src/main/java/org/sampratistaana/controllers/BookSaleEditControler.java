@@ -33,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.util.Callback;
 
@@ -54,8 +55,7 @@ public class BookSaleEditControler extends BaseController {
 	private int index;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		entryDate.setValue(LocalDate.now());
+	public void initialize(URL location, ResourceBundle resources) {		
 		bookSaleTable.getColumns().forEach((TableColumn col) -> {
 			if(col.getId().equals("quantity")) {
 				//Add Spinner for quantity
@@ -91,50 +91,73 @@ public class BookSaleEditControler extends BaseController {
 				return prop;
 			});
 		});
+		
+		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
+			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
+			depositAccountLabel.setVisible(depositAccount.isVisible());
+		});
 
 		index=1;
 		List<BookSale> editList=(List<BookSale>)removeFromCache(CACHE_KEY);
 		Map<Long,BookSale> bookSaleMap=stream(editList)
 				.collect(Collectors.toMap(book -> book.getInventory().getInventoryId(), book -> book));
-		
+
 		bookSaleTable.setItems(		
 				FXCollections.observableList(
 						stream(new CreditManager().getInventory(InventoryType.BOOK))
 						.map(inv -> new BookEntry(inv, bookSaleMap.get(inv.getInventoryId()),index++))
 						.collect(Collectors.toList())));
-		
+
 		//save ledger reference for making a sale. As per design, we will have one ledger entry for complete sale
 		Ledger ledger = bookSaleMap.size()>0 ? editList.get(0).getLedger():new Ledger();
 		bookSaleTable.setUserData(ledger);
-		
+		for(Toggle toggle:paymentType.getToggles()) {			
+			if(ledger.getModeOfTranscation().toString().equals(toggle.getProperties().get("value"))) {
+				paymentType.selectToggle(toggle);
+				break;
+			}
+		}
+		pan.setText(ledger.getPanNo());
+		externalTranNo.setText(ledger.getExternalTranNo());
+		entryDate.setValue(ledger.getEntryDate()!=null? ledger.getEntryDate(): LocalDate.now());
+
 		setComboxItems(depositAccount,lov().getBankAccountTable());
-		
+
 		if(ledger.getBankAccount()!=null) {
 			depositAccount.setValue(ledger.getBankAccount());
 		}else if(depositAccount.getItems().size()>0) {
 			depositAccount.setValue(depositAccount.getItems().get(0));
 		}
-		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
-			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
-			depositAccountLabel.setVisible(depositAccount.isVisible());
-		});
 		
 		//enable save only if any book is selected for sale
 		grandTotal.textProperty().addListener((ob, old, newVal) -> saleSaveBtn.setDisable(Double.parseDouble(newVal) == 0));
 		grandTotal.setText(String.valueOf(ledger.getEntryValue()));
+
+		if(bookSaleMap.size() > 0) {
+			for(BookSale bookSale:bookSaleMap.values()) {
+				customerName.setText(bookSale.getCustomerName());
+				sellerName.setText(bookSale.getSellerName());
+				break;
+			}
+		}
 	}
 
 	public void makeSale() throws Exception {
+		TransactionMode tranMode = TransactionMode.valueOf(getToggleValue(paymentType));
 		Ledger ledger= ((Ledger)bookSaleTable.getUserData())
-				.setModeOfTranscation(TransactionMode.valueOf((String)paymentType.getSelectedToggle().getProperties().get("value")))
+				.setModeOfTranscation(tranMode)
 				.setExternalTranNo(externalTranNo.getText())
+				.setBankAccount(tranMode == TransactionMode.CASH?null:depositAccount.getValue())
+				.setEntryDate(entryDate.getValue())
 				.setPanNo(pan.getText());
-		
+
 		//Collect the entry from table table and make array of books sale to save
 		new CreditManager().makeBookSale(stream(bookSaleTable.getItems())
-				.filter(x -> x.quantity.get() > 0)//select only books where quantity is more than zero
+				//select only books where quantity is more than zero or current count is zero but old count is greater than zero
+				.filter(x -> x.quantity.get() > 0 || x.quantity.get() ==0 && x.bookSale.getUnitCount() >0 )
 				.map(x -> x.bookSale
 						.setCustomerName(customerName.getText())
+						.setSellerName(sellerName.getText())
 						.setUnitCount(x.quantity.get())
 						.setInventory(x.inventory)
 						.setLedger(ledger))
@@ -186,10 +209,10 @@ public class BookSaleEditControler extends BaseController {
 			}
 			throw new NullPointerException("No Property for id="+id);
 		}
-		
+
 		public void setUnitCount(int unitCount) {
 			this.quantity.set(unitCount);
 		}
-		
+
 	}
 }

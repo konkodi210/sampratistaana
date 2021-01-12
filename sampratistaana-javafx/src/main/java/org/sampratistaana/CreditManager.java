@@ -262,7 +262,7 @@ public class CreditManager {
 			ledger.setEntryCategory(EntryCategory.BOOK_SALE)
 			.setEntryType(EntryType.CREDIT)
 			.setEntryValue(totalPrice)
-			.setEntryDate(LocalDate.now());
+			.setEntryDate(ledger.getEntryDate()==null?LocalDate.now():ledger.getEntryDate());
 
 			session.saveOrUpdate(ledger);
 
@@ -280,7 +280,11 @@ public class CreditManager {
 				}				
 				inv.setInventoryCount(currentInventory - bookSale.getUnitCount());
 				session.saveOrUpdate(inv);
-				session.saveOrUpdate(bookSale);
+				if(bookSale.getUnitCount() == 0 && bookSale.getOldUnitCount() >0 ) {
+					session.delete(bookSale);
+				}else {
+					session.saveOrUpdate(bookSale);
+				}
 			}
 			tran.commit();
 		}catch(Exception e) {

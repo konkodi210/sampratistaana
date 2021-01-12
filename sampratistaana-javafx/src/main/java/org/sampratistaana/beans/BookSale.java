@@ -33,8 +33,11 @@ public class BookSale implements Serializable{
 	@Column(name = "UNIT_COUNT", nullable = false)
 	private int unitCount;
 	
-	@Column(name = "CUSTOMER_NAME", nullable = false)
+	@Column(name = "CUSTOMER_NAME")
 	private String customerName;
+	
+	@Column(name = "SELLER_NAME")
+	private String sellerName;
 	
 	@Transient
 	private int oldUnitCount;
@@ -90,10 +93,19 @@ public class BookSale implements Serializable{
 		return this.oldUnitCount;
 	}
 
+	public String getSellerName() {
+		return sellerName;
+	}
+
+	public BookSale setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return "BookSale [bookSaleId=" + bookSaleId + ", ledger=" + ledger + ", inventory=" + inventory + ", unitCount="
-				+ unitCount + ", customerName=" + customerName + "]";
+				+ unitCount + ", customerName=" + customerName + ", sellerName=" + sellerName + "]";
 	}
 	
 }
