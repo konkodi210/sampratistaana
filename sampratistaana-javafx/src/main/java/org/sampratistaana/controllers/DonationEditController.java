@@ -102,7 +102,7 @@ public class DonationEditController extends BaseController{
 		.setPhoneNo(phoneNo.getText())
 		.setEmail(email.getText())
 		.getLedger()
-			.setEntryCategory(EntryCategory.MEMBER)
+			.setEntryCategory(EntryCategory.DONATION)
 			.setEntryType(EntryType.CREDIT)
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(tranMode)
