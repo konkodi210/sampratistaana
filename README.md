@@ -36,7 +36,15 @@
 Here you go! download the build zip file [Link](https://drive.google.com/drive/u/1/folders/1nS6-01FjTi6k3HjZwEM_1K9tVSdcmDiP)
 
 
+## Miscellaneous
 
-   
- 
+# To use Kannada (regional) scripts in windows 10
+
+Follow these steps. (But remember to switch languages in windows bar to English for regular use.)
+
+1. Go to settings by typing Region and Language
+2. Add new language as "KANNADA"
+3. Open Samprathishatana app and type using Kannada keyboard.
+4. Remember to purchase Kannda keyboard sticker or keyboard for easy usage.
+
 
