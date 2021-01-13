@@ -21,3 +21,22 @@
 
 ## Data Model
 ![Data Model](./Datamodel.png)
+
+## App Build Details 
+ Steps to be followed: 
+1. Download the latest build from git attached(.zip file)
+2. Copy the zip file in your any drive
+3. Unzip into same drive
+4. Create shortcut for Samprathishtaana.bat to Desktop (if needed)
+5. Double click the shortcut Samprathishtaana.bat
+6. Perform Testing
+
+## Build version to download
+
+## Version 1.1
+
+
+
+   
+ 
+
