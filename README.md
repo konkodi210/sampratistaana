@@ -51,6 +51,6 @@ Follow these steps. (But remember to switch languages in windows bar to English 
 
 ![Step 2](./Kannada_script_step_2.JPG)
 
-![Step 3](./Kannada_script_step_3.JPG)
+![Step 3](./Kannada_script_step_3.png)
 
 
