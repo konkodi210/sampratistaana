@@ -47,10 +47,10 @@ Follow these steps. (But remember to switch languages in windows bar to English 
 3. Open Samprathishatana app and type using Kannada keyboard.
 4. Remember to purchase Kannda keyboard sticker or keyboard for easy usage.
 
-![Step 1](./Kannada_script_step_1.JPG)
+![Step 1](./[Kannada script_step_1.JPG])
 
-![Step 2](./Kannada_script_step_2.JPG)
+![Step 2](./Kannada script_step_2.JPG)
 
-![Step 3](./Kannada_script_step_3.JPG)
+![Step 3](./Kannada script_step_3.JPG)
 
 
