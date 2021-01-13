@@ -18,7 +18,6 @@ import org.sampratistaana.Messages;
 import org.sampratistaana.ReportManager;
 import org.sampratistaana.beans.Ledger;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
@@ -40,14 +39,21 @@ public class LedgerReportController extends BaseController{
 
 	@FXML
 	private void generateReport() {
-		reportTable.setItems(
-				FXCollections.observableList(
-						stream(new ReportManager()
-								.generateFinacialAuditReport(fromDate.getValue(), toDate.getValue()))
-						.map(ledger -> new Report(ledger))
-						.collect(Collectors.toList())
-						)
+		setTableItems(
+				reportTable,
+				stream(new ReportManager()
+						.generateFinacialAuditReport(fromDate.getValue(), toDate.getValue()))
+				.map(ledger -> new Report(ledger))
+				.collect(Collectors.toList())
 				);
+//		reportTable.setItems(
+//				FXCollections.observableList(
+//						stream(new ReportManager()
+//								.generateFinacialAuditReport(fromDate.getValue(), toDate.getValue()))
+//						.map(ledger -> new Report(ledger))
+//						.collect(Collectors.toList())
+//						)
+//				);
 	}
 
 	@FXML

@@ -40,12 +40,14 @@ public class LovAdminController extends BaseController{
 				throw new NullPointerException("No implementation provided for "+col.getId());
 			}
 		});
+		
 		lovTable
 		.getSelectionModel()
 		.selectedItemProperty()
 		.addListener((obs,oldVal,newVal) -> {
 			deleteBtn.setDisable(false);
 		});		
+		
 		lovComboBox.setItems(
 				FXCollections.observableArrayList(
 						stream(lov().getLovs())
@@ -57,13 +59,17 @@ public class LovAdminController extends BaseController{
 			//deleteBtn.setDisable(false);
 			addBtn.setDisable(false);
 			System.out.printf("Value CHange %s=%s\n",newVal.propertyName,newVal.propertyKey);
-			lovTable.setItems(
-					FXCollections.observableArrayList(
-							stream(lov().getProperties(newVal.propertyName,newVal.propertyKey))
-							.map(prop -> new DisplayProp(prop))
-							.collect(Collectors.toList())));
+			setTableItems(lovTable,
+					stream(lov().getProperties(newVal.propertyName,newVal.propertyKey))
+					.map(prop -> new DisplayProp(prop))
+					.collect(Collectors.toList()));
+//			lovTable.setItems(
+//					FXCollections.observableArrayList(
+//							stream(lov().getProperties(newVal.propertyName,newVal.propertyKey))
+//							.map(prop -> new DisplayProp(prop))
+//							.collect(Collectors.toList())));
 		});
-
+		
 		if(lovComboBox.getItems().size()>0) {
 			lovComboBox.setValue(lovComboBox.getItems().get(0));
 		}

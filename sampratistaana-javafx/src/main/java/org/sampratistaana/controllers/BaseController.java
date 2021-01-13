@@ -1,6 +1,8 @@
 package org.sampratistaana.controllers;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -10,6 +12,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
+import org.controlsfx.control.table.TableFilter;
 import org.sampratistaana.ListOfValues;
 import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
@@ -81,7 +84,7 @@ public class BaseController implements Initializable{
 			}
 		};
 	}
-	
+
 	public DoubleStringConverter getCurrnecyConvertor() {
 		return new DoubleStringConverter() {
 
@@ -89,7 +92,7 @@ public class BaseController implements Initializable{
 			public String toString(Double value) {				
 				return String.format("%.2f", value);
 			}
-			
+
 		};
 	}
 
@@ -114,5 +117,23 @@ public class BaseController implements Initializable{
 			return (String)toggleGroup.getSelectedToggle().getProperties().get("value");
 		}
 		return null;
+	}
+
+	protected <T> void setTableItems(TableView<T> table,List<T> items) {
+		table.setItems(FXCollections.observableArrayList(items));
+		//TODO: This throws reflection error. It is not harming functionality. Hence suppressing it
+		PrintStream out=System.out;
+		PrintStream err=System.err; 
+		try {
+			//supress errors.
+			System.setErr(new PrintStream(OutputStream.nullOutputStream()));
+			System.setOut(new PrintStream(OutputStream.nullOutputStream()));
+			TableFilter.forTableView(table).apply();
+		}catch(Exception e) {
+			
+		}finally {
+			System.setOut(out);
+			System.setOut(err);
+		}
 	}
 }

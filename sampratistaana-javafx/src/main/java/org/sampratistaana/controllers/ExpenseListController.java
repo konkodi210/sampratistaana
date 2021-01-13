@@ -10,7 +10,6 @@ import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -27,7 +26,8 @@ public class ExpenseListController extends BaseController{
 	public void initialize(URL location, ResourceBundle resources) {
 		intializeTableColumns(expenseList);
 		//TBD
-		expenseList.setItems(FXCollections.observableArrayList(new CreditManager().getAllExpenses()));
+//		expenseList.setItems(FXCollections.observableArrayList(new CreditManager().getAllExpenses()));
+		setTableItems(expenseList, new CreditManager().getAllExpenses());
 		expenseList
 		.getSelectionModel()
 		.selectedItemProperty()

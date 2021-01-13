@@ -10,7 +10,6 @@ import org.sampratistaana.beans.Donation;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -29,14 +28,15 @@ public class DonationListController extends BaseController{
 		for(TableColumn<Donation, ?> col:donationList.getColumns()) {
 			col.setCellValueFactory(new PropertyValueFactory<>(col.getId()));
 		}
-		donationList.setItems(FXCollections.observableArrayList(new CreditManager().getAllDonations()));
+//		donationList.setItems(FXCollections.observableArrayList(new CreditManager().getAllDonations()));
+		setTableItems(donationList,new CreditManager().getAllDonations());
 		donationList
 		.getSelectionModel()
 		.selectedItemProperty()
 		.addListener((obs,oldVal,newVal) -> {
 			editBtn.setDisable(false);
 			deleteBtn.setDisable(false);
-		});		
+		});
 	}
 	
 	public void loadNewDonation() throws IOException {

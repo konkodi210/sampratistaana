@@ -13,10 +13,11 @@ module org.sampratistaana {
     requires poi;   
     requires com.google.gson;
     requires com.fasterxml.classmate;
+    requires org.controlsfx.controls;
     
     opens org.sampratistaana.controllers;
     opens org.sampratistaana.beans;
     opens org.sampratistaana to javafx.fxml;
+    
     exports org.sampratistaana;
-    exports org.sampratistaana.controllers;
 }

@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import org.sampratistaana.CreditManager;
 import org.sampratistaana.beans.BookSaleUIList;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -20,7 +19,8 @@ public class BookSaleListController extends BaseController {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		intializeTableColumns(bookSaleList);
-		bookSaleList.setItems(FXCollections.observableList(new CreditManager().getBookSaleList()));
+//		bookSaleList.setItems(FXCollections.observableList(new CreditManager().getBookSaleList()));
+		setTableItems(bookSaleList, new CreditManager().getBookSaleList());
 		bookSaleList
 		.getSelectionModel()
 		.selectedItemProperty()

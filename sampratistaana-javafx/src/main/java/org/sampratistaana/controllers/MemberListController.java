@@ -14,7 +14,6 @@ import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -32,7 +31,8 @@ public class MemberListController extends BaseController{
 	public void initialize(URL location, ResourceBundle resources) {
 		intializeTableColumns(memberList);
 		
-		memberList.setItems(FXCollections.observableArrayList(new CreditManager().getAllMembers()));
+//		memberList.setItems(FXCollections.observableArrayList(new CreditManager().getAllMembers()));
+		setTableItems(memberList, new CreditManager().getAllMembers());
 		memberList
 		.getSelectionModel()
 		.selectedItemProperty()
