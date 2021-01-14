@@ -14,6 +14,7 @@ import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Inventory.InventoryType;
 import org.sampratistaana.beans.Ledger;
 import org.sampratistaana.beans.Ledger.TransactionMode;
+import org.sampratistaana.beans.Member;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -96,6 +97,13 @@ public class BookSaleEditControler extends BaseController {
 			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
 			depositAccountLabel.setVisible(depositAccount.isVisible());
 		});
+		
+		Member member = null;
+		if(getFromCache(CACHE_KEY) instanceof Member) {
+			member = (Member)removeFromCache(CACHE_KEY);
+			customerName.setText(member.getName());
+			pan.setText(member.getLedger().getPanNo());
+		}
 
 		index=1;
 		List<BookSale> editList=(List<BookSale>)removeFromCache(CACHE_KEY);
@@ -117,7 +125,9 @@ public class BookSaleEditControler extends BaseController {
 				break;
 			}
 		}
-		pan.setText(ledger.getPanNo());
+		if(member==null) {
+			pan.setText(ledger.getPanNo());
+		}
 		externalTranNo.setText(ledger.getExternalTranNo());
 		entryDate.setValue(ledger.getEntryDate()!=null? ledger.getEntryDate(): LocalDate.now());
 

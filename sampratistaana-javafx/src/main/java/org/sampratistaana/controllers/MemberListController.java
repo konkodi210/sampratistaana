@@ -26,6 +26,7 @@ public class MemberListController extends BaseController{
 	@FXML private Button editBtn;
 	@FXML private Button deleteBtn;
 	@FXML private Button addDonation;
+	@FXML private Button bookSale;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -40,6 +41,7 @@ public class MemberListController extends BaseController{
 			editBtn.setDisable(false);
 			deleteBtn.setDisable(false);
 			addDonation.setDisable(false);
+			bookSale.setDisable(false);
 		});
 	}
 
@@ -92,5 +94,11 @@ public class MemberListController extends BaseController{
 						)
 				);
 		loadForm("DonationForm");
+	}
+	
+	@FXML
+	public void openBookSale() throws IOException{
+		addToCache(BookSaleEditControler.CACHE_KEY, memberList.getSelectionModel().getSelectedItem());
+		new BookSaleListController().loadBookSale();
 	}
 }

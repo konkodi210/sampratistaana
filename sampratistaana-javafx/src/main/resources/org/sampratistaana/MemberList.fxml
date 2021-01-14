@@ -28,6 +28,7 @@
           	<Button fx:id="editBtn" text="%common.edit" onAction="#editMember" disable="true"/>
             <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteMember" disable="true"/>
             <Button fx:id="addDonation" text="%member.action.new-donnation" onAction="#addNewDonation" disable="true"/>
+            <Button fx:id="bookSale" text="%menu.book.sale" onAction="#openBookSale" disable="true"/>
         </buttons>
       </ButtonBar>
       <TableView fx:id="memberList" editable="true" tableMenuButtonVisible="true" >

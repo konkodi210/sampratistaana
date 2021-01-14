@@ -1,5 +1,6 @@
 package org.sampratistaana.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,10 +31,10 @@ public class BookSaleListController extends BaseController {
 		});
 	}
 	
-	public void loadBookSale() throws Exception {
+	public void loadBookSale() throws IOException {
 		loadForm("BookSale");
 	}
-	public void editBookSale() throws Exception{		
+	public void editBookSale() throws IOException{		
 		addToCache(BookSaleEditControler.CACHE_KEY,
 				new CreditManager()
 				.getBookSale(bookSaleList
