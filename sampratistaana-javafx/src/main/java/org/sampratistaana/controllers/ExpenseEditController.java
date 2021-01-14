@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Toggle;
@@ -31,7 +32,7 @@ public class ExpenseEditController extends BaseController{
 	@FXML private TextField amount;
 	@FXML private ToggleGroup paymentType;
 	@FXML private TextField externalTranNo;
-	@FXML private TextField description;
+	@FXML private TextArea description;
 	@FXML private ComboBox<Property> expenseType;
 	@FXML private ComboBox<Property> fundType;
 	@FXML private ComboBox<BankAccount> bankAccount;
