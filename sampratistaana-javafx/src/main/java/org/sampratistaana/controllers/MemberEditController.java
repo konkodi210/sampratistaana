@@ -10,6 +10,7 @@ import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
+import org.sampratistaana.beans.Member.MemberStatus;
 import org.sampratistaana.beans.Member.MembershipType;
 
 import javafx.fxml.FXML;
@@ -44,6 +45,7 @@ public class MemberEditController extends BaseController{
 	@FXML private TextField description;
 	@FXML private Label depositAccountLabel;
 	@FXML private ComboBox<BankAccount> depositAccount;
+	@FXML private ToggleGroup memberStatus;
 
 
 	@Override
@@ -67,30 +69,32 @@ public class MemberEditController extends BaseController{
 		name.setText(member.getName());
 		nickName.setText(member.getNickName());
 		address.setText(member.getAddress());
-		for(Toggle toggle:membership.getToggles()) {			
-			if(member.getMembershipType().toString().equals(toggle.getProperties().get("value"))) {
-				membership.selectToggle(toggle);
-				break;
-			}
-		}
+		setToggleValue(membership, member.getMembershipType());
+//		for(Toggle toggle:membership.getToggles()) {			
+//			if(member.getMembershipType().toString().equals(toggle.getProperties().get("value"))) {
+//				membership.selectToggle(toggle);
+//				break;
+//			}
+//		}
 		mobileNo.setText(member.getMobileNo());
 		phoneNo.setText(member.getPhoneNo());		
 		email.setText(member.getEmail());
 		if(member.getDateOfBirth()!=null) {
 			dateOfBirth.setValue(member.getDateOfBirth());
 		}
-		for(Toggle toggle:paymentType.getToggles()) {			
-			if(member.getPaymentType().toString().equals(toggle.getProperties().get("value"))) {
-				paymentType.selectToggle(toggle);
-				break;
-			}
-		}
+		setToggleValue(paymentType, member.getPaymentType());
+//		for(Toggle toggle:paymentType.getToggles()) {			
+//			if(member.getPaymentType().toString().equals(toggle.getProperties().get("value"))) {
+//				paymentType.selectToggle(toggle);
+//				break;
+//			}
+//		}
 		externalTranNo.setText(member.getLedger().getExternalTranNo());
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(member.getLedger().getEntryValue()));		
 		description.setText(member.getLedger().getEntryDesc());
 		pan.setText(member.getLedger().getPanNo());
-
+		setToggleValue(memberStatus, member.getMemberStatus());
 	}
 
 	public void loadMembers() throws IOException {
@@ -106,7 +110,8 @@ public class MemberEditController extends BaseController{
 		.setMobileNo(mobileNo.getText())
 		.setPhoneNo(phoneNo.getText())
 		.setEmail(email.getText())
-		.setMembershipType(MembershipType.valueOf(getToggleValue(membership)))		
+		.setMembershipType(MembershipType.valueOf(getToggleValue(membership)))
+		.setMemberStatus(MemberStatus.valueOf(getToggleValue(memberStatus)))
 		.getLedger()
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)

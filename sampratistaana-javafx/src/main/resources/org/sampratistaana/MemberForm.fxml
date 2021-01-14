@@ -105,7 +105,23 @@
             </FlowPane>
             <Label text="%donation.pan" GridPane.rowIndex="7" />
             <TextField fx:id="pan" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            
+            <Label text="%member.status" GridPane.rowIndex="7" GridPane.columnIndex="2" />
+            <FlowPane alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="7">
+               <children>
+               	  <RadioButton id="active" mnemonicParsing="false" selected="true" text="%member.status.active">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="memberStatus" />
+                     </toggleGroup>
+                     <properties value="ACTIVE" />
+                  </RadioButton>
+                  <RadioButton id="exipred" mnemonicParsing="false" text="%member.status.inacive" toggleGroup="$memberStatus">
+                    <properties value="EXPIRED" />
+                  </RadioButton>
+                  <RadioButton id="dead" mnemonicParsing="false" text="%member.status.dead" toggleGroup="$memberStatus">
+                    <properties value="DEAD" />
+                  </RadioButton>
+               </children>
+            </FlowPane>
          </children>
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="100.0" />

@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.sampratistaana.Messages;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 
 @Entity
@@ -23,6 +24,7 @@ import org.sampratistaana.beans.Ledger.TransactionMode;
 public class Member implements Serializable{
 	private static final long serialVersionUID = 2435744732575061197L;
 	public enum MembershipType {LIFE, YEARLY}
+	public enum MemberStatus{ACTIVE,EXPIRED,DEAD}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MEMBER_NO", nullable = false)
@@ -55,6 +57,9 @@ public class Member implements Serializable{
 
 	@Column(name = "DATE_OF_BIRTH")
 	private LocalDate dateOfBirth;
+	
+	@Column(name="MEMBER_STATUS", nullable = false)
+	private MemberStatus memberStatus=MemberStatus.ACTIVE;
 	
 	public Ledger getLedger() {
 		return ledger;
@@ -107,6 +112,7 @@ public class Member implements Serializable{
 
 	public Member setMembershipType(MembershipType membershipType) {
 		this.membershipType = membershipType;
+		reCaliculateMemberStatus();
 		return this;
 	}
 
@@ -163,6 +169,29 @@ public class Member implements Serializable{
 			return formatDate(getLedger().getEntryDate());
 		}
 		return null;
+	}
+	
+	public MemberStatus getMemberStatus() {
+		reCaliculateMemberStatus();
+		return memberStatus;
+	}
+
+	public Member setMemberStatus(MemberStatus memberStatus) {
+		this.memberStatus = memberStatus;
+		return this;
+	}
+	
+	public void reCaliculateMemberStatus() {
+		if(memberStatus==MemberStatus.EXPIRED) {
+			//do Nothing. 
+		}else if(membershipType==MembershipType.YEARLY &&
+				ledger!=null && ledger.getEntryDate().getYear()<LocalDate.now().getYear()) {
+			memberStatus=MemberStatus.EXPIRED;
+		}
+	}
+	
+	public String getMemberStatusLocalized() {
+		return Messages.getMessage(getMemberStatus().toString());
 	}
 
 	@Override

@@ -37,6 +37,7 @@
           <TableColumn id="name" text="%member.name" />
           <TableColumn id="nickName" text="%member.nickname" />
           <TableColumn id="membershipType" text="%member.type" />
+          <TableColumn id="memberStatusLocalized" text="%member.status" />
           <TableColumn id="membershipFee" text="%member.amount" />
           <TableColumn id="date" text="%member.date" />
           <TableColumn id="email" text="%member.email" />

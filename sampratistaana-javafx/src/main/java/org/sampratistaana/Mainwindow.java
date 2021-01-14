@@ -25,7 +25,7 @@ public class Mainwindow extends Application {
 	@Override
     public void start(Stage stage) throws IOException {
 		Platform.runLater(() -> {try(Session session=ConnectionFactory.dbSession()){}});
-        scene = new Scene(loadFXML("MainWindow"),1000,700);
+        scene = new Scene(loadFXML("MainWindow"),1200,700);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle(getMessage("window.title"));
         stage.centerOnScreen();

@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
@@ -118,6 +119,18 @@ public class BaseController implements Initializable{
 		}
 		return null;
 	}
+	
+	protected void setToggleValue(ToggleGroup control,Object val) {
+		if(val == null) {
+			return;
+		}
+		for(Toggle toggle:control.getToggles()) {			
+			if(val.toString().equals(toggle.getProperties().get("value"))) {
+				control.selectToggle(toggle);
+				break;
+			}
+		}
+	}
 
 	protected <T> void setTableItems(TableView<T> table,List<T> items) {
 		table.setItems(FXCollections.observableArrayList(items));
@@ -135,5 +148,6 @@ public class BaseController implements Initializable{
 			System.setOut(out);
 			System.setOut(err);
 		}
-	}
+	}	
+
 }
