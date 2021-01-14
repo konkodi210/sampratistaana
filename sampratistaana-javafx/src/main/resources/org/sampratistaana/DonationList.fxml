@@ -25,6 +25,7 @@
       </ButtonBar>
       <TableView fx:id="donationList" editable="true" tableMenuButtonVisible="true" >
         <columns>
+           <TableColumn id="donationId" text="%common.serial-no" />
           <TableColumn id="name" text="%member.name" />
           <TableColumn id="nickName" text="%member.nickname" />
           <TableColumn id="fund" text="%fund" />          
@@ -34,10 +35,10 @@
           <TableColumn id="mobileNo" text="%member.mobile" />
           <TableColumn id="phoneNo" text="%member.phone" />
           <TableColumn id="paymentType" text="%member.payment-type" />
-          <TableColumn id="panNo" text="%donation.pan" visible="false" />
+          <!-- TableColumn id="panNo" text="%donation.pan" visible="false" />
           <TableColumn id="address" text="%member.address" visible="false" />	  
 		  <TableColumn id="dob" text="%member.dob" visible="false" />
-		  <TableColumn id="description" text="%member.description" visible="false" />
+		  <TableColumn id="description" text="%member.description" visible="false" /-->
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -32,6 +32,7 @@
       </ButtonBar>
       <TableView fx:id="memberList" editable="true" tableMenuButtonVisible="true" >
         <columns>
+          <TableColumn id="memberNo" text="%common.serial-no" />
           <TableColumn id="name" text="%member.name" />
           <TableColumn id="nickName" text="%member.nickname" />
           <TableColumn id="membershipType" text="%member.type" />
