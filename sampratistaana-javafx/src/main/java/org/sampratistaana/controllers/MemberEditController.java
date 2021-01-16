@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
+import org.sampratistaana.Messages;
 import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
@@ -20,7 +21,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.DoubleStringConverter;
@@ -58,6 +58,11 @@ public class MemberEditController extends BaseController{
 		}else if(depositAccount.getItems().size()>0) {
 			depositAccount.setValue(depositAccount.getItems().get(0));
 		}
+		
+		if(member.getLedger().getEntryNo()==0) {
+			member.getLedger().setEntryDesc(Messages.getMessage("common.adhar")+":");
+		}
+		
 		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
 			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
 			depositAccountLabel.setVisible(depositAccount.isVisible());

@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.sampratistaana.TestUtils.createMember;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;

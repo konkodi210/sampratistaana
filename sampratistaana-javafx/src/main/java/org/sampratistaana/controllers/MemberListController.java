@@ -13,6 +13,7 @@ import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
+import org.sampratistaana.beans.Member.MemberStatus;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,6 +25,7 @@ public class MemberListController extends BaseController{
 
 	@FXML private TableView<Member> memberList;
 	@FXML private Button editBtn;
+	@FXML private Button renewBtn;
 	@FXML private Button deleteBtn;
 	@FXML private Button addDonation;
 	@FXML private Button bookSale;
@@ -31,8 +33,8 @@ public class MemberListController extends BaseController{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		intializeTableColumns(memberList);
-		
-//		memberList.setItems(FXCollections.observableArrayList(new CreditManager().getAllMembers()));
+
+		//memberList.setItems(FXCollections.observableArrayList(new CreditManager().getAllMembers()));
 		setTableItems(memberList, new CreditManager().getAllMembers());
 		memberList
 		.getSelectionModel()
@@ -42,6 +44,9 @@ public class MemberListController extends BaseController{
 			deleteBtn.setDisable(false);
 			addDonation.setDisable(false);
 			bookSale.setDisable(false);
+			if(newVal.getMemberStatus()==MemberStatus.EXPIRED) {
+				renewBtn.setDisable(false);
+			}
 		});
 	}
 
@@ -70,7 +75,15 @@ public class MemberListController extends BaseController{
 		addToCache(MemberEditController.CACHE_KEY, memberList.getSelectionModel().getSelectedItem());
 		loadForm(MEMBER_FORM);
 	}
-	
+
+	public void renewMember() throws IOException{
+		Member member = memberList.getSelectionModel().getSelectedItem();
+		Member renewMember=member.setMemberNo(0);
+		renewMember.getLedger().setEntryNo(0);
+		addToCache(MemberEditController.CACHE_KEY,renewMember);
+		loadForm(MEMBER_FORM);
+	}
+
 	@FXML
 	public void addNewDonation() throws IOException{
 		Member member = memberList.getSelectionModel().getSelectedItem();
@@ -95,7 +108,7 @@ public class MemberListController extends BaseController{
 				);
 		loadForm("DonationForm");
 	}
-	
+
 	@FXML
 	public void openBookSale() throws IOException{
 		addToCache(BookSaleEditControler.CACHE_KEY, memberList.getSelectionModel().getSelectedItem());

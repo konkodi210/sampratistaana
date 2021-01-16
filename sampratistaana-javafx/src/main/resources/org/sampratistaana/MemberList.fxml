@@ -26,6 +26,7 @@
         <buttons>
             <Button id="newMember" text="%member.action.new" onAction="#loadNewMemberForm"/>
           	<Button fx:id="editBtn" text="%common.edit" onAction="#editMember" disable="true"/>
+          	<Button fx:id="renewBtn" text="%member.renew" onAction="#renewMember" disable="true"/>
             <Button fx:id="deleteBtn" text="%common.delete" onAction="#deleteMember" disable="true"/>
             <Button fx:id="addDonation" text="%member.action.new-donnation" onAction="#addNewDonation" disable="true"/>
             <Button fx:id="bookSale" text="%menu.book.sale" onAction="#openBookSale" disable="true"/>
