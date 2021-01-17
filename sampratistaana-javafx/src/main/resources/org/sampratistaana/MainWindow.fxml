@@ -23,6 +23,7 @@
 	   </Menu>
 	   <Menu text="%menu.report">
 	   	 <MenuItem id="ledgerReportMenu" text="%menu.ledger-report" onAction="#openLedgerReport" />
+	   	 <MenuItem id="otherReport" text="%menu.other-report" onAction="#openOtherReport" />
 	   </Menu>
 	   <Menu text="%admin" id="admin">
 	   	<MenuItem id="adminDropdown" text="%admin.dropdown" onAction="#openLovAdmin"/>

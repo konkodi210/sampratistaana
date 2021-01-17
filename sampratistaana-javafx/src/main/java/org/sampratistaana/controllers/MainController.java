@@ -48,4 +48,9 @@ public class MainController {
 	private void openLedgerReport() throws IOException{
 		loadForm("LedgerReport");
 	}
+	
+	@FXML
+	private void openOtherReport() throws IOException{
+		loadForm("DyanmicReport");
+	}
 }

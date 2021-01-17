@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reports>
+  <Report name="member">
+   <Param name="name" dataType="string"/>
+   <Query>
+    <![CDATA[
+    	select * from MEMBER where name=:name
+    ]]>
+    </Query>
+  </Report>
+</Reports>
