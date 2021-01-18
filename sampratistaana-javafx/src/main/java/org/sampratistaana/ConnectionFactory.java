@@ -18,6 +18,7 @@ import org.hibernate.type.StringType;
 import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.BookSale;
 import org.sampratistaana.beans.Donation;
+import org.sampratistaana.beans.DynamicReport;
 import org.sampratistaana.beans.Expense;
 import org.sampratistaana.beans.Inventory;
 import org.sampratistaana.beans.Ledger;
@@ -63,6 +64,7 @@ public class ConnectionFactory {
 						.addAnnotatedClass(Expense.class)
 						.addAnnotatedClass(Property.class)
 						.addAnnotatedClass(BankAccount.class)
+						.addAnnotatedClass(DynamicReport.class)
 						.getMetadataBuilder()
 						.applySqlFunction("GROUP_CONCAT", new SQLFunctionTemplate(StringType.INSTANCE, "GROUP_CONCAT(?1)"))
 						.build()
@@ -81,7 +83,7 @@ public class ConnectionFactory {
 
 	private static synchronized String dbUrl() throws IOException{
 		if(dbUrl == null) {
-			String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana_20210114.sqlite";
+			String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana_20210117.sqlite";
 			Path filePath=new File(dbFilePath).toPath();
 			if(!Files.exists(filePath)) {
 				Files.copy(ConnectionFactory.class.getResourceAsStream(DB_TEMPLATE_FILE), filePath);
