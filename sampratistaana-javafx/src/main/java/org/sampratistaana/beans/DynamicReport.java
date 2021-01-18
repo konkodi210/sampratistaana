@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.sampratistaana.Messages;
+
 @Entity
 @Table(name = "DYN_SQL_REPORT")
 public class DynamicReport implements Serializable{
@@ -54,6 +56,6 @@ public class DynamicReport implements Serializable{
 
 	@Override
 	public String toString() {
-		return reportName;
+		return Messages.getMessage(reportName);
 	}
 }

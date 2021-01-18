@@ -14,7 +14,7 @@
       <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
             <ComboBox fx:id="reportLov" />
-          <Button onAction="#exportToExcel" text="Export Excel" />
+          <Button onAction="#exportToExcel" text="Export Excel" disable="true" fx:id="excelExportBtn"/>
          </children>
       </HBox>
       <!-- GridPane fx:id="paramGrid">
