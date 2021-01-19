@@ -32,7 +32,7 @@
             <TextField fx:id="nickName" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             
             <Label text="%member.address" GridPane.rowIndex="2" />
-            <TextArea fx:id="address" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextArea fx:id="address" prefHeight="200.0"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="%donation.pan" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="pan" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             
@@ -46,11 +46,13 @@
             <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="%member.dob" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            
-            
+            <Label text="%fund" GridPane.rowIndex="5" />
+            <ComboBox fx:id="fundType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="%member.amount" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="amount" GridPane.columnIndex="3" GridPane.rowIndex="5" />      
       
             <Label text="%member.payment-type" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <FlowPane alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <FlowPane alignment="BASELINE_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" prefWidth="200.0" >
                <children>
                	  <RadioButton id="paymentCash" mnemonicParsing="false" selected="true" text="%member.cash">
                      <toggleGroup>
@@ -69,19 +71,17 @@
                   </RadioButton>
                   <Label fx:id="depositAccountLabel" text="%depoist.account" visible="false">
                      <padding>
-                        <Insets left="10.0" />
+                        <Insets left="5.0" />
                      </padding>
                   </Label>
                   <ComboBox fx:id="depositAccount" visible="false" />
                </children>
             </FlowPane>
-            <Label text="%member.amount" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <TextField fx:id="amount" GridPane.columnIndex="3" GridPane.rowIndex="6" />      
+            <Label text="%member.description" GridPane.columnIndex="2" GridPane.rowIndex="6" />            
+            <TextArea fx:id="description" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2" />
             
             <Label text="%member.check-no" GridPane.rowIndex="7" />
             <TextField fx:id="externalTranNo" GridPane.columnIndex="1" GridPane.rowIndex="7" />            
-            <Label text="%member.description" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <TextField fx:id="description" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             
             <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                <children>
@@ -89,19 +89,29 @@
                   <Button id="saveDonationBtn" onAction="#saveDonation" text="%common.save" />
                </children>
             </FlowPane>
-            <Label text="%fund" GridPane.rowIndex="5" />
-            <ComboBox fx:id="fundType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            
             
          </children>
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" prefWidth="200.0" />
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" prefWidth="200.0" />
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
          </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
       </GridPane>
    </children>
    <padding>

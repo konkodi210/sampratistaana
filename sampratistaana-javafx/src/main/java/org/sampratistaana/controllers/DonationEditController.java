@@ -40,7 +40,7 @@ public class DonationEditController extends BaseController{
 	@FXML private ToggleGroup paymentType;
 	@FXML private TextField amount;
 	@FXML private TextField externalTranNo;
-	@FXML private TextField description;
+	@FXML private TextArea description;
 	@FXML private Label depositAccountLabel;
 	@FXML private ComboBox<BankAccount> depositAccount;
 	@FXML private ComboBox<Property> fundType;
