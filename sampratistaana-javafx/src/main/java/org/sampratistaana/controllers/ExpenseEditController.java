@@ -40,6 +40,9 @@ public class ExpenseEditController extends BaseController{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//if we are setting item, no need to clear them. Moreover this is initialization method. At this point combo box will not have anything
+		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
+			bankAccount.setDisable(toggle.getProperties().get("value").equals("CASH"));
+		});
 		setComboxItems(expenseType,lov().getExpenseTypes());
 		setComboxItems(fundType,lov().getFundTypes());
 		setComboxItems(bankAccount,lov().getBankAccountTable());

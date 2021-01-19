@@ -34,7 +34,7 @@
             <Label text="%expense.amount" GridPane.rowIndex="2" />
             <TextField fx:id="amount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="%expense.bankAccount" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <ComboBox fx:id="bankAccount" GridPane.columnIndex="3" GridPane.rowIndex="2" promptText="Select"/>
+            <ComboBox fx:id="bankAccount" GridPane.columnIndex="3" GridPane.rowIndex="2" promptText="Select" disable="true"/>
             
             <Label text="%member.payment-type" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <FlowPane alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
