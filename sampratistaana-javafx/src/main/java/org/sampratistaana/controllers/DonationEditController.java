@@ -104,6 +104,7 @@ public class DonationEditController extends BaseController{
 		.getLedger()
 			.setEntryCategory(EntryCategory.DONATION)
 			.setEntryType(EntryType.CREDIT)
+			.setEntryDate(entryDate.getValue())
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(tranMode)
 			.setEntryValue(Double.parseDouble(amount.getText()))
