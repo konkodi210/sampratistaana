@@ -23,6 +23,15 @@ import org.sampratistaana.beans.Ledger.TransactionMode;
 @Table(name = "MEMBER")
 public class Member implements Serializable{
 	private static final long serialVersionUID = 2435744732575061197L;
+	private static final LocalDate APRIL_1;
+	static {
+		LocalDate date=LocalDate.of(LocalDate.now().getYear(), 4, 1);
+		if(date.isAfter(LocalDate.now())) {
+			date=LocalDate.of(LocalDate.now().getYear()-1, 4, 1);
+		}
+		APRIL_1=date;
+	}
+	
 	public enum MembershipType {LIFE, YEARLY}
 	public enum MemberStatus{ACTIVE,EXPIRED,DEAD}
 
@@ -185,13 +194,17 @@ public class Member implements Serializable{
 		if(memberStatus==MemberStatus.EXPIRED) {
 			//do Nothing. 
 		}else if(membershipType==MembershipType.YEARLY &&
-				ledger!=null && ledger.getEntryDate().getYear()<LocalDate.now().getYear()) {
+				ledger!=null && ledger.getEntryDate().isBefore(APRIL_1)) {
 			memberStatus=MemberStatus.EXPIRED;
 		}
 	}
 	
 	public String getMemberStatusLocalized() {
 		return Messages.getMessage(getMemberStatus().toString());
+	}
+	
+	public String getMemberNoWithPrefix() {
+		return (membershipType==MembershipType.LIFE?"LM":"OM")+memberNo;
 	}
 
 	@Override

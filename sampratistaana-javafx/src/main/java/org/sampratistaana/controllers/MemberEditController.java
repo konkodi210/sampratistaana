@@ -120,6 +120,7 @@ public class MemberEditController extends BaseController{
 		.getLedger()
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)
+			.setEntryDate(entryDate.getValue())
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(tranMode)
