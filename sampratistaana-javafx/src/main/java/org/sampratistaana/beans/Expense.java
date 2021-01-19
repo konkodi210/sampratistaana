@@ -111,6 +111,10 @@ public class Expense implements Serializable{
 			getLedger().setEntryDesc(getExpenseType());
 		}
 	}
+	
+	public long getReceiptNum() {
+		return ledger!=null?ledger.getEntryNo():0;
+	}
 
 	@Override
 	public String toString() {

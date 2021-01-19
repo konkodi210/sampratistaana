@@ -28,6 +28,7 @@
       </ButtonBar>
       <TableView fx:id="expenseList" editable="true" tableMenuButtonVisible="true">
         <columns>
+          <TableColumn id="receiptNum" text="%booksale.receipt-no" />
           <TableColumn id="fund" text="%expense.fundType" />
           <TableColumn id="type" text="%expense.category" />
           <TableColumn id="amount" text="%expense.amount" />
