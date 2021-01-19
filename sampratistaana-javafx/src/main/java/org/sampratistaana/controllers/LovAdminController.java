@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -63,11 +65,6 @@ public class LovAdminController extends BaseController{
 					stream(lov().getProperties(newVal.propertyName,newVal.propertyKey))
 					.map(prop -> new DisplayProp(prop))
 					.collect(Collectors.toList()));
-//			lovTable.setItems(
-//					FXCollections.observableArrayList(
-//							stream(lov().getProperties(newVal.propertyName,newVal.propertyKey))
-//							.map(prop -> new DisplayProp(prop))
-//							.collect(Collectors.toList())));
 		});
 		
 		if(lovComboBox.getItems().size()>0) {
@@ -77,20 +74,23 @@ public class LovAdminController extends BaseController{
 
 	@FXML
 	public void addRow() throws IOException{
+		//Once we enable the table level filtering using controlfx, it does not allow to add new items to list. 
+		//To Overcome this problem, we have read items into seperate collection, add items and then set it back to table
 		int index=lovTable.getSelectionModel().getSelectedIndex();
-		lovTable.getItems().add(
-				index<0?0:index,
-						new DisplayProp(new Property()));
+		List<DisplayProp> itemList = new LinkedList<>(lovTable.getItems());
+		itemList.add(index<0?0:index,new DisplayProp(new Property()));
+		setTableItems(lovTable, itemList);
 
 	}
 
 	@FXML	
 	public void deleteRow() throws IOException{
-		Property prop=lovTable.getItems().remove(lovTable.getSelectionModel().getSelectedIndex()).prop;
+		List<DisplayProp> itemList = new LinkedList<>(lovTable.getItems());
+		Property prop=itemList.remove(lovTable.getSelectionModel().getSelectedIndex()).prop;
 		if(prop.getPropertyKey()!=null) {
 			lov().saveLov(null, Arrays.asList(prop));
 		}
-		
+		setTableItems(lovTable, itemList);
 		deleteBtn.setDisable(true);
 	}
 
