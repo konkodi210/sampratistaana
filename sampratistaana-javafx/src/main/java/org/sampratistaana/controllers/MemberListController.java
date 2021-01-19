@@ -14,6 +14,7 @@ import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
 import org.sampratistaana.beans.Member.MemberStatus;
+import org.sampratistaana.beans.Member.MembershipType;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,7 +45,7 @@ public class MemberListController extends BaseController{
 			deleteBtn.setDisable(false);
 			addDonation.setDisable(false);
 			bookSale.setDisable(false);
-			if(newVal.getMemberStatus()==MemberStatus.EXPIRED) {
+			if(newVal.getMemberStatus()==MemberStatus.EXPIRED && newVal.getMembershipType()==MembershipType.YEARLY) {
 				renewBtn.setDisable(false);
 			}
 		});
