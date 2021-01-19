@@ -14,13 +14,13 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.commons.collections4.map.HashedMap;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -83,7 +83,7 @@ public class DynamicReportController extends BaseController {
 				col.setCellValueFactory(new MapValueFactory<>(rsm.getColumnName(i)));
 				reportTable.getColumns().add(col);
 			}
-			Map<String,String> row=new HashedMap<String, String>();
+			Map<String,String> row=new HashMap<String, String>();
 			while(rs.next()) {
 				for(String col:colList) {
 					String val=null;
@@ -98,7 +98,7 @@ public class DynamicReportController extends BaseController {
 					}
 					row.put(col, val);				
 				}
-				reportTable.getItems().add(new HashedMap<>(row));
+				reportTable.getItems().add(new HashMap<>(row));
 				enableFilter(reportTable);
 			}
 		}catch(SQLException e) {
