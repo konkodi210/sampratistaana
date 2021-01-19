@@ -99,6 +99,7 @@ public class DynamicReportController extends BaseController {
 					row.put(col, val);				
 				}
 				reportTable.getItems().add(new HashedMap<>(row));
+				enableFilter(reportTable);
 			}
 		}catch(SQLException e) {
 			throw new RuntimeException(e);

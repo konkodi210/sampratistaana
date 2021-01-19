@@ -11,10 +11,11 @@
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.DynamicReportController">
    <children>
       <Label alignment="TOP_CENTER" styleClass="title-label" text="%common.report" />
-      <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
+            <Label text="Report Name" />
             <ComboBox fx:id="reportLov" />
-          <Button onAction="#exportToExcel" text="Export Excel" disable="true" fx:id="excelExportBtn"/>
+          <Button fx:id="excelExportBtn" disable="true" onAction="#exportToExcel" text="Export Excel" />
          </children>
       </HBox>
       <!-- GridPane fx:id="paramGrid">

@@ -119,7 +119,7 @@ public class BaseController implements Initializable{
 		}
 		return null;
 	}
-	
+
 	protected void setToggleValue(ToggleGroup control,Object val) {
 		if(val == null) {
 			return;
@@ -134,6 +134,10 @@ public class BaseController implements Initializable{
 
 	protected <T> void setTableItems(TableView<T> table,List<T> items) {
 		table.setItems(FXCollections.observableArrayList(items));
+		enableFilter(table);
+	}	
+
+	protected <T> void enableFilter(TableView<T> table) {
 		//TODO: This throws reflection error. It is not harming functionality. Hence suppressing it
 		PrintStream out=System.out;
 		PrintStream err=System.err; 
@@ -143,11 +147,10 @@ public class BaseController implements Initializable{
 			System.setOut(new PrintStream(OutputStream.nullOutputStream()));
 			TableFilter.forTableView(table).apply();
 		}catch(Exception e) {
-			
+
 		}finally {
 			System.setOut(out);
 			System.setOut(err);
 		}
-	}	
-
+	}
 }
