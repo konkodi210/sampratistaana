@@ -81,7 +81,7 @@
             <TextArea fx:id="description" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2" />
             
             <Label text="%member.check-no" GridPane.rowIndex="7" />
-            <TextField fx:id="externalTranNo" GridPane.columnIndex="1" GridPane.rowIndex="7" />            
+            <TextField fx:id="externalTranNo" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />            
             
             <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                <children>

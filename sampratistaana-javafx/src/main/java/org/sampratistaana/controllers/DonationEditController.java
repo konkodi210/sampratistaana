@@ -64,6 +64,7 @@ public class DonationEditController extends BaseController{
 		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
 			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
 			depositAccountLabel.setVisible(depositAccount.isVisible());
+			externalTranNo.setDisable(!depositAccount.isVisible());
 		});
 		
 		donationForm.setUserData(donation);
@@ -105,8 +106,8 @@ public class DonationEditController extends BaseController{
 			.setEntryCategory(EntryCategory.DONATION)
 			.setEntryType(EntryType.CREDIT)
 			.setEntryDate(entryDate.getValue())
-			.setExternalTranNo(externalTranNo.getText())
 			.setModeOfTranscation(tranMode)
+			.setExternalTranNo(tranMode == TransactionMode.CASH?null:externalTranNo.getText())
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setPanNo(pan.getText())
 			.setFundType(fundType.getValue().getPropertyValue())

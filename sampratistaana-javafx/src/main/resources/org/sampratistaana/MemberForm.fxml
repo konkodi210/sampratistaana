@@ -93,7 +93,7 @@
             <TextField fx:id="amount" GridPane.columnIndex="3" GridPane.rowIndex="5" />          
             
             <Label text="%member.check-no" GridPane.rowIndex="6" />
-            <TextField fx:id="externalTranNo" GridPane.columnIndex="1" GridPane.rowIndex="6" />            
+            <TextField fx:id="externalTranNo" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />            
             <Label text="%member.description" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <TextField fx:id="description" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             

@@ -66,6 +66,7 @@ public class MemberEditController extends BaseController{
 		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
 			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
 			depositAccountLabel.setVisible(depositAccount.isVisible());
+			externalTranNo.setDisable(!depositAccount.isVisible());
 		});
 		
 		memberForm.setUserData(member);
@@ -122,10 +123,10 @@ public class MemberEditController extends BaseController{
 			.setEntryType(EntryType.CREDIT)
 			.setEntryDate(entryDate.getValue())
 			.setEntryValue(Double.parseDouble(amount.getText()))
-			.setExternalTranNo(externalTranNo.getText())
-			.setModeOfTranscation(tranMode)
-			.setPanNo(pan.getText())
 			.setBankAccount(tranMode == TransactionMode.CASH?null:depositAccount.getValue())
+			.setExternalTranNo(tranMode == TransactionMode.CASH?null:externalTranNo.getText())
+			.setModeOfTranscation(tranMode)
+			.setPanNo(pan.getText())			
 			.setEntryValue(Double.parseDouble(amount.getText()))
 			.setEntryDesc(description.getText());
 		if(dateOfBirth.getValue()!=null) {
