@@ -45,9 +45,7 @@ public class MemberListController extends BaseController{
 			deleteBtn.setDisable(false);
 			addDonation.setDisable(false);
 			bookSale.setDisable(false);
-			if(newVal.getMemberStatus()==MemberStatus.EXPIRED && newVal.getMembershipType()==MembershipType.YEARLY) {
-				renewBtn.setDisable(false);
-			}
+			renewBtn.setDisable(!(newVal.getMemberStatus()==MemberStatus.EXPIRED && newVal.getMembershipType()==MembershipType.YEARLY));		
 		});
 	}
 
