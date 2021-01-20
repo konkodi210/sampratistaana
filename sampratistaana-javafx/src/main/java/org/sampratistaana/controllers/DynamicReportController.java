@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -29,7 +27,6 @@ import org.sampratistaana.Mainwindow;
 import org.sampratistaana.Messages;
 import org.sampratistaana.ReportManager;
 import org.sampratistaana.beans.DynamicReport;
-import org.w3c.dom.Element;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,16 +46,11 @@ public class DynamicReportController extends BaseController {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		try {
-			Element rootElm = DocumentBuilderFactory
-					.newInstance()
-					.newDocumentBuilder()
-					.parse(Mainwindow.class.getResourceAsStream("report-config.xml"))
-					.getDocumentElement();
+		try {			
 			setComboxItems(reportLov, new ReportManager().getConfiguredReports());
 			reportLov.valueProperty().addListener((obs,oldVal,newVal)->{ 
-				generateReport(newVal);
 				excelExportBtn.setDisable(false);
+				generateReport(newVal);				
 			});
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -76,13 +68,15 @@ public class DynamicReportController extends BaseController {
 			reportTable.getColumns().clear();
 			ResultSetMetaData rsm=rs.getMetaData();
 			List<String> colList=new ArrayList<String>(rsm.getColumnCount());
+			TableColumn[] tabColArr=new TableColumn[rsm.getColumnCount()];
 			for(int i=1;i<=rsm.getColumnCount();i++) {
 				colList.add(rsm.getColumnName(i));
 				TableColumn col=new TableColumn<>();
 				col.setText(Messages.getMessage(rsm.getColumnName(i)));
 				col.setCellValueFactory(new MapValueFactory<>(rsm.getColumnName(i)));
-				reportTable.getColumns().add(col);
+				tabColArr[i-1]=col;				
 			}
+			reportTable.getColumns().addAll(tabColArr);
 			Map<String,String> row=new HashMap<String, String>();
 			while(rs.next()) {
 				for(String col:colList) {
@@ -102,6 +96,7 @@ public class DynamicReportController extends BaseController {
 				enableFilter(reportTable);
 			}
 		}catch(SQLException e) {
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
@@ -114,25 +109,26 @@ public class DynamicReportController extends BaseController {
 		fc.setInitialFileName("export.xlsx");
 		fc.getExtensionFilters().add(new ExtensionFilter("Excel File", "*.xlsx"));
 		File exportFile = fc.showSaveDialog(Mainwindow.getScene().getWindow());
-		Workbook book = new XSSFWorkbook();
-		DynamicReport report = reportLov.getSelectionModel().getSelectedItem();
-		Sheet sh= book.createSheet(report.getReportName());
+		try(Workbook book = new XSSFWorkbook()){
+			DynamicReport report = reportLov.getSelectionModel().getSelectedItem();
+			Sheet sh= book.createSheet(report.getReportName());
 
-		int rownum = 0;
-		int cellNum=0;
-		Row row = sh.createRow(rownum++);
-		for(TableColumn col:reportTable.getColumns()) {
-			row.createCell(cellNum++).setCellValue(col.getText());
-		}
-		for(Map rowVal:reportTable.getItems()) {
-			cellNum=0;
+			int rownum = 0;
+			int cellNum=0;
+			Row row = sh.createRow(rownum++);
 			for(TableColumn col:reportTable.getColumns()) {
-				row.createCell(cellNum++).setCellValue((String)rowVal.get(col.getText()));
+				row.createCell(cellNum++).setCellValue(col.getText());
 			}
-		}
+			for(Map rowVal:reportTable.getItems()) {
+				cellNum=0;
+				for(TableColumn col:reportTable.getColumns()) {
+					row.createCell(cellNum++).setCellValue((String)rowVal.get(col.getText()));
+				}
+			}
 
-		try(OutputStream out = new FileOutputStream(exportFile)){
-			book.write(out);
+			try(OutputStream out = new FileOutputStream(exportFile)){
+				book.write(out);
+			}
 		}
 	}
 
