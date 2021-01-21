@@ -15,6 +15,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -64,7 +65,7 @@ public class DynamicReportController extends BaseController {
 		try(Connection con=getConnection();
 				PreparedStatement ps=con.prepareStatement(report.getReportQuery());
 				ResultSet rs=ps.executeQuery();){
-			reportTable.getItems().clear();
+			//reportTable.getItems().clear();
 			reportTable.getColumns().clear();
 			ResultSetMetaData rsm=rs.getMetaData();
 			List<String> colList=new ArrayList<String>(rsm.getColumnCount());
@@ -78,6 +79,7 @@ public class DynamicReportController extends BaseController {
 			}
 			reportTable.getColumns().addAll(tabColArr);
 			Map<String,String> row=new HashMap<String, String>();
+			List<Map<String,String>> rowList=new LinkedList<>();
 			while(rs.next()) {
 				for(String col:colList) {
 					String val=null;
@@ -92,9 +94,10 @@ public class DynamicReportController extends BaseController {
 					}
 					row.put(col, val);				
 				}
-				reportTable.getItems().add(new HashMap<>(row));
-				enableFilter(reportTable);
+				rowList.add(new HashMap<>(row));
 			}
+			
+			setTableItems(reportTable,rowList);
 		}catch(SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -121,6 +124,7 @@ public class DynamicReportController extends BaseController {
 			}
 			for(Map rowVal:reportTable.getItems()) {
 				cellNum=0;
+				row = sh.createRow(rownum++);
 				for(TableColumn col:reportTable.getColumns()) {
 					row.createCell(cellNum++).setCellValue((String)rowVal.get(col.getText()));
 				}
