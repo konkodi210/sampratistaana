@@ -53,6 +53,7 @@ public class MemberUITest extends BaseApplicationTest{
 		writeToTextFiled("#externalTranNo",memberForUI.getLedger().getExternalTranNo());
 		writeToTextFiled("#description", memberForUI.getLedger().getEntryDesc());
 		writeToTextFiled("#pan", memberForUI.getLedger().getPanNo());
+		writeToTextFiled("#aadhar", memberForUI.getAadharNo());
 	}
 
 	private void matchMemberBean(Member member, Member memberForUI) {
@@ -62,6 +63,7 @@ public class MemberUITest extends BaseApplicationTest{
 		assertThat(member.getMobileNo(), equalTo(memberForUI.getMobileNo()));
 		assertThat(member.getPhoneNo(), equalTo(memberForUI.getPhoneNo()));
 		assertThat(member.getEmail(), equalTo(memberForUI.getEmail()));
+		assertThat(member.getAadharNo(), equalTo(memberForUI.getAadharNo()));
 		assertThat(member.getDateOfBirth(), equalTo(memberForUI.getDateOfBirth()));
 		assertThat(member.getLedger().getEntryValue(), equalTo(memberForUI.getLedger().getEntryValue()));
 		assertThat(member.getLedger().getExternalTranNo(), equalTo(memberForUI.getLedger().getExternalTranNo()));
@@ -131,6 +133,7 @@ public class MemberUITest extends BaseApplicationTest{
 				.setPhoneNo("4565465464")
 				.setEmail("abc1234@gmail.com")
 				.setDateOfBirth(LocalDate.now())
+				.setAadharNo("NewAadhar")
 				.setLedger(
 						new Ledger()
 						.setEntryValue(858)

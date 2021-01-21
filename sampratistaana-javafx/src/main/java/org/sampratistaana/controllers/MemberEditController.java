@@ -46,6 +46,7 @@ public class MemberEditController extends BaseController{
 	@FXML private Label depositAccountLabel;
 	@FXML private ComboBox<BankAccount> depositAccount;
 	@FXML private ToggleGroup memberStatus;
+	@FXML private TextField aadhar;
 
 
 	@Override
@@ -101,6 +102,7 @@ public class MemberEditController extends BaseController{
 		description.setText(member.getLedger().getEntryDesc());
 		pan.setText(member.getLedger().getPanNo());
 		setToggleValue(memberStatus, member.getMemberStatus());
+		aadhar.setText(member.getAadharNo());
 	}
 
 	public void loadMembers() throws IOException {
@@ -118,6 +120,7 @@ public class MemberEditController extends BaseController{
 		.setEmail(email.getText())
 		.setMembershipType(MembershipType.valueOf(getToggleValue(membership)))
 		.setMemberStatus(MemberStatus.valueOf(getToggleValue(memberStatus)))
+		.setAadharNo(aadhar.getText())
 		.getLedger()
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)

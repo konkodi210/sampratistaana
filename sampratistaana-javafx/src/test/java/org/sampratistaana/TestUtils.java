@@ -32,6 +32,7 @@ public class TestUtils {
 				.setPhoneNo("23434234234")
 				.setEmail("abc@gmail.com")
 				.setDateOfBirth(LocalDate.now())
+				.setAadharNo("DummyAadhar")
 				.setLedger(
 						new Ledger()
 						.setEntryType(EntryType.CREDIT)

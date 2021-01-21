@@ -104,7 +104,13 @@
                </children>
             </FlowPane>
             <Label text="%donation.pan" GridPane.rowIndex="7" />
-            <TextField fx:id="pan" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <FlowPane alignment="CENTER_LEFT" hgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+	            <children>		            
+		            <TextField fx:id="pan" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+		            <Label text="%member.aadhar" />
+		            <TextField fx:id="aadhar"  />
+	            </children>
+            </FlowPane>
             <Label text="%member.status" GridPane.rowIndex="7" GridPane.columnIndex="2" />
             <FlowPane alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="7">
                <children>

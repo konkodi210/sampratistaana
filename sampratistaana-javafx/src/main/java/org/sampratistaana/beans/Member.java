@@ -70,6 +70,9 @@ public class Member implements Serializable{
 	@Column(name="MEMBER_STATUS", nullable = false)
 	private MemberStatus memberStatus=MemberStatus.ACTIVE;
 	
+	@Column(name = "AADHAR_NO")
+	private String aadharNo;
+	
 	public Ledger getLedger() {
 		return ledger;
 	}
@@ -161,6 +164,15 @@ public class Member implements Serializable{
 		return this;
 	}
 	
+	public String getAadharNo() {
+		return aadharNo;
+	}
+
+	public Member setAadharNo(String aadharNo) {
+		this.aadharNo = aadharNo;
+		return this;
+	}
+
 	public String getPaymentType() {
 		if(getLedger()!=null) {
 			TransactionMode mode=getLedger().getModeOfTranscation();
@@ -211,6 +223,8 @@ public class Member implements Serializable{
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", ledger=" + ledger + ", name=" + name + ", nickName=" + nickName
 				+ ", address=" + address + ", membershipType=" + membershipType + ", mobileNo=" + mobileNo
-				+ ", phoneNo=" + phoneNo + ", email=" + email + ", dateOfBirth=" + dateOfBirth + "]";
+				+ ", phoneNo=" + phoneNo + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", memberStatus="
+				+ memberStatus + ", aadharNo=" + aadharNo + "]";
 	}
+	
 }
