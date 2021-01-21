@@ -52,6 +52,10 @@ public class Donation implements Serializable{
 
 	@Column(name = "DATE_OF_BIRTH")
 	private LocalDate dateOfBirth;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MEMBER_NO")
+	private Member member;
 
 	public long getDonationId() {
 		return donationId;
@@ -133,7 +137,16 @@ public class Donation implements Serializable{
 		this.dateOfBirth = dateOfBirth;
 		return this;
 	}
-	
+		
+	public Member getMember() {
+		return member;
+	}
+
+	public Donation setMember(Member member) {
+		this.member = member;
+		return this;
+	}
+
 	public String getPaymentType() {
 		if(getLedger()!=null) {
 			TransactionMode mode=getLedger().getModeOfTranscation();
@@ -158,6 +171,10 @@ public class Donation implements Serializable{
 			return Messages.getMessage(getLedger().getFundType());
 		}
 		return null;
+	}
+	
+	public String getMemberNoWithPrefix() {
+		return member!=null ? member.getMemberNoWithPrefix():null;
 	}
 
 	@Override

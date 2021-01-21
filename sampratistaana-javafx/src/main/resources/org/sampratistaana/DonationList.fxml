@@ -26,6 +26,7 @@
       <TableView fx:id="donationList" editable="true" tableMenuButtonVisible="true" >
         <columns>
            <TableColumn id="donationId" text="%common.serial-no" />
+           <TableColumn id="memberNoWithPrefix" text="%member.no" />
           <TableColumn id="name" text="%member.name" />
           <TableColumn id="nickName" text="%member.nickname" />
           <TableColumn id="fund" text="%fund" />          

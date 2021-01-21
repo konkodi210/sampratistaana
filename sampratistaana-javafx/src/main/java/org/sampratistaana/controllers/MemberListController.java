@@ -95,6 +95,7 @@ public class MemberListController extends BaseController{
 				.setPhoneNo(member.getPhoneNo())
 				.setEmail(member.getEmail())
 				.setDateOfBirth(member.getDateOfBirth())
+				.setMember(member)
 				.setLedger(
 						new Ledger()
 						.setEntryType(EntryType.CREDIT)

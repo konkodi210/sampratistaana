@@ -20,7 +20,7 @@
       <Label alignment="TOP_CENTER" styleClass="title-label" text="%member.title" /> 
       <GridPane hgap="10.0" vgap="20.0">
          <children>
-         	<Label styleClass="serial-no" text="%common.serial-no" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+         	<Label styleClass="serial-no" text="%member.no" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <FlowPane GridPane.columnIndex="1" GridPane.rowIndex="0">
             <Label text="LM" />
             <Label fx:id="memberNo" />

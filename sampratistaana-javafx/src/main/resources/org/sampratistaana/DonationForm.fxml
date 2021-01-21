@@ -21,7 +21,14 @@
       <GridPane hgap="10.0" vgap="20.0">
          <children>
          	<Label styleClass="serial-no" text="%common.serial-no" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Label fx:id="donationId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+         	<FlowPane alignment="CENTER_LEFT" hgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+	            <children>		            
+		            <Label fx:id="donationId"/>
+		            <Label fx:id="memberNoLabel" text="%member.no" />
+		            <Label fx:id="memberNo"  />
+	            </children>
+            </FlowPane>
+            
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <!-- Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" /-->
             <DatePicker fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />

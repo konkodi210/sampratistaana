@@ -44,6 +44,8 @@ public class DonationEditController extends BaseController{
 	@FXML private Label depositAccountLabel;
 	@FXML private ComboBox<BankAccount> depositAccount;
 	@FXML private ComboBox<Property> fundType;
+	@FXML private Label memberNo;
+	@FXML private Label memberNoLabel;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -91,6 +93,13 @@ public class DonationEditController extends BaseController{
 		amount.setTextFormatter(new TextFormatter<Double>(getCurrnecyConvertor()));
 		amount.setText(String.valueOf(donation.getLedger().getEntryValue()));		
 		description.setText(donation.getLedger().getEntryDesc());
+		if(donation.getMember()!=null) {
+			memberNo.setText(donation.getMember().getMemberNoWithPrefix());
+		}else {
+			memberNoLabel.setVisible(false);
+			memberNo.setVisible(false);
+		}
+			
 	}
 
 	public void saveDonation() throws IOException{

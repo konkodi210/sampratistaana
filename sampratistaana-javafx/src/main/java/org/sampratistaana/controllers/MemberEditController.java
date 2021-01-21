@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
-import org.sampratistaana.Messages;
 import org.sampratistaana.beans.BankAccount;
 import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
@@ -60,10 +59,6 @@ public class MemberEditController extends BaseController{
 			depositAccount.setValue(depositAccount.getItems().get(0));
 		}
 		
-		if(member.getLedger().getEntryNo()==0) {
-			member.getLedger().setEntryDesc(Messages.getMessage("common.adhar")+":");
-		}
-		
 		paymentType.selectedToggleProperty().addListener((obs,old,toggle) -> {
 			depositAccount.setVisible(!toggle.getProperties().get("value").equals("CASH"));
 			depositAccountLabel.setVisible(depositAccount.isVisible());
@@ -77,12 +72,7 @@ public class MemberEditController extends BaseController{
 		nickName.setText(member.getNickName());
 		address.setText(member.getAddress());
 		setToggleValue(membership, member.getMembershipType());
-//		for(Toggle toggle:membership.getToggles()) {			
-//			if(member.getMembershipType().toString().equals(toggle.getProperties().get("value"))) {
-//				membership.selectToggle(toggle);
-//				break;
-//			}
-//		}
+
 		mobileNo.setText(member.getMobileNo());
 		phoneNo.setText(member.getPhoneNo());		
 		email.setText(member.getEmail());
@@ -90,12 +80,7 @@ public class MemberEditController extends BaseController{
 			dateOfBirth.setValue(member.getDateOfBirth());
 		}
 		setToggleValue(paymentType, member.getPaymentType());
-//		for(Toggle toggle:paymentType.getToggles()) {			
-//			if(member.getPaymentType().toString().equals(toggle.getProperties().get("value"))) {
-//				paymentType.selectToggle(toggle);
-//				break;
-//			}
-//		}
+
 		externalTranNo.setText(member.getLedger().getExternalTranNo());
 		amount.setTextFormatter(new TextFormatter<Double>(new DoubleStringConverter()));
 		amount.setText(String.valueOf(member.getLedger().getEntryValue()));		

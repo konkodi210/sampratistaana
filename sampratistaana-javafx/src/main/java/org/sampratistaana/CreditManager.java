@@ -135,9 +135,13 @@ public class CreditManager {
 	 */
 	public List<Donation> getAllDonations(){
 		// Even though we have mentioned in lazy loading for Ledger in member bean, we are fetching to avoid multiple child queries
+		String sql ="SELECT d FROM Donation as d "
+				+ " INNER JOIN FETCH d.ledger "
+				+ " LEFT OUTER JOIN FETCH d.member "
+				+ " ORDER BY d.ledger.entryNo DESC";
 		try(Session session=dbSession()){			
 			return session
-					.createQuery("SELECT m FROM Donation as m INNER JOIN FETCH m.ledger ORDER BY m.ledger.entryNo DESC", Donation.class)
+					.createQuery(sql, Donation.class)
 					.getResultList();
 		}
 	}
