@@ -58,7 +58,7 @@ public class ManageListOfValuesTest extends BaseApplicationTest {
 				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
 				equalTo(true));
 		model.select(0);
-		clickOn(deleteBtn);
+		performConfirmedDelete("#deleteBtn");
 		assertThat("Row delete",
 				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
 				equalTo(false));

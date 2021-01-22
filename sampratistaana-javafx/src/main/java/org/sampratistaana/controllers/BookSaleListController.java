@@ -12,15 +12,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
 public class BookSaleListController extends BaseController {
-	
+
 	@FXML private TableView<BookSaleUIList> bookSaleList;
 	@FXML private Button editBtn;
 	@FXML private Button deleteBtn;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		intializeTableColumns(bookSaleList);
-//		bookSaleList.setItems(FXCollections.observableList(new CreditManager().getBookSaleList()));
+		//		bookSaleList.setItems(FXCollections.observableList(new CreditManager().getBookSaleList()));
 		setTableItems(bookSaleList, new CreditManager().getBookSaleList());
 		bookSaleList
 		.getSelectionModel()
@@ -30,7 +30,7 @@ public class BookSaleListController extends BaseController {
 			deleteBtn.setDisable(false);
 		});
 	}
-	
+
 	public void loadBookSale() throws IOException {
 		loadForm("BookSale");
 	}
@@ -44,11 +44,13 @@ public class BookSaleListController extends BaseController {
 		loadBookSale();
 	}
 	public void deleteBookSale() throws Exception{
-		new CreditManager()
-		.deleteSaleEntry(bookSaleList
-				.getSelectionModel()
-				.getSelectedItem()
-				.getLedgerEntryNo());
-		loadForm("BookSaleList");
+		if(showDeleteConfirmation()) {
+			new CreditManager()
+			.deleteSaleEntry(bookSaleList
+					.getSelectionModel()
+					.getSelectedItem()
+					.getLedgerEntryNo());
+			loadForm("BookSaleList");
+		}
 	}
 }

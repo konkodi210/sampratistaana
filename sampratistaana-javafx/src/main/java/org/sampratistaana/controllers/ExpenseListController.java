@@ -55,8 +55,10 @@ public class ExpenseListController extends BaseController{
 	}
 
 	public void deleteExpense() throws IOException{
-		new CreditManager().deleteExpense(expenseList.getSelectionModel().getSelectedItem());
-		loadExpenses();
+		if(showDeleteConfirmation()) {
+			new CreditManager().deleteExpense(expenseList.getSelectionModel().getSelectedItem());
+			loadExpenses();
+		}
 	}
 
 	public void editExpense() throws IOException{

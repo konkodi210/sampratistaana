@@ -164,7 +164,7 @@ public class MemberUITest extends BaseApplicationTest{
 		
 		//test Delete
 		((TableView)find("#memberList")).getSelectionModel().select(0);
-		clickOn("#deleteBtn");
+		performConfirmedDelete("#deleteBtn");
 		assertThat("should have one row less after delete", new CreditManager().getAllMembers().size(),equalTo(listOfMembers.size()-1));
 		
 	}

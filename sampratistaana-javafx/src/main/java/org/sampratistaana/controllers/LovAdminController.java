@@ -85,13 +85,15 @@ public class LovAdminController extends BaseController{
 
 	@FXML	
 	public void deleteRow() throws IOException{
-		List<DisplayProp> itemList = new LinkedList<>(lovTable.getItems());
-		Property prop=itemList.remove(lovTable.getSelectionModel().getSelectedIndex()).prop;
-		if(prop.getPropertyKey()!=null) {
-			lov().saveLov(null, Arrays.asList(prop));
+		if(showDeleteConfirmation()) {
+			List<DisplayProp> itemList = new LinkedList<>(lovTable.getItems());
+			Property prop=itemList.remove(lovTable.getSelectionModel().getSelectedIndex()).prop;
+			if(prop.getPropertyKey()!=null) {
+				lov().saveLov(null, Arrays.asList(prop));
+			}
+			setTableItems(lovTable, itemList);
+			deleteBtn.setDisable(true);
 		}
-		setTableItems(lovTable, itemList);
-		deleteBtn.setDisable(true);
 	}
 
 	@FXML

@@ -66,7 +66,7 @@ public class BookInventoryManagementTest extends BaseApplicationTest {
 				equalTo(true));
 		
 		model.select(0);
-		clickOn(deleteBtn);
+		performConfirmedDelete("#deleteBtn");
 		assertThat(" Row Deleted",
 				checkInDb(name.get(),99.5,11),
 				equalTo(false));

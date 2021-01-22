@@ -106,7 +106,7 @@ public class BookSaleUITest extends BaseApplicationTest {
 		clickOn("#editBtn");
 		clickOn("#saleSaveBtn");
 		interact(() -> saleTab.getSelectionModel().select(0));
-		clickOn("#deleteBtn");
+		performConfirmedDelete("#deleteBtn");
 		
 	}
 	

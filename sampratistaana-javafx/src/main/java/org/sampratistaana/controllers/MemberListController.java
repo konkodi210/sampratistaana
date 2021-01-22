@@ -66,8 +66,10 @@ public class MemberListController extends BaseController{
 	}
 
 	public void deleteMember() throws IOException{
-		new CreditManager().deleteMember(memberList.getSelectionModel().getSelectedItem());
-		loadMembers();
+		if(showDeleteConfirmation()) {
+			new CreditManager().deleteMember(memberList.getSelectionModel().getSelectedItem());
+			loadMembers();
+		}
 	}
 
 	public void editMember() throws IOException{

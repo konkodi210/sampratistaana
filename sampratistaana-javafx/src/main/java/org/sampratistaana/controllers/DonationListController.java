@@ -56,7 +56,9 @@ public class DonationListController extends BaseController{
 	}
 	
 	public void deleteDonation() throws IOException {
-		new CreditManager().deleteDonation(donationList.getSelectionModel().getSelectedItem());
-		loadForm("DonationList");
+		if(showDeleteConfirmation()) {
+			new CreditManager().deleteDonation(donationList.getSelectionModel().getSelectedItem());
+			loadForm("DonationList");
+		}
 	}
 }

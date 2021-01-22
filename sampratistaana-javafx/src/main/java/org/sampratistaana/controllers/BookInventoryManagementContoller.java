@@ -67,9 +67,11 @@ public class BookInventoryManagementContoller extends BaseController {
 
 	@FXML
 	public void deleteRow() {
-		Inventory inv=bookTable.getItems().remove(bookTable.getSelectionModel().getSelectedIndex()).inv;
-		if(inv.getInventoryId() !=0) {
-			new CreditManager().deleteInventory(inv);
+		if(showDeleteConfirmation()) {
+			Inventory inv=bookTable.getItems().remove(bookTable.getSelectionModel().getSelectedIndex()).inv;
+			if(inv.getInventoryId() !=0) {
+				new CreditManager().deleteInventory(inv);
+			}
 		}
 	}
 

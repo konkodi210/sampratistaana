@@ -1,10 +1,14 @@
 package org.sampratistaana;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.After;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 
 import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
@@ -47,5 +51,25 @@ public class BaseApplicationTest extends ApplicationTest {
 		((TextInputControl)find(id)).clear();
 		clickOn(id);		
 		write(val);
+	}
+
+	protected void performConfirmedDelete(String id) {
+		clickOn(id);
+		clickOn(getDeleteConfirmationPane().lookupButton(ButtonType.NO));
+		clickOn(id);
+		clickOn(getDeleteConfirmationPane().lookupButton(ButtonType.YES));		 
+	}
+	
+	private DialogPane getDeleteConfirmationPane() {
+		Stage alert=(Stage)robotContext()
+				.getWindowFinder()
+				.listWindows()
+				.stream()
+				.filter(window -> window instanceof Stage 
+						&& ((Stage)window).getTitle()==Messages.getMessage("common.delete-title"))
+				.findFirst()
+				.orElse(null);
+		 assertNotNull(alert);
+		 return (DialogPane) alert.getScene().getRoot();
 	}
 }

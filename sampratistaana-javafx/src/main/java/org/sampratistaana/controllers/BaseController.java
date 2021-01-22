@@ -20,11 +20,16 @@ import org.sampratistaana.Messages;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 
@@ -152,5 +157,19 @@ public class BaseController implements Initializable{
 			System.setOut(out);
 			System.setOut(err);
 		}
+	}
+
+	protected boolean showDeleteConfirmation() {
+		Alert dlg = new Alert(
+				AlertType.CONFIRMATION,
+				Messages.getMessage("common.delete-confirmation"),
+				ButtonType.YES,ButtonType.NO);
+		dlg.setTitle(Messages.getMessage("common.delete-title"));
+		dlg.initModality(Modality.APPLICATION_MODAL);
+		((Button) dlg.getDialogPane().lookupButton(ButtonType.YES)).setText(Messages.getMessage("common.delete"));
+		((Button) dlg.getDialogPane().lookupButton(ButtonType.NO)).setText(Messages.getMessage("common.cancel"));
+		dlg.initOwner(Mainwindow.getStage());
+		dlg.showAndWait();
+		return dlg.getResult() == ButtonType.YES;
 	}
 }

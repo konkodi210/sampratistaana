@@ -3,7 +3,6 @@ package org.sampratistaana;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringWhiteSpace;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.sampratistaana.TestUtils.createDonation;
@@ -136,7 +135,7 @@ public class DonationUITest extends BaseApplicationTest {
 		
 		//test Delete
 		((TableView)find("#donationList")).getSelectionModel().select(0);
-		clickOn("#deleteBtn");
+		performConfirmedDelete("#deleteBtn");
 		assertThat("should have one row less after delete", new CreditManager().getAllDonations().size(),equalTo(listOfDonation.size()-1));		
 	}
 }
