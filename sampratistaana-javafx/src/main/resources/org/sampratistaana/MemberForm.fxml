@@ -12,10 +12,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="memberForm" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.MemberEditController">
+<VBox fx:id="memberForm" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.MemberEditController">
    <children>
       <Label alignment="TOP_CENTER" styleClass="title-label" text="%member.title" /> 
       <GridPane hgap="10.0" vgap="20.0">
@@ -26,8 +27,13 @@
             <Label fx:id="memberNo" />
             </FlowPane>            
             <Label text="%common.date" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <!-- Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" /-->
-            <DatePicker fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <!-- Label fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <DatePicker fx:id="entryDate" GridPane.columnIndex="3" GridPane.rowIndex="0" />-->
+            <HBox spacing="10.0" GridPane.columnIndex="3">            	
+            	<DatePicker fx:id="entryDate" />
+            	<Label text="%expiry.date" /> 
+            	<DatePicker fx:id="endDate" />
+            </HBox>
             
             <Label text="%member.name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -37,7 +43,7 @@
             <Label text="%member.address" GridPane.rowIndex="2" />
             <TextArea fx:id="address" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="%member.type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" fx:id="membershipPane">
                <children>
                   <RadioButton id="monthlyMembership" selected="true" text="%member.lifetime">
 					 <toggleGroup>
@@ -106,12 +112,12 @@
             <Label text="%donation.pan" GridPane.rowIndex="7" />
             <FlowPane alignment="CENTER_LEFT" hgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
 	            <children>		            
-		            <TextField fx:id="pan" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+		            <TextField fx:id="pan" GridPane.columnIndex="1" GridPane.rowIndex="7" prefColumnCount="8"/>
 		            <Label text="%member.aadhar" />
-		            <TextField fx:id="aadhar"  />
+		            <TextField fx:id="aadhar" prefColumnCount="10" />
 	            </children>
             </FlowPane>
-            <Label text="%member.status" GridPane.rowIndex="7" GridPane.columnIndex="2" />
+            <Label text="%member.status" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <FlowPane alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="7">
                <children>
                	  <RadioButton id="active" mnemonicParsing="false" selected="true" text="%member.status.active">
@@ -135,6 +141,17 @@
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="100.0" />
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
          </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
       </GridPane>
    </children>
    <padding>

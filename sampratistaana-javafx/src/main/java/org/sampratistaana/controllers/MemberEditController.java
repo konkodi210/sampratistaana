@@ -2,6 +2,7 @@ package org.sampratistaana.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
@@ -21,6 +22,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.DoubleStringConverter;
 
@@ -46,6 +48,8 @@ public class MemberEditController extends BaseController{
 	@FXML private ComboBox<BankAccount> depositAccount;
 	@FXML private ToggleGroup memberStatus;
 	@FXML private TextField aadhar;
+	@FXML private DatePicker endDate;
+	@FXML private FlowPane membershipPane;
 
 
 	@Override
@@ -88,6 +92,13 @@ public class MemberEditController extends BaseController{
 		pan.setText(member.getLedger().getPanNo());
 		setToggleValue(memberStatus, member.getMemberStatus());
 		aadhar.setText(member.getAadharNo());
+		if(member.getEndDate()==null) {
+			LocalDate april=LocalDate.of(LocalDate.now().getYear(), 4, 1);
+			member.setEndDate(LocalDate.now().isBefore(april)?april:april.plusYears(1));
+		}
+		endDate.setValue(member.getEndDate());
+		membershipPane.setDisable(member.getMemberNo() > 0);
+		endDate.setDisable(member.getMemberNo() > 0 && member.getMembershipType() == MembershipType.LIFE);
 	}
 
 	public void loadMembers() throws IOException {
@@ -106,6 +117,7 @@ public class MemberEditController extends BaseController{
 		.setMembershipType(MembershipType.valueOf(getToggleValue(membership)))
 		.setMemberStatus(MemberStatus.valueOf(getToggleValue(memberStatus)))
 		.setAadharNo(aadhar.getText())
+		.setEndDate(endDate.getValue())
 		.getLedger()
 			.setEntryCategory(EntryCategory.MEMBER)
 			.setEntryType(EntryType.CREDIT)

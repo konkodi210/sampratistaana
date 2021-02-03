@@ -23,14 +23,6 @@ import org.sampratistaana.beans.Ledger.TransactionMode;
 @Table(name = "MEMBER")
 public class Member implements Serializable{
 	private static final long serialVersionUID = 2435744732575061197L;
-	private static final LocalDate APRIL_1;
-	static {
-		LocalDate date=LocalDate.of(LocalDate.now().getYear(), 4, 1);
-		if(date.isAfter(LocalDate.now())) {
-			date=LocalDate.of(LocalDate.now().getYear()-1, 4, 1);
-		}
-		APRIL_1=date;
-	}
 	
 	public enum MembershipType {LIFE, YEARLY}
 	public enum MemberStatus{ACTIVE,EXPIRED,DEAD}
@@ -72,6 +64,9 @@ public class Member implements Serializable{
 	
 	@Column(name = "AADHAR_NO")
 	private String aadharNo;
+	
+	@Column(name = "END_DATE")
+	private LocalDate endDate;
 	
 	public Ledger getLedger() {
 		return ledger;
@@ -124,7 +119,6 @@ public class Member implements Serializable{
 
 	public Member setMembershipType(MembershipType membershipType) {
 		this.membershipType = membershipType;
-		reCaliculateMemberStatus();
 		return this;
 	}
 
@@ -173,6 +167,16 @@ public class Member implements Serializable{
 		return this;
 	}
 
+	public LocalDate getEndDate() {		
+		return endDate;
+	}
+
+	public Member setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+		reCaliculateEndDate();
+		return this;
+	}
+
 	public String getPaymentType() {
 		if(getLedger()!=null) {
 			TransactionMode mode=getLedger().getModeOfTranscation();
@@ -193,22 +197,14 @@ public class Member implements Serializable{
 	}
 	
 	public MemberStatus getMemberStatus() {
-		reCaliculateMemberStatus();
+		reCaliculateEndDate();
 		return memberStatus;
 	}
 
 	public Member setMemberStatus(MemberStatus memberStatus) {
 		this.memberStatus = memberStatus;
+		reCaliculateEndDate();
 		return this;
-	}
-	
-	public void reCaliculateMemberStatus() {
-		if(memberStatus==MemberStatus.EXPIRED) {
-			//do Nothing. 
-		}else if(membershipType==MembershipType.YEARLY &&
-				ledger!=null && ledger.getEntryDate().isBefore(APRIL_1)) {
-			memberStatus=MemberStatus.EXPIRED;
-		}
 	}
 	
 	public String getMemberStatusLocalized() {
@@ -217,6 +213,15 @@ public class Member implements Serializable{
 	
 	public String getMemberNoWithPrefix() {
 		return (membershipType==MembershipType.LIFE?"LM":"OM")+memberNo;
+	}
+	
+	public void reCaliculateEndDate() {
+		if(membershipType == MembershipType.YEARLY 
+				&& memberStatus == MemberStatus.ACTIVE 
+				&& endDate.isBefore(LocalDate.now())) {
+			this.memberStatus= MemberStatus.EXPIRED;
+			this.endDate = LocalDate.now();
+		}
 	}
 
 	@Override
