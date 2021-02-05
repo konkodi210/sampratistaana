@@ -31,6 +31,9 @@ public class Member implements Serializable{
 	@Column(name = "MEMBER_NO", nullable = false)
 	private long memberNo;
 	
+	@Column(name = "MEMBER_ID", nullable = false)
+	private String memberId;
+	
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "LEDGER_ENTRY_NO")	
 	private Ledger ledger;
@@ -83,6 +86,15 @@ public class Member implements Serializable{
 
 	public Member setMemberNo(long memberNo) {
 		this.memberNo = memberNo;
+		return this;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public Member setMemberId(String memberId) {
+		this.memberId = memberId;
 		return this;
 	}
 

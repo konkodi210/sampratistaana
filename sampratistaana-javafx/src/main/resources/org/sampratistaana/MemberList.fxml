@@ -34,7 +34,7 @@
       </ButtonBar>
       <TableView fx:id="memberList" editable="true" tableMenuButtonVisible="true" >
         <columns>
-          <TableColumn id="memberNoWithPrefix" text="%member.no" />
+          <TableColumn id="memberId" text="%member.no" />
           <TableColumn id="name" text="%member.name" />
           <TableColumn id="nickName" text="%member.nickname" />
           <TableColumn id="membershipType" text="%member.type" />

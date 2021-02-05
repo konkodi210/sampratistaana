@@ -19,6 +19,7 @@ import org.sampratistaana.beans.Ledger.EntryCategory;
 import org.sampratistaana.beans.Ledger.EntryType;
 import org.sampratistaana.beans.Ledger.TransactionMode;
 import org.sampratistaana.beans.Member;
+import org.sampratistaana.beans.Member.MembershipType;
 
 public class CreditManager {
 
@@ -29,6 +30,11 @@ public class CreditManager {
 	 */
 	public Long saveMember(Member member) {
 		try(Session session=dbSession()){
+			Integer memberId=session
+				.createQuery("SELECT MAX(substr(m.memberId,3))+1 FROM Member m WHERE m.membershipType=:membershipType",Integer.class)
+				.setParameter("membershipType", member.getMembershipType())
+				.getResultList().get(0);
+			member.setMemberId((member.getMembershipType() == MembershipType.LIFE?"LM":"OM")+(memberId==null?1:memberId));
 			Transaction tran=session.beginTransaction();
 			session.saveOrUpdate(member);
 			tran.commit();

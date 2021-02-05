@@ -83,7 +83,7 @@ public class ConnectionFactory {
 
 	private static synchronized String dbUrl() throws IOException{
 		if(dbUrl == null) {
-			String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana_20210131.sqlite";
+			String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana_20210203.sqlite";
 			Path filePath=new File(dbFilePath).toPath();
 			if(!Files.exists(filePath)) {
 				Files.copy(ConnectionFactory.class.getResourceAsStream(DB_TEMPLATE_FILE), filePath);
