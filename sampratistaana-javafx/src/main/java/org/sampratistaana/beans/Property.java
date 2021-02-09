@@ -27,6 +27,8 @@ public class Property implements Serializable{
 	private String flag;
 	@Column(name = "PROPERTY_VALUE", nullable = false)
 	private String propertyValue;
+	@Column(name = "PROPERTY_DESC")
+	private String propertyDesc;
 	
 	
 	public long getPropertyId() {
@@ -62,6 +64,14 @@ public class Property implements Serializable{
 	}
 	public Property setPropertyValue(String propertyValue) {
 		this.propertyValue = propertyValue;
+		return this;
+	}
+	
+	public String getPropertyDesc() {
+		return propertyDesc;
+	}
+	public Property setPropertyDesc(String propertyDesc) {
+		this.propertyDesc = propertyDesc;
 		return this;
 	}
 	@Override

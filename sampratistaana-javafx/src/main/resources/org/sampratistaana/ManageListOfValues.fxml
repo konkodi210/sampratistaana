@@ -29,6 +29,7 @@
       <TableView fx:id="lovTable" editable="true">
         <columns>
           <TableColumn id="lovVal" text="%common.name" />
+          <TableColumn id="lovDesc" text="%common.description" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

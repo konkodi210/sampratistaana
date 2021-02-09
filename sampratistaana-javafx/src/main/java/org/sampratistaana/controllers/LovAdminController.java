@@ -35,9 +35,11 @@ public class LovAdminController extends BaseController{
 	@SuppressWarnings({"unchecked","rawtypes"})
 	public void initialize(URL location, ResourceBundle resources) {		
 		lovTable.getColumns().forEach((TableColumn col)->{
-			if(col.getId().equals("lovVal")) {
-				col.setCellFactory(TextFieldTableCell.forTableColumn()); 
+			col.setCellFactory(TextFieldTableCell.forTableColumn()); 
+			if(col.getId().equals("lovVal")) {				
 				col.setCellValueFactory((Callback<CellDataFeatures,ObservableValue>)(p) -> ((DisplayProp) p.getValue()).lovVal);
+			}else if(col.getId().equals("lovDesc")) {
+				col.setCellValueFactory((Callback<CellDataFeatures,ObservableValue>)(p) -> ((DisplayProp) p.getValue()).lovDesc);
 			}else {
 				throw new NullPointerException("No implementation provided for "+col.getId());
 			}
@@ -129,21 +131,30 @@ public class LovAdminController extends BaseController{
 	public static class DisplayProp{
 		Property prop;
 		SimpleStringProperty lovVal;
+		SimpleStringProperty lovDesc;
 		DisplayProp(Property prop){
 			this.prop = prop;
 			lovVal=new SimpleStringProperty(Messages.getMessage(prop.getPropertyValue()));
+			lovDesc=new SimpleStringProperty(prop.getPropertyDesc());
 		}	
 
 		boolean isDirtry(){
-			return lovVal.get()!=null && lovVal.get().trim().length()>0 && (prop.getPropertyKey()==null 
+			String lovValStr=lovVal.get()!=null && lovVal.get().trim().length()>0?lovVal.get(): null;
+			boolean isDirty = lovValStr!=null && (prop.getPropertyKey()==null 
 					|| !Messages.getMessage(prop.getPropertyValue()).equals(lovVal.get().trim()));
+			//check only property description is changed
+			if(!isDirty && lovValStr!=null && lovDesc.get()!=null && !lovDesc.get().equals(prop.getPropertyDesc())) {
+				isDirty=true;
+			}
+			return isDirty;
 		}
-
+		
 		Property prepareForSave(String propName, String propKey) {
 			prop.setFlag("Y");
 			prop.setPropertyName(propName);
 			prop.setPropertyKey(propKey);
 			prop.setPropertyValue(lovVal.get());
+			prop.setPropertyDesc(lovDesc.get());
 			return prop;
 		}
 	}

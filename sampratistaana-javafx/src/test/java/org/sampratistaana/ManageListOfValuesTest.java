@@ -46,30 +46,33 @@ public class ManageListOfValuesTest extends BaseApplicationTest {
 		clickOn(addBtn);
 		model.select(0);
 		SimpleStringProperty cellVal =(SimpleStringProperty)getProperty(model.getSelectedItem(),"lovVal");
+		SimpleStringProperty cellDesc=(SimpleStringProperty)getProperty(model.getSelectedItem(),"lovDesc");
 		cellVal.set(UUID.randomUUID().toString());
+		cellDesc.set(UUID.randomUUID().toString());
 		clickOn(saveBtn);
 		assertThat("New Row inserted",
-				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
+				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get(),cellDesc.get()),
 				equalTo(true));
 		model.select(0);
 		cellVal.set(UUID.randomUUID().toString());
+		cellDesc.set(UUID.randomUUID().toString());
 		clickOn(saveBtn);
 		assertThat("Row Updated",
-				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
+				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get(),cellDesc.get()),
 				equalTo(true));
 		model.select(0);
 		performConfirmedDelete("#deleteBtn");
 		assertThat("Row delete",
-				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get()),
+				hasValueInFundType(lovComboBox.getSelectionModel().getSelectedItem(), cellVal.get(),cellDesc.get()),
 				equalTo(false));
 		
 	}
 	
-	private boolean hasValueInFundType(LovProp lovProp,String val) {
+	private boolean hasValueInFundType(LovProp lovProp,String val,String desc) {
 		return new ListOfValues()
 				.getProperties((String)getProperty(lovProp,"propertyName"), (String)getProperty(lovProp,"propertyKey"))
 				.stream()
-				.filter(x->x.getPropertyValue().equals(val))
+				.filter(x->x.getPropertyValue().equals(val) && desc.equals(x.getPropertyDesc()))
 				.count() > 0;
 	}
 }
