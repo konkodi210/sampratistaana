@@ -30,18 +30,20 @@ public class CreditManager {
 	 */
 	public Long saveMember(Member member) {
 		try(Session session=dbSession()){
-			Integer memberId=session
-				.createQuery("SELECT MAX(substr(m.memberId,3))+1 FROM Member m WHERE m.membershipType=:membershipType",Integer.class)
-				.setParameter("membershipType", member.getMembershipType())
-				.getResultList().get(0);
-			member.setMemberId((member.getMembershipType() == MembershipType.LIFE?"LM":"OM")+(memberId==null?1:memberId));
+			if(member.getMemberNo() == 0) {
+				Integer memberId=session
+						.createQuery("SELECT MAX(substr(m.memberId,3))+1 FROM Member m WHERE m.membershipType=:membershipType",Integer.class)
+						.setParameter("membershipType", member.getMembershipType())
+						.getResultList().get(0);
+				member.setMemberId((member.getMembershipType() == MembershipType.LIFE?"LM":"OM")+(memberId==null?1:memberId));
+			}
 			Transaction tran=session.beginTransaction();
 			session.saveOrUpdate(member);
 			tran.commit();
 			return member.getMemberNo();
 		}
 	}
-	
+
 	/**
 	 * Saves the expense into the database
 	 * @param expense 
@@ -92,8 +94,8 @@ public class CreditManager {
 					.getResultList();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Saves the Donation into the database
 	 * @param donation 
@@ -115,7 +117,7 @@ public class CreditManager {
 			tran.commit();
 		}
 	}
-	
+
 	public void deleteExpense(Expense expense) {
 		try(Session session=dbSession()){
 			Transaction tran=session.beginTransaction();
@@ -192,7 +194,7 @@ public class CreditManager {
 					.getResultList();
 		}
 	}
-	
+
 	public void deleteInventory(Inventory inv) {
 		try(Session session=dbSession()){
 			Transaction tran=session.beginTransaction();
@@ -200,7 +202,7 @@ public class CreditManager {
 			tran.commit();
 		}
 	}
-	
+
 	public void saveInventory(Inventory... inventories) {
 		if(inventories==null || inventories.length == 0) {
 			return;
@@ -217,33 +219,33 @@ public class CreditManager {
 	/**
 	 * This is temporary function until inventory management screen comes
 	 */
-//	public void loadBookInventory() {
-//		ResourceBundle res=Messages.getResource();
-//		try(Session session=dbSession()){
-//			Transaction tran=session.beginTransaction();
-//			for(Enumeration<String> enm=res.getKeys();enm.hasMoreElements();) {
-//				String key=enm.nextElement();
-//				if(key.startsWith("book.")) {
-//					Inventory inv=session.byNaturalId(Inventory.class).using("unitName", res.getString(key)).load();
-//					if(inv==null) {
-//						session.saveOrUpdate(new Inventory()
-//								.setInventoryType(InventoryType.BOOK)
-//								.setUnitName(res.getString(key))
-//								.setInventoryCount(100)
-//								.setUnitPrice(250)
-//								.setLedger(new Ledger()
-//										.setEntryType(EntryType.DEBIT)
-//										.setEntryCategory(EntryCategory.BOOK_PURCHASE)
-//										.setEntryValue(250*101)
-//										.setEntryDate(LocalDate.now())
-//										.setModeOfTranscation(TransactionMode.CASH))
-//								);
-//					}
-//				}
-//			}
-//			tran.commit();
-//		}
-//	}
+	//	public void loadBookInventory() {
+	//		ResourceBundle res=Messages.getResource();
+	//		try(Session session=dbSession()){
+	//			Transaction tran=session.beginTransaction();
+	//			for(Enumeration<String> enm=res.getKeys();enm.hasMoreElements();) {
+	//				String key=enm.nextElement();
+	//				if(key.startsWith("book.")) {
+	//					Inventory inv=session.byNaturalId(Inventory.class).using("unitName", res.getString(key)).load();
+	//					if(inv==null) {
+	//						session.saveOrUpdate(new Inventory()
+	//								.setInventoryType(InventoryType.BOOK)
+	//								.setUnitName(res.getString(key))
+	//								.setInventoryCount(100)
+	//								.setUnitPrice(250)
+	//								.setLedger(new Ledger()
+	//										.setEntryType(EntryType.DEBIT)
+	//										.setEntryCategory(EntryCategory.BOOK_PURCHASE)
+	//										.setEntryValue(250*101)
+	//										.setEntryDate(LocalDate.now())
+	//										.setModeOfTranscation(TransactionMode.CASH))
+	//								);
+	//					}
+	//				}
+	//			}
+	//			tran.commit();
+	//		}
+	//	}
 
 	/**
 	 * Records book sale in the database
@@ -328,7 +330,7 @@ public class CreditManager {
 
 		}
 	}
-	
+
 	/**
 	 *  Get the complete book sale details based on the ledger entry no. This sale record may have one or more book sale in single trasaction.
 	 * @param ledgerNo
@@ -345,7 +347,7 @@ public class CreditManager {
 					.getResultList();
 		}
 	}
-	
+
 	//TODO: I am really not sure we should implement this. This will have serious consequences on the inventory as well as ledger.
 	public void deleteSaleEntry(long ledgerNo) {
 		try(Session session=dbSession()){
