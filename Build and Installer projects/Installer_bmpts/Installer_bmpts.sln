@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer_bmpts", "Installer_bmpts\Installer_bmpts.vdproj", "{57121FC1-108B-4021-872C-6F99BAD33211}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57121FC1-108B-4021-872C-6F99BAD33211}.Debug|Default.ActiveCfg = Release
+		{57121FC1-108B-4021-872C-6F99BAD33211}.Debug|Default.Build.0 = Release
+		{57121FC1-108B-4021-872C-6F99BAD33211}.Release|Default.ActiveCfg = Release
+		{57121FC1-108B-4021-872C-6F99BAD33211}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66760B2E-DB1C-489D-95A3-B972439974F3}
+	EndGlobalSection
+EndGlobal

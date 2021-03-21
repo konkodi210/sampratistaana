@@ -1,0 +1,33 @@
+Hibernate: 
+    select
+        member0_.MEMBER_NO as member_n1_7_0_,
+        ledger1_.ENTRY_NO as entry_no1_6_1_,
+        member0_.AADHAR_NO as aadhar_n2_7_0_,
+        member0_.ADDRESS as address3_7_0_,
+        member0_.DATE_OF_BIRTH as date_of_4_7_0_,
+        member0_.EMAIL as email5_7_0_,
+        member0_.END_DATE as end_date6_7_0_,
+        member0_.LEDGER_ENTRY_NO as ledger_13_7_0_,
+        member0_.MEMBER_STATUS as member_s7_7_0_,
+        member0_.MEMBERSHIP_TYPE as membersh8_7_0_,
+        member0_.MOBILE_NO as mobile_n9_7_0_,
+        member0_.NAME as name10_7_0_,
+        member0_.NICK_NAME as nick_na11_7_0_,
+        member0_.PHONE_NO as phone_n12_7_0_,
+        ledger1_.BANK_ACCOUNT_ID as bank_ac11_6_1_,
+        ledger1_.ENTRY_CATEGORY as entry_ca2_6_1_,
+        ledger1_.ENTRY_DATE as entry_da3_6_1_,
+        ledger1_.ENTRY_DESC as entry_de4_6_1_,
+        ledger1_.ENTRY_TYPE as entry_ty5_6_1_,
+        ledger1_.ENTRY_VALUE as entry_va6_6_1_,
+        ledger1_.EXTERNAL_TRAN_ID as external7_6_1_,
+        ledger1_.FUND_TYPE as fund_typ8_6_1_,
+        ledger1_.MODE_OF_TRAN as mode_of_9_6_1_,
+        ledger1_.PAN_NO as pan_no10_6_1_ 
+    from
+        MEMBER member0_ 
+    inner join
+        LEDGER ledger1_ 
+            on member0_.LEDGER_ENTRY_NO=ledger1_.ENTRY_NO 
+    order by
+        member0_.LEDGER_ENTRY_NO DESC
