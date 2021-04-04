@@ -85,7 +85,10 @@ public class DynamicReportController extends BaseController {
 					String val=null;
 					try {
 						if(col.contains("_DATE") || col.contains("DATE_") || col.contains("_DATE_")) {
-							val=Messages.formatDate(Instant.ofEpochMilli(rs.getLong(col)).atZone(ZoneId.systemDefault()).toLocalDate());
+							long dateNum = rs.getLong(col);
+							if(dateNum >0) {
+								val=Messages.formatDate(Instant.ofEpochMilli(dateNum).atZone(ZoneId.systemDefault()).toLocalDate());
+							}
 						}else {
 							val=rs.getString(col);
 						}
