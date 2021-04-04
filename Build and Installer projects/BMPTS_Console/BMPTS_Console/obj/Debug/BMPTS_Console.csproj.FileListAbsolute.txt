@@ -1,0 +1,13 @@
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\bin\Debug\BMPTS_Console.exe.config
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\bin\Debug\BMPTS_Console.exe
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\bin\Debug\BMPTS_Console.pdb
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.csprojAssemblyReference.cache
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.csproj.CoreCompileInputs.cache
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.exe
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.pdb
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\bin\Debug\BMPTS_Console.exe.manifest
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\bin\Debug\BMPTS_Console.application
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.exe.manifest
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.application
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.Properties.Resources.resources
+C:\Users\Avyukth\source\repos\BMPTS_Console\BMPTS_Console\obj\Debug\BMPTS_Console.csproj.GenerateResource.cache
