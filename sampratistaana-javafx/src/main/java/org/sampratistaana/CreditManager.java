@@ -32,7 +32,7 @@ public class CreditManager {
 		try(Session session=dbSession()){
 			if(member.getMemberNo() == 0) {
 				Integer memberId=session
-						.createQuery("SELECT MAX(substr(m.memberId,3))+1 FROM Member m WHERE m.membershipType=:membershipType",Integer.class)
+						.createQuery("SELECT MAX(cast(substr(m.memberId,3) as java.lang.Integer))+1 FROM Member m WHERE m.membershipType=:membershipType",Integer.class)
 						.setParameter("membershipType", member.getMembershipType())
 						.getResultList().get(0);
 				member.setMemberId((member.getMembershipType() == MembershipType.LIFE?"LM":"OM")+(memberId==null?1:memberId));
