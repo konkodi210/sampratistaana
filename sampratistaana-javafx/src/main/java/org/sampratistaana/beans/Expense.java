@@ -113,7 +113,8 @@ public class Expense implements Serializable{
 	}
 	
 	public long getReceiptNum() {
-		return ledger!=null?ledger.getEntryNo():0;
+		//return ledger!=null?ledger.getEntryNo():0;
+		return getExpenseId();
 	}
 
 	@Override
