@@ -82,18 +82,27 @@ public class ConnectionFactory {
 	}
 
 	private static synchronized String dbUrl() throws IOException{
-		if(dbUrl == null) {
-			String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana_20210209.sqlite";
-			Path filePath=new File(dbFilePath).toPath();
-			if(!Files.exists(filePath)) {
-				Files.copy(ConnectionFactory.class.getResourceAsStream(DB_TEMPLATE_FILE), filePath);
-			}
-			dbUrl="jdbc:sqlite:"+dbFilePath;
+		if(dbUrl == null) {		
+			dbUrl="jdbc:sqlite:"+getDBFile();
 		}
 		return dbUrl;
 	}
 	
-	public static BackupRepository getBackupService() throws IOException{
+	protected static synchronized String getDBFile()  throws IOException{
+		String dbFilePath = System.getProperty("user.home")+File.separator+"db_sampratistana_20210209.sqlite";
+		Path filePath=new File(dbFilePath).toPath();
+		if(!Files.exists(filePath)) {
+			Files.copy(ConnectionFactory.class.getResourceAsStream(DB_TEMPLATE_FILE), filePath);
+		}
+		return dbFilePath;
+	}
+	
+	protected static void releaseDB() {
+		try { sessionFactory.close(); }catch(Exception e) {}
+		try { registry.close(); }catch(Exception e) {}
+	}
+	
+	public static BackupRepository getBackupService() throws IOException{	
 		BackupRepository service=new OneDriveBackupRepository();
 		service.init();
 		return service;

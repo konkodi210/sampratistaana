@@ -2,6 +2,7 @@ package org.sampratistaana;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -26,6 +27,9 @@ public class OneDriveBackupRepository implements BackupRepository {
 	@Override
 	public void init() throws IOException {
 		repositoryPath=System.getProperty("ONEDRIVE_DIR"); 
+		if(repositoryPath == null) {
+			repositoryPath = System.getenv("ONEDRIVE_DIR");
+		}
 		if(repositoryPath==null) {
 			Properties prop=new Properties();
 			try {
@@ -35,6 +39,7 @@ public class OneDriveBackupRepository implements BackupRepository {
 				repositoryPath=Paths.get(System.getProperty("user.home"), "samprathistana_backup").toString();
 			}
 		}
+		new File(repositoryPath).mkdirs();
 	}
 
 	@Override
@@ -54,15 +59,17 @@ public class OneDriveBackupRepository implements BackupRepository {
 
 	@Override
 	public void deleteFile(String relativePathInRepo) throws IOException {
+		Path absPath=getAbsolutePath(relativePathInRepo);
+		if(!Files.exists(absPath)) {
+			return;
+		}
 		//Do the soft delete file by moving into deleted folder		
-		Path targetFile = Path.of(repositoryPath, "deleted",relativePathInRepo);
-		if(Files.exists(targetFile)) {
-			targetFile=Path.of(targetFile.toString()+"_"+fmt.format(LocalDateTime.now()));
-		}else {
+		Path targetFile = Path.of(repositoryPath, "deleted",relativePathInRepo+"_"+fmt.format(LocalDateTime.now()));
+		if(!Files.exists(targetFile.getParent())) {			
 			Files.createDirectories(targetFile.getParent());
 		}
-
-		Files.move(getAbsolutePath(relativePathInRepo), targetFile,REPLACE_EXISTING);
+		
+		Files.move(absPath, targetFile,REPLACE_EXISTING);
 	}
 
 	@Override

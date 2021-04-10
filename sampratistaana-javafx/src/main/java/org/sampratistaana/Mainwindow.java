@@ -47,6 +47,12 @@ public class Mainwindow extends Application {
     }
 
     public static void main(String[] args) {
+    	Runtime
+    	.getRuntime()
+    	.addShutdownHook(new Thread(() -> {
+    		ConnectionFactory.releaseDB();
+    		new BackupService().performBackup();
+    	}));
         launch();
     }
     
