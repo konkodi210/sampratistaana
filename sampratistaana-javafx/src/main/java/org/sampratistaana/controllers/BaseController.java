@@ -155,7 +155,7 @@ public class BaseController implements Initializable{
 
 		}finally {
 			System.setOut(out);
-			System.setOut(err);
+			System.setErr(err);
 		}
 	}
 
