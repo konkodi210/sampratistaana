@@ -224,7 +224,7 @@ public class Member implements Serializable{
 	}
 	
 	public String getMemberNoWithPrefix() {
-		return (membershipType==MembershipType.LIFE?"LM":"OM")+memberNo;
+		return memberId;//(membershipType==MembershipType.LIFE?"LM":"OM")+memberId;
 	}
 	
 	public void reCaliculateEndDate() {
