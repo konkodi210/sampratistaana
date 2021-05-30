@@ -8,7 +8,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.sampratistaana.beans.DynamicReport;
 import org.sampratistaana.beans.Ledger;
-import org.sampratistaana.controllers.LedgerReportController.Report;
 
 public class ReportManager {
 

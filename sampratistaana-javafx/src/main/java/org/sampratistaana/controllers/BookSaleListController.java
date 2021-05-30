@@ -32,7 +32,7 @@ public class BookSaleListController extends BaseController {
 	}
 
 	public void loadBookSale() throws IOException {
-		loadForm("BookSale");
+		loadForm("BookSaleV2");
 	}
 	public void editBookSale() throws IOException{		
 		addToCache(BookSaleEditControler.CACHE_KEY,
