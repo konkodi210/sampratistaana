@@ -14,6 +14,7 @@ module org.sampratistaana {
     requires com.google.gson;
     requires com.fasterxml.classmate;
     requires org.controlsfx.controls;
+    requires jdk.charsets;
     
     opens org.sampratistaana.controllers;
     opens org.sampratistaana.beans;

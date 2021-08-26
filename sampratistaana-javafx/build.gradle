@@ -61,6 +61,7 @@ jlink {
         requires 'java.instrument';
         requires 'net.bytebuddy';
         requires 'com.fasterxml.classmate';
+        requires 'jdk.charsets';
 
         uses 'org.jboss.logging.LoggerProvider';
         uses 'javax.persistence.spi.PersistenceProvider';
