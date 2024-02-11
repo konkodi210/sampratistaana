@@ -41,7 +41,9 @@ public class DonationListController extends BaseController{
 	}
 	
 	public void loadNewDonation() throws IOException {
-		Donation member = Optional.ofNullable(donationList.getSelectionModel().getSelectedItem()).orElse(new Donation())
+		Donation member = Optional.ofNullable(donationList.getSelectionModel().getSelectedItem())
+				.map(d->d.setDonationId(0))
+				.orElse(new Donation())
 				.setLedger(
 						new Ledger()
 						.setEntryDate(LocalDate.now())
