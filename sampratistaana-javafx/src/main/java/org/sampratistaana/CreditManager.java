@@ -4,6 +4,7 @@ import static org.sampratistaana.ConnectionFactory.dbSession;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.hibernate.Session;
@@ -35,7 +36,12 @@ public class CreditManager {
 						.createQuery("SELECT MAX(cast(substr(m.memberId,3) as java.lang.Integer))+1 FROM Member m WHERE m.membershipType=:membershipType",Integer.class)
 						.setParameter("membershipType", member.getMembershipType())
 						.getResultList().get(0);
-				member.setMemberId((member.getMembershipType() == MembershipType.LIFE?"LM":"OM")+(memberId==null?1:memberId));
+				switch(member.getMembershipType()){
+					case LIFE:member.setMemberId(String.format("LM%d", Optional.ofNullable(memberId).orElse(1))); break;
+					case DONATION:member.setMemberId(String.format("DN%d", Optional.ofNullable(memberId).orElse(1))); break;
+					default:member.setMemberId(String.format("OM%d", Optional.ofNullable(memberId).orElse(1))); break;
+				}
+//				member.setMemberId((member.getMembershipType() == MembershipType.LIFE?"LM":"OM")+(memberId==null?1:memberId));
 			}
 			Transaction tran=session.beginTransaction();
 			session.saveOrUpdate(member);

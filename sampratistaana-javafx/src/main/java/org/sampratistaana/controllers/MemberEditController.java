@@ -70,7 +70,7 @@ public class MemberEditController extends BaseController{
 		});
 		
 		memberForm.setUserData(member);
-		memberNo.setText(String.valueOf(member.getMemberNo()));
+		memberNo.setText(String.valueOf(member.getMemberId()));
 		entryDate.setValue(member.getLedger().getEntryDate());
 		name.setText(member.getName());
 		nickName.setText(member.getNickName());

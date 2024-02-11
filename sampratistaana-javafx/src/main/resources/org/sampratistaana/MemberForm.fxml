@@ -54,6 +54,9 @@
                   <RadioButton id="yearlyMembership" text="%member.yearly" toggleGroup="$membership">
                     <properties value="YEARLY" />
                   </RadioButton>
+                  <RadioButton id="donationMembership" text="%member.donation.type" toggleGroup="$membership">
+                     <properties value="DONATION" />
+                  </RadioButton>
                </children>
             </FlowPane>
             

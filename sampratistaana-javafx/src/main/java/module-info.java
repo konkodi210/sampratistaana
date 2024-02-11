@@ -15,6 +15,7 @@ module org.sampratistaana {
     requires com.fasterxml.classmate;
     requires org.controlsfx.controls;
     requires jdk.charsets;
+	requires poi.ooxml;
     
     opens org.sampratistaana.controllers;
     opens org.sampratistaana.beans;

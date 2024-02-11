@@ -3,6 +3,7 @@ package org.sampratistaana.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.sampratistaana.CreditManager;
@@ -40,7 +41,9 @@ public class DonationListController extends BaseController{
 	}
 	
 	public void loadNewDonation() throws IOException {
-		Donation member=new Donation()
+		Donation member = Optional.ofNullable(donationList.getSelectionModel().getSelectedItem())
+				.map(d->d.setDonationId(0))
+				.orElse(new Donation())
 				.setLedger(
 						new Ledger()
 						.setEntryDate(LocalDate.now())
