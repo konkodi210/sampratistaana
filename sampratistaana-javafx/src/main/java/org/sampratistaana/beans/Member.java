@@ -24,7 +24,7 @@ import org.sampratistaana.beans.Ledger.TransactionMode;
 public class Member implements Serializable{
 	private static final long serialVersionUID = 2435744732575061197L;
 	
-	public enum MembershipType {LIFE, YEARLY}
+	public enum MembershipType {LIFE, YEARLY, DONATION}
 	public enum MemberStatus{ACTIVE,EXPIRED,DEAD}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
