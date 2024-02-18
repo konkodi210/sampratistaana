@@ -3,7 +3,7 @@ name: automated_build
 on:
   push:
     branches:
-      - automated_build
+      - auto_build1
 
 jobs:
   build:
