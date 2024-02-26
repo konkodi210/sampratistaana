@@ -12,7 +12,7 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ] 
 }
 
-mainClassName='$moduleName/org.sampratistaana.Mainwindow'
+mainClassName='org.sampratistaana.Mainwindow'
 
 repositories {
     mavenCentral()
