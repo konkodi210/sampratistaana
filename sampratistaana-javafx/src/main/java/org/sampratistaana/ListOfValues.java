@@ -18,6 +18,14 @@ public class ListOfValues {
 	public List<Property> getExpenseTypes(){
 		return getProperties("EXPENSE","EXPENSE_TYPE");
 	}
+	
+	public List<Property> getBookSaleTypes(){
+		return getProperties("BOOK_SALE", "BOOK_SALE_TYPE");
+	}
+	
+	public List<Property> getShopNames(){
+		return getProperties("SHOP", "SHOP_NAME");
+	}
 
 	public List<Property> getProperties(String propertyName, String propertyKey){
 		//TODO: Add caching. 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sampratistaana.controllers.BookSaleControllerV2" >
+   <children>
+      <Label alignment="TOP_CENTER" styleClass="title-label" text="%booksale.title" />
+      <GridPane hgap="10.0" vgap="20.0" fx:id="gridForm">
+      	<children>
+      		<Label styleClass="serial-no" text="%common.serial-no" />
+            <Label fx:id="receiptNo" text="123" GridPane.columnIndex="1" />
+            <Label text="Customer Type" GridPane.columnIndex="2"/>
+            <ComboBox fx:id="customerType" GridPane.columnIndex="3"  /> 
+            <!-- Shop -->
+            <Label fx:id="shopNameLbl" text="Shop Name" GridPane.columnIndex="4" />
+            <ComboBox fx:id="shopNameLov" GridPane.columnIndex="5" />  
+            <!-- Member -->
+            <Label fx:id="memberLbl" text="Member Name" GridPane.columnIndex="4" />
+            <Label fx:id="memberNo" text="1234" GridPane.columnIndex="5" />
+            <!-- Individual -->
+            <Label fx:id="individualLbl" text="Name" GridPane.columnIndex="4" />
+            <TextField fx:id="individualTxt" GridPane.columnIndex="5" /> 
+            
+            <Label text="Date" GridPane.columnIndex="6" />
+            <DatePicker GridPane.columnIndex="7" />
+            
+            <Label fx:id="phoneLbl" text="Phone" GridPane.rowIndex="1" />
+            <TextField fx:id="phoneTxt" GridPane.rowIndex="1" GridPane.columnIndex="1" /> 
+            <Label fx:id="emailLbl" text="Email" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <TextField fx:id="emailTxt" GridPane.rowIndex="1" GridPane.columnIndex="3" /> 
+            <Label fx:id="panLbl" text="PAN" GridPane.rowIndex="1"  GridPane.columnIndex="4"/>
+            <TextField fx:id="panTxt" GridPane.rowIndex="1" GridPane.columnIndex="5" /> 
+            <Label fx:id="addressLbl" text="Address" GridPane.rowIndex="1"  GridPane.columnIndex="6"/>
+            <TextField fx:id="addressTxt" GridPane.rowIndex="1" GridPane.columnIndex="7" /> 
+            
+            <Label text="%member.payment-type"  GridPane.rowIndex="2" />
+            <ComboBox fx:id="paymentType" GridPane.columnIndex="1" GridPane.rowIndex="2" /> 
+            <Label fx:id="depositAccountLabel" text="%depoist.account" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <ComboBox fx:id="depositAccount" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+            <Label text="%member.check-no" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+            <TextField fx:id="externalTranNo" disable="true" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            
+            <!-- Book name -->
+            <Label text="Book Name"  GridPane.rowIndex="2" /> 
+      	</children>
+      	<columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+         </columnConstraints>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets left="5.0" right="25.0" />
+   </padding>
+</VBox> 
